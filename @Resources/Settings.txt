@@ -1,0 +1,33 @@
+[Variables]
+; drive letters
+hd1=C
+hd2=D
+hd3=E
+
+; media player name
+mediaPlayer=CAD
+
+; max desired size of recycle bin in Bytes
+trashMax=2147483648
+
+; time skin settings
+timeFormat="%#H:%M"
+dateFormat="%a, %#d %B"
+; 0 minute, 1 hour, 2 half day, 3 day, 4 week, 5 month
+timeRoundline=3
+
+; Maximum upload and download speeds in Bytes per second
+uploadMax=2250000
+downloadMax=33125000
+
+;Weather woeid and unit
+woeid=615702
+unit=c
+
+; speedfan settings
+; index from SpeedFan to measure temperature
+sfTempIndex=2
+; index from speedFan to measure voltage
+sfVoltIndex=2
+; maximum temperature used to scale roundline meter
+sfMaxTemp=100

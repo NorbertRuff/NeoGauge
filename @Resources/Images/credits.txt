@@ -1,0 +1,9 @@
+Media icons (play.png, pause.png, stop.png, next.png, prev.png)
+DefaultIcon ver 2.0
+  Available for download at
+  http://www.defaulticon.com
+Copyright (c) © 2010-2011 Apostolos Paschalidis interactivemania
+  All Rights Reserved.
+  http://www.interactivemania.com
+Used in accordance with the Commons Attribution-No Derivative Works 3.0 license
+  http://creativecommons.org/licenses/by-nd/3.0/

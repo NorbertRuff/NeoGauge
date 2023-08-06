@@ -1,0 +1,30 @@
+[Variables]
+; color settings
+innerRingColor=5,188,200,180
+outerRingColor=#innerRingColor#
+pieBgColor=100,100,100,51
+pieColor=10,200,200,200
+textMainColor=255,255,255,200
+textSubColor=#innerRingColor#
+bgBarColor=10,10,10,200
+
+; size and scaling
+radius=28
+innerRadius=(#radius#*0.60)
+edging=(#radius#*0.3)
+orient=left
+pieSize=1.0
+pieStart=0
+
+; show and hide skin components
+hideInnerEdge=0
+hideOuterEdge=0
+hidePieBg=0
+hideDivider=0
+hideSubText=0
+
+; font attributes
+mainFont=Sansation
+subFont=JetBrains Mono
+fontStyle=Normal
+subTwoLines=0
