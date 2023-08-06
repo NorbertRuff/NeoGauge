@@ -27,4 +27,4 @@ hideSubText=0
 mainFont=Sansation
 subFont=JetBrains Mono
 fontStyle=Normal
-subTwoLines=0
+subTwoLines=1

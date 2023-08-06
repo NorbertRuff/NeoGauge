@@ -9,7 +9,7 @@ textSubColor=#innerRingColor#
 bgBarColor=10,10,10,200
 
 ; size and scaling
-radius=28
+radius=22
 innerRadius=(#radius#*0.45)
 edging=(#radius#*0.3)
 orient=left
