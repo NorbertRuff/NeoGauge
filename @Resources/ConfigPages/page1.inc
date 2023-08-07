@@ -26,7 +26,7 @@ Meter=String
 MeterStyle=allText
 FontColor=#textColor#
 FontSize=10
-Text="Flying Hyrax | flyinghyrax.deviantart.com"
+Text="Norbert Ruff | based on Flying Hyrax"
 X=133
 Y=35
 
