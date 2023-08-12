@@ -2,16 +2,16 @@
 ; color settings
 innerRingColor=180,100,200,200
 outerRingColor=#innerRingColor#
-pieBgColor=100,100,100,51
-pieColor=250,250,250,230
-textMainColor=#pieColor#
+pieBgColor=100,100,100,60
+pieColor=80,255,160,255
+textMainColor=255,255,255,255
 textSubColor=#innerRingColor#
 bgBarColor=10,10,10,200
-colorIcon=255,255,255,255
+colorIcon=200,150,255,255
 
 ; size and scaling
-radius=30
-innerRadius=(#radius#*0.45)
+radius=32
+innerRadius=(#radius#*0.55)
 edging=(#radius#*0.3)
 orient=right
 pieSize=1.0
@@ -25,7 +25,5 @@ hideDivider=0
 hideSubText=0
 
 ; font attributes
-mainFont=Ubuntu Nerd Font
-subFont=JetBrains Mono
 fontStyle=Normal
 subTwoLines=0

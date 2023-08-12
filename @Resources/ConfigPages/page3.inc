@@ -1,5 +1,6 @@
 [Variables]
-bgH=300
+bgH=520
+bgW=520
 dotY=80
 highlightColor=183,234,93,230
 

@@ -25,7 +25,6 @@ hideDivider=0
 hideSubText=0
 
 ; font attributes
-mainFont=Ubuntu Nerd Font
-subFont=JetBrains Mono
+
 fontStyle=Normal
 subTwoLines=0

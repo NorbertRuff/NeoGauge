@@ -23,11 +23,3 @@ downloadMax=33125000
 ;Weather woeid and unit
 woeid=615702
 unit=c
-
-; speedfan settings
-; index from SpeedFan to measure temperature
-sfTempIndex=2
-; index from speedFan to measure voltage
-sfVoltIndex=2
-; maximum temperature used to scale roundline meter
-sfMaxTemp=100

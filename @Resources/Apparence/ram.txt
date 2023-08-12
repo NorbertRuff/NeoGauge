@@ -18,14 +18,12 @@ pieSize=1.0
 pieStart=0
 
 ; show and hide skin components
-hideInnerEdge=1
-hideOuterEdge=1
+hideInnerEdge=0
+hideOuterEdge=0
 hidePieBg=0
 hideDivider=0
 hideSubText=0
 
 ; font attributes
-mainFont=Ubuntu Nerd Font
-subFont=JetBrains Mono
 fontStyle=Normal
 subTwoLines=0

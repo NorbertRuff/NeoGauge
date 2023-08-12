@@ -1,5 +1,6 @@
 [Variables]
-bgH=470
+bgH=520
+bgW=520
 dotY=55
 highlightColor=89,186,255,230
 ;highlightColor=93,208,234,230
@@ -22,14 +23,14 @@ X=130
 Y=r
 W=80
 H=40
-LeftMouseUpAction=[!WriteKeyValue Variables orient left "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue Variables orient left "#@#default.txt"][!RefreshGroup sysmon]
 
 [rightCircleBg]
 Meter=Image
 MeterStyle=leftCircleBg
 X=220
 Y=r
-LeftMouseUpAction=[!WriteKeyValue Variables orient right "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue Variables orient right "#@#default.txt"][!RefreshGroup sysmon]
 
 [leftLine]
 Meter=IMAGE
@@ -98,28 +99,28 @@ MeterStyle=subText
 X=r
 Y=r
 Text=24
-LeftMouseUpAction=[!WriteKeyValue Variables radius 24 "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue Variables radius 24 "#@#default.txt"][!RefreshGroup sysmon]
 
 [r36]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=36
-LeftMouseUpAction=[!WriteKeyValue Variables radius 36 "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue Variables radius 36 "#@#default.txt"][!RefreshGroup sysmon]
 
 [r48]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=48
-LeftMouseUpAction=[!WriteKeyValue Variables radius 48 "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue Variables radius 48 "#@#default.txt"][!RefreshGroup sysmon]
 
 [r60]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=60
-LeftMouseUpAction=[!WriteKeyValue Variables radius 60 "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue Variables radius 60 "#@#default.txt"][!RefreshGroup sysmon]
 
 [rCustom]
 Meter=String
@@ -145,21 +146,21 @@ MeterStyle=subText
 X=r
 Y=r
 Text=(none)
-LeftMouseUpAction=[!WriteKeyValue Variables edging "0" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue Variables edging "0" "#@#default.txt"][!RefreshGroup sysmon]
 
 [margin10]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=10%
-LeftMouseUpAction=[!WriteKeyValue Variables edging "(#*radius*#*0.1)" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue Variables edging "(#*radius*#*0.1)" "#@#default.txt"][!RefreshGroup sysmon]
 
 [margin30]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=30%
-LeftMouseUpAction=[!WriteKeyValue Variables edging "(#*radius*#*0.3)" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue Variables edging "(#*radius*#*0.3)" "#@#default.txt"][!RefreshGroup sysmon]
 
 [marginCustom]
 Meter=String
@@ -194,7 +195,7 @@ Meter=String
 MeterStyle=subText
 X=300
 Text=N
-LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Normal" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Normal" "#@#default.txt"][!RefreshGroup sysmon]
 ToolTipText=Normal/none
 
 [bold]
@@ -203,7 +204,7 @@ MeterStyle=subText
 StringStyle=Bold
 X=5R
 Text=B
-LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Bold" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Bold" "#@#default.txt"][!RefreshGroup sysmon]
 ToolTipText=Bold
 
 [italic]
@@ -212,7 +213,7 @@ MeterStyle=subText
 StringStyle=Italic
 X=5R
 Text=I
-LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Italic" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Italic" "#@#default.txt"][!RefreshGroup sysmon]
 ToolTipText=Italic
 
 [boldItalic]
@@ -221,7 +222,7 @@ MeterStyle=subText
 StringStyle=BoldItalic
 X=5R
 Text=BI
-LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "BoldItalic" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "BoldItalic" "#@#default.txt"][!RefreshGroup sysmon]
 ToolTipText=Bold + Italic
 
 ; ============================================================
@@ -289,7 +290,7 @@ X=160
 Y=282
 W=120
 H=4
-LeftMouseUpAction=[!CommandMeasure "mSettingsScript" "changeAlpha('pieColor',$MouseX:%$)"][!RefreshGroup circa2]
+LeftMouseUpAction=[!CommandMeasure "mSettingsScript" "changeAlpha('pieColor',$MouseX:%$)"][!RefreshGroup sysmon]
 ToolTipText="Set the transparency of the primary color"
 
 [1ColorAlpha]
@@ -305,7 +306,7 @@ W=1
 Meter=Image
 MeterStyle=1ColorAlphaBg
 Y=317
-LeftMouseUpAction=[!CommandMeasure "mSettingsScript" "changeAlpha('innerRingColor',$MouseX:%$)"][!RefreshGroup circa2]
+LeftMouseUpAction=[!CommandMeasure "mSettingsScript" "changeAlpha('innerRingColor',$MouseX:%$)"][!RefreshGroup sysmon]
 ToolTipText="Set the transparency of the secondary color"
 
 [2ColorAlpha]
@@ -317,7 +318,7 @@ W=1
 Meter=Image
 MeterStyle=1ColorAlphaBg
 Y=352
-LeftMouseUpAction=[!CommandMeasure "mSettingsScript" "changeAlpha('pieBgColor',$MouseX:%$)"][!RefreshGroup circa2]
+LeftMouseUpAction=[!CommandMeasure "mSettingsScript" "changeAlpha('pieBgColor',$MouseX:%$)"][!RefreshGroup sysmon]
 ToolTipText="Set the transparency of the circle background color"
 
 [3ColorAlpha]
@@ -377,7 +378,7 @@ X=132
 Y=417
 W=30
 H=10
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "250,250,250,230" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "250,250,250,230" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#default.txt"][!RefreshGroup sysmon]
 
 [yellow]
 Meter=Image
@@ -385,7 +386,7 @@ SolidColor=252,212,75,230
 MeterStyle=white
 X=2R
 Y=r
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "252,212,75,230" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "252,212,75,230" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#default.txt"][!RefreshGroup sysmon]
 
 [green]
 Meter=Image
@@ -393,7 +394,7 @@ SolidColor=182,200,80,230
 MeterStyle=white
 X=2R
 Y=r
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "182,200,80,230" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "182,200,80,230" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#default.txt"][!RefreshGroup sysmon]
 
 [blue]
 Meter=Image
@@ -401,7 +402,7 @@ SolidColor=89,186,255,230
 MeterStyle=white
 X=2R
 Y=r
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "89,186,255,230" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "89,186,255,230" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#default.txt"][!RefreshGroup sysmon]
 
 [red]
 Meter=Image
@@ -409,7 +410,7 @@ SolidColor=250,100,100,230
 MeterStyle=white
 X=2R
 Y=r
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "250,100,100,230" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "250,100,100,230" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#default.txt"][!RefreshGroup sysmon]
 
 [black]
 Meter=Image
@@ -418,32 +419,32 @@ X=132
 Y=429
 W=30
 H=10
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "10,10,10,180" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "48,48,48,175" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,80" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "10,10,10,180" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "48,48,48,175" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,80" "#@#default.txt"][!RefreshGroup sysmon]
 
 [dyellow]
 Meter=Image
 MeterStyle=black
 SolidColor=204,100,8,209
 X=2R
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "204,100,8,209" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,127" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "204,100,8,209" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,127" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#default.txt"][!RefreshGroup sysmon]
 
 [dgreen]
 Meter=Image
 MeterStyle=black
 SolidColor=99,130,55,234
 X=2R
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "99,130,55,234" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,153" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "99,130,55,234" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,153" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#default.txt"][!RefreshGroup sysmon]
 
 [dblue]
 Meter=Image
 MeterStyle=black
 SolidColor=57,76,128,211
 X=2R
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "57,76,128,211" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,186" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "57,76,128,211" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,186" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#default.txt"][!RefreshGroup sysmon]
 
 [dred]
 Meter=Image
 MeterStyle=black
 SolidColor=117,53,46,234
 X=2R
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "117,53,46,234" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,204" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,76" "#@#default.txt"][!RefreshGroup circa2]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "117,53,46,234" "#@#default.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,204" "#@#default.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,76" "#@#default.txt"][!RefreshGroup sysmon]

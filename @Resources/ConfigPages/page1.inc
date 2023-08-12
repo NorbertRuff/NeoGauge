@@ -1,5 +1,6 @@
 [Variables]
-bgH=320
+bgH=520
+bgW=520
 dotY=30
 highlightColor=254,210,70,230
 
@@ -8,27 +9,42 @@ Meter=String
 MeterStyle=allText
 FontSize=18
 FontColor=#highlightColor#
-Text=Circuitous
+Text=System Monitor
 X=130
 Y=10
-
-[Version]
-Meter=String
-MeterStyle=allText
-FontColor=#textColor#
-FontSize=11
-Text=#displayVersion#
-X=-2R
-Y=1r
 
 [Author]
 Meter=String
 MeterStyle=allText
 FontColor=#textColor#
 FontSize=10
-Text="Norbert Ruff | based on Flying Hyrax"
+Text="Norbert Ruff | based on Flying Hyrax Circuitous"
 X=133
 Y=35
+
+
+[CreditsHeader]
+Meter=String
+MeterStyle=headerText
+X=r
+Y=35R
+Text=Credits + Inspirations
+
+[cred1]
+Meter=String
+MeterStyle=subText
+FontSize=10
+Text=Flying Hyrax Circuitous
+Y=r
+LeftMouseUpAction=["https://www.deviantart.com/flyinghyrax"]
+
+[cred9]
+Meter=String
+MeterStyle=subText
+FontSize=10
+Y=R
+Text="Rainmeter Developer Team"
+LeftMouseUpAction=["https://github.com/rainmeter?tab=members"]
 
 [LicenseHeader]
 Meter=String
@@ -45,82 +61,3 @@ FontSize=10
 Text="Creative Commons#CRLF#Attribution-NonCommercial-ShareAlike#CRLF#3.0 Unported License"
 X=r
 Y=r
-
-[CreditsHeader]
-Meter=String
-MeterStyle=headerText
-X=r
-Y=35R
-Text=Credits + Inspirations
-
-[cred1]
-Meter=String
-MeterStyle=subText
-FontSize=10
-Text=Bernd Montag - Ubuntu Nerd Fontal
-Y=r
-LeftMouseUpAction=["http://www.dafont.com/Ubuntu Nerd Font.font"]
-
-[cred2]
-Meter=String
-MeterStyle=subText
-FontSize=10
-Y=R
-Text=smurfier - lua wizard
-LeftMouseUpAction=["http://smurfier.deviantart.com/"]
-
-[cred3]
-Meter=String
-MeterStyle=subText
-FontSize=10
-Y=R
-Text=kaelri - @include-fu
-LeftMouseUpAction=["http://kaelri.deviantart.com/"]
-
-[cred4]
-Meter=String
-MeterStyle=subText
-FontSize=10
-Y=R
-Text=jsmorley - RegExp guru
-LeftMouseUpAction=["http://jsmorley.deviantart.com/"]
-
-[cred5]
-Meter=String
-MeterStyle=subText
-FontSize=10
-Y=R
-Text=gronostajo - SimplyRound skins
-LeftMouseUpAction=["http://gronostajo.deviantart.com/art/SimplyRound-352274699"]
-
-[cred6]
-Meter=String
-MeterStyle=subText
-FontSize=10
-Y=R
-Text=amc242 - level 11 beta tester
-LeftMouseUpAction=["http://amc242.deviantart.com/"]
-
-[cred7]
-Meter=String
-MeterStyle=subText
-FontSize=10
-Y=R
-Text=lalibi - Etheldrede Pantone skins
-LeftMouseUpAction=["http://lalibi.deviantart.com/art/Etheldrede-pantone-361311100"]
-
-[cred8]
-Meter=String
-MeterStyle=subText
-FontSize=10
-Y=R
-Text="Yahoo! Weather - weather data"
-LeftMouseUpAction=["http://weather.yahoo.com"]
-
-[cred9]
-Meter=String
-MeterStyle=subText
-FontSize=10
-Y=R
-Text="Rainmeter Developer Team"
-LeftMouseUpAction=["https://github.com/rainmeter?tab=members"]

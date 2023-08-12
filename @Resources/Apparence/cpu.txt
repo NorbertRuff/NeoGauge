@@ -25,6 +25,5 @@ hideDivider=0
 hideSubText=0
 
 ; font attributes
-
 fontStyle=Normal
 subTwoLines=0

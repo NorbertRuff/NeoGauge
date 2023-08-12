@@ -22,4 +22,4 @@ W=(#radius#*0.8)
 PreserveAspectRatio=1
 ImageTint=#colorIcon#
 AntiAlias=1
-ImageAlpha=255
+ImageAlpha=200

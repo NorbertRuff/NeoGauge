@@ -49,23 +49,21 @@ SolidColor=#outerRingColor#
 Hidden=#hideDivider#
 
 [mainTextCommon]
-mainFont=Ubuntu Nerd Font
 AntiAlias=1
 StringCase=Normal
-FontFace=#mainFont#
+FontFace=Ubuntu Nerd Font
 FontSize=(#radius#*0.5)
 FontColor=#textMainColor#
 StringStyle=#fontStyle#
 SolidColor=0,0,0,1
 
 [subTextCommon]
-subFont=Ubuntu Nerd Font
 AntiAlias=1
 ClipStringW=(#radius#*4)
 ClipStringH=(#subTwoLines# = 1 ? (#radius#) : (#radius#*0.5))
 ClipString=2
-FontFace=#subFont#
-FontSize=(#radius#*0.30)
+FontFace=Neon 80s
+FontSize=(#radius#*0.32)
 FontColor=#textSubColor#
 StringStyle=#fontStyle#
 Hidden=#hideSubText#

@@ -223,7 +223,7 @@ function resetAllVariables()
 		SKIN:Bang('!WriteKeyValue', 'Variables', t[1], t[2], '#@#default.txt')
 	end
 
-	SKIN:Bang('!RefreshGroup', 'circa2')
+	SKIN:Bang('!RefreshGroup', 'sysmon')
 
 	print('C2: all user settings reset to default')
 end
