@@ -13,7 +13,13 @@ Y=r
 StringAlign=RightTop
 
 [dividerStyle]
-X=#edging#
+X=#edging#*2.8
 
 [iconStyle]
-X=#edging#+#radius#-20
+X=#edging#+(#radius#)*4.6
+Y=#edging#+(#radius#)*0.6
+W=(#radius#*0.8)
+PreserveAspectRatio=1
+ImageTint=#colorIcon#
+AntiAlias=1
+ImageAlpha=255

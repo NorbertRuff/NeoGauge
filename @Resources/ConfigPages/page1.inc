@@ -57,9 +57,9 @@ Text=Credits + Inspirations
 Meter=String
 MeterStyle=subText
 FontSize=10
-Text=Bernd Montag - Sansational
+Text=Bernd Montag - Ubuntu Nerd Fontal
 Y=r
-LeftMouseUpAction=["http://www.dafont.com/sansation.font"]
+LeftMouseUpAction=["http://www.dafont.com/Ubuntu Nerd Font.font"]
 
 [cred2]
 Meter=String

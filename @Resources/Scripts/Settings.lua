@@ -1,72 +1,72 @@
 isDbg = false
 
 function Initialize()
-	
-	hexChars = { 	[0]='0', [1]='1', [2]='2', [3]='3', 
-				[4]='4', [5]='5', [6]='6', [7]='7', 
-				[8]='8', [9]='9', [10]='a', [11]='b', 
+
+	hexChars = { 	[0]='0', [1]='1', [2]='2', [3]='3',
+				[4]='4', [5]='5', [6]='6', [7]='7',
+				[8]='8', [9]='9', [10]='a', [11]='b',
 				[12]='c', [13]='d', [14]='e', [15]='f' }
-	
+
 	page = tonumber(SKIN:GetVariable('page',1))
-	
+
 	ulBytes = SKIN:GetVariable('uploadMax')
 	dlBytes = SKIN:GetVariable('downloadMax')
-	
+
 	SKIN:Bang('!SetOptionGroup','pButtons','FontColor','#*textColor*#')
-	
+
 	if (page == 1) then
 		SKIN:Bang('!SetOption','page1','FontColor','#*highlightColor*#')
-	
+
 	elseif page == 2 then
 		SKIN:Bang('!SetOption','page2','FontColor','#*highlightColor*#')
-	
-		colors = { 	SKIN:GetVariable('pieColor'), 
-					SKIN:GetVariable('innerRingColor'), 
+
+		colors = { 	SKIN:GetVariable('pieColor'),
+					SKIN:GetVariable('innerRingColor'),
 					SKIN:GetVariable('pieBgColor') }
-		
-		bars = {	SKIN:GetMeter('1ColorAlpha'), 
-					SKIN:GetMeter('2ColorAlpha'), 
+
+		bars = {	SKIN:GetMeter('1ColorAlpha'),
+					SKIN:GetMeter('2ColorAlpha'),
 					SKIN:GetMeter('3ColorAlpha') }
-		
+
 		maxBarW = SKIN:GetMeter('1ColorAlphaBg'):GetW()
-		
+
 		-- set the width of the bars that show the alpha of the three colors
 		for i=1,#colors do
 			tempW = math.floor(getStringAlphaPercent(colors[i]) * maxBarW)
 			SKIN:Bang('!SetOption', bars[i]:GetName(), 'W', tempW)
 		end
-	
+
 	elseif page == 3 then
 		SKIN:Bang('!SetOption','page3','FontColor','#*highlightColor*#')
-		
+
 		SKIN:Bang('!SetOption', 'uploadMaxDisplay', 'Text', string.format("%.2f", bytesToMegabits(ulBytes)))
 		SKIN:Bang('!SetOption', 'downloadMaxDisplay', 'Text', string.format("%.2f", bytesToMegabits(dlBytes)))
-	
+
 	elseif page == 4 then
 		SKIN:Bang('!SetOption','page4','FontColor','#*highlightColor*#')
-	
+
 	elseif page == 5 then
 		SKIN:Bang('!SetOption','page5','FontColor','#*highlightColor*#')
-	
-	else 
+
+	else
 		print('C2: wtf? invalid page number in settings skin')
 	end
 	SKIN:Bang('!Redraw')
 end
 
 function Update()
-	
-	
+
+
 end
 
 -- ==========================================================================================
 -- Functions used for displaying and changing the transparency of the colors on page 2
 
--- called from skin - changes alpha value on a color in Appearance.txt
+-- called from skin - changes alpha value on a color in default.txt
 function changeAlpha(color, percent)
 	baseColor = SKIN:GetVariable(color)
 	alpha = math.floor(percent*0.01*255)
-	if (string.find(baseColor, ",") ~= nil) then 
+	if (string.find(baseColor, ",") ~= nil) then
 		rgb = string.match(baseColor, "%d+,%d+,%d+")
 		newColor = rgb .. ',' .. alpha
 	else
@@ -74,20 +74,20 @@ function changeAlpha(color, percent)
 		alpha = decToHex(alpha)
 		newColor = rgb .. alpha
 	end
-	SKIN:Bang('!WriteKeyValue','Variables',color,newColor,'#@#Appearance.txt')
+	SKIN:Bang('!WriteKeyValue','Variables',color,newColor,'#@#default.txt')
 end
 
 -- intended to retreive the alpha component of an RGBA or hex color and return as a percent 0.0 to 1.0
 function getStringAlphaPercent(color)
 	local alpha
 	if (string.find(color, ",") ~= nil) then
-		
+
 		rgbIt = string.gmatch(color,"%d+")
 		rgbTable = {}
 		for match in rgbIt do
 			table.insert(rgbTable, match)
 		end
-		
+
 		if (#rgbTable < 4) then
 			alpha = 1
 		else
@@ -156,8 +156,8 @@ end
 
 function toggleWeatherUnit()
 	oldUnit = SKIN:GetVariable('unit','f')
-	if (string.lower(oldUnit) == 'f') then 
-		SKIN:Bang('!WriteKeyValue', 'Variables', 'unit', 'c', '#@#Settings.txt')	
+	if (string.lower(oldUnit) == 'f') then
+		SKIN:Bang('!WriteKeyValue', 'Variables', 'unit', 'c', '#@#Settings.txt')
 	elseif (string.lower(oldUnit) == 'c') then
 		SKIN:Bang('!WriteKeyValue', 'Variables', 'unit', 'f', '#@#Settings.txt')
 	else
@@ -168,13 +168,13 @@ function toggleWeatherUnit()
 end
 
 -- ==========================================================================================
--- function rewrites appearance.txt and settings.txt with default values
+-- function rewrites default.txt and settings.txt with default values
 
 function resetAllVariables()
-	
-	settingsDefaults = { 
-		{ 'hd1', 'C' }, 
-		{ 'hd2', 'D' }, 
+
+	settingsDefaults = {
+		{ 'hd1', 'C' },
+		{ 'hd2', 'D' },
 		{ 'hd3', 'E' },
 		{ 'mediaPlayer', 'CAD' },
 		{ 'trashMax', '2147483648' },
@@ -189,7 +189,7 @@ function resetAllVariables()
 		{'sfVoltIndex', '2'},
 		{'sfMaxTemp', '100'}
 	}
-	
+
 	appearanceDefaults = {
 		{ 'innerRingColor', '250,250,250,155' },
 		{ 'outerRingColor', '#*innerRingColor*#' },
@@ -209,7 +209,7 @@ function resetAllVariables()
 		{ 'hidePieBg', '0' },
 		{ 'hideDivider', '0' },
 		{ 'hideSubText', '0' },
-		{ 'mainFont', 'Sansation' },
+		{ 'mainFont', 'Ubuntu Nerd Font' },
 		{ 'subFont', '#*mainFont*#' },
 		{ 'subTwoLines', '0' },
 		{ 'fontStyle', 'Normal' }
@@ -218,12 +218,12 @@ function resetAllVariables()
 	for _,t in pairs(settingsDefaults) do
 		SKIN:Bang('!WriteKeyValue', 'Variables', t[1], t[2], '#@#Settings.txt')
 	end
-	
+
 	for _,t in pairs(appearanceDefaults) do
-		SKIN:Bang('!WriteKeyValue', 'Variables', t[1], t[2], '#@#Appearance.txt')
+		SKIN:Bang('!WriteKeyValue', 'Variables', t[1], t[2], '#@#default.txt')
 	end
-	
+
 	SKIN:Bang('!RefreshGroup', 'circa2')
-	
+
 	print('C2: all user settings reset to default')
 end

@@ -43,37 +43,29 @@ LineColor=#pieColor#
 
 [dividerCommon]
 Y=#radius#r
-W=(#radius#*4)
+W=(#radius#*3.5)
 H=(#radius#*0.10)
 SolidColor=#outerRingColor#
 Hidden=#hideDivider#
 
 [mainTextCommon]
+mainFont=Ubuntu Nerd Font
 AntiAlias=1
 StringCase=Normal
 FontFace=#mainFont#
-FontSize=(#radius#*0.65)
+FontSize=(#radius#*0.5)
 FontColor=#textMainColor#
 StringStyle=#fontStyle#
 SolidColor=0,0,0,1
 
 [subTextCommon]
+subFont=Ubuntu Nerd Font
 AntiAlias=1
 ClipStringW=(#radius#*4)
 ClipStringH=(#subTwoLines# = 1 ? (#radius#) : (#radius#*0.5))
 ClipString=2
 FontFace=#subFont#
-FontSize=(#radius#*0.35)
+FontSize=(#radius#*0.30)
 FontColor=#textSubColor#
 StringStyle=#fontStyle#
 Hidden=#hideSubText#
-
-[iconCommon]
-AntiAlias=1
-Y=r
-W=(#radius#*0.5)
-PreserveAspectRatio=1
-ImageTint=#textSubColor#
-Path="#@#Images"
-Hidden=1
-Group=buttons
