@@ -1,18 +1,22 @@
-## <div style="color:#f59800" align="center">---| System monitor widget for Windows |---</div>
+## <div style="color:#f59800" align="center">---| NeoGauge - System monitor widget for Windows |---</div>
 
-### About this project:
+## About this project:
  This is a system monitor skin for RainMeter that displays various system information on your desktop.
 It is highly customizable and can be configured to display any information you want,
-from hardware temps to CPU usage.
+from hardware temps, CPU usage and clock speed to network download/upload speeds and everything in between.
 
 It also has a built-in configuration tool that allows you to easily customize the skin without having to edit any files manually.
 
 This skin is inspired and based on [flyinghyrax](https://www.deviantart.com/flyinghyrax)
 
-The RainMeter story:
+### The RainMeter story:
+
 Rainmeter is a free, open-source application for Windows PCs. It is a platform that enables skins to run on the desktop.
 
-It allows users to create and display user-generated customizable desktop widgets or applets called "skins" that display information. Once skins are created, they can be bundled into "themes"; Rainmeter comes with four themes pre-installed, but many more are available in online repositories. Rainmeter will run on any Windows PC running Windows 7 or later.
+It allows users to create and display user-generated customizable desktop widgets
+or applets called "skins" that display information.
+
+Rainmeter will run on any Windows PC running Windows 7 or later.
 It was first designed to display weather information but now can also be used to display other information such as RSS feeds, calendar, e-mail, news, notes, clock, battery 
 status, etc.
 
@@ -24,27 +28,45 @@ and many skins have an options panel that allows changes to colors or other sett
 
 Learn more about Rainmeter in [docs](https://docs.rainmeter.net/manual/)
 
-### Scripting language:
-- Rainmeter Skin Language (RSL)
-- Lua
-- Ini
-
-
 ## <div style="color:#f59800" align="center">---| Table of Contents :bookmark_tabs: |---</div>
+<!-- TOC -->
+* [---| NeoGauge - System monitor widget for Windows |---</div>](#div-stylecolorf59800-aligncenter----neogauge---system-monitor-widget-for-windows----div)
+   * [About this project:](#about-this-project)
+   * [Scripting language:](#scripting-language)
+* [---| Table of Contents :bookmark_tabs: |---](#div-stylecolorf59800-aligncenter----table-of-contents-bookmarktabs----div)
+* [---| Screenshots |---](#screenshots)
+* [---| Prerequisites :heavy_check_mark: |---](#div-stylecolorf59800-aligncenter----prerequisites-heavycheckmark----div)
+* [---| Installation 🚀 |---](#div-stylecolorf59800-aligncenter----installation-----div)
+* [---| Usage :computer: |---](#div-stylecolorf59800-aligncenter----usage-computer----div)
+* [---| Configuration :wrench: |---</div>](#div-stylecolorf59800-aligncenter----configuration-wrench----div)
+* [---| Built with 🛠️ |---](#div-stylecolorf59800-aligncenter----built-with-----div)
+* [---| Contributing 🤝 |---](#div-stylecolorf59800-aligncenter----contributing-----div)
+* [---| About Me 👨‍💻 |---](#div-stylecolorf59800-aligncenter----about-me-----div)
+   * [---| Links 🔗|---](#div-stylecolorf59800-aligncenter----links----div)
+   * [My Skill Set 👩‍💻](#my-skill-set-)
+<!-- TOC -->
+
+
+
+
+
+
+
+
 
 ## Screenshots
 
 
 ---
 
-![demo](https://github.com/NorbertRuff/*/blob/master/blob/demo.gif?raw=true)
+![demo](https://raw.githubusercontent.com/NorbertRuff/NeoGauge/master/blob/demo.gif?raw=true)
 
 
 ---
 
-![screenshot](https://github.com/NorbertRuff/*/blob/master/blob/screenshot1.png?raw=true)
-![screenshot](https://github.com/NorbertRuff/*/blob/master/blob/screenshot1.png?raw=true)
-![screenshot](https://github.com/NorbertRuff/*/blob/master/blob/screenshot1.png?raw=true)
+![screenshot1](https://raw.githubusercontent.com/NorbertRuff/NeoGauge/master/blob/screenShot1.png?raw=true)
+![screenshot2](https://raw.githubusercontent.com/NorbertRuff/NeoGauge/master/blob/screenShot2.png?raw=true)
+![screenshot3](https://raw.githubusercontent.com/NorbertRuff/NeoGauge/master/blob/screenShot3.png?raw=true)
 
 ---
 
@@ -58,12 +80,20 @@ Prerequisites for this project are:
 - HWiNFO (optional) - for hardware temperature monitoring
 - Rainmeter HWiNFO plugin
 
+
+### Scripting language:
+- Rainmeter Skin Language (RSL)
+- Lua
+- Ini
+
+
+
 ## <div style="color:#f59800" align="center">---| Installation 🚀 |---</div>
 
 Installation steps:
 1. Install Rainmeter from [here](https://www.rainmeter.net/)
 2. Install HWiNFO from [here](https://www.hwinfo.com/download/)
-3. Install Rainmeter HWiNFO plugin from [here](https://www.hwinfo.com/forum/Thread-Rainmeter-plug-in-for-HWiNFO-3-0)
+3. Install Rainmeter HWiNFO plugin from [here](https://docs.rainmeter.net/tips/hwinfo/)
 4. 
     - A. Download this repository and extract it to your Rainmeter skins folder (usually C:\Users\%username%\Documents\Rainmeter\Skins)
     - B. Or you can use the included Rainmeter skin installer by running the .rmskin file
@@ -72,6 +102,20 @@ Installation steps:
 7. Enjoy!
 
 
+## <div style="color:#f59800" align="center">---| Usage :computer: |---</div>
+
+Hwinfo usage steps:
+- Follow this [guide](https://docs.rainmeter.net/tips/hwinfo/) to install the HWiNFO plugin for Rainmeter
+- Select all the sensors you want to monitor in rainmeter
+- Open a terminal and run the following command: ` reg query HKEY_CURRENT_USER\SOFTWARE\HWiNFO64\VSB`
+- You should see a list of all the sensors you selected in rainmeter
+- Open the @Resources\settings.txt file and copy the sensor value to the corresponding variables
+- Save the file and refresh the skin
+
+## <div style="color:#f59800" align="center">---| Configuration :wrench: |---</div>
+You can configure the skin by editing the included config.ini file or by editing the .ini files in the skin folder.
+Each folder in the skin folder contains a .ini file that can be edited to customize the skin. 
+the related style is located in the @Resources\Styles and @Resources\Apparance folders.
 
 ## <div style="color:#f59800" align="center">---| Built with 🛠️ |---</div>
 
@@ -113,17 +157,18 @@ Give a ⭐️ if this project helped you!
 
 <div align="center">
 
-[![](https://raw.githubusercontent.com/NorbertRuff/NorbertRuff/master/profile-summary-card-output/dracula/0-profile-details.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
+[![](https://raw.githubusercontent.com/NorbertRuff/NorbertRuff/master/profile-summary-card-output/material_palenight/0-profile-details.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 
-[![](https://raw.githubusercontent.com/NorbertRuff/NorbertRuff/master/profile-summary-card-output/dracula/2-most-commit-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
+[![](https://raw.githubusercontent.com/NorbertRuff/NorbertRuff/master/profile-summary-card-output/material_palenight/1-repos-per-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
+[![](https://raw.githubusercontent.com/NorbertRuff/NorbertRuff/master/profile-summary-card-output/material_palenight/2-most-commit-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
+[![](https://raw.githubusercontent.com/NorbertRuff/NorbertRuff/master/profile-summary-card-output/material_palenight/3-stats.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 
-[![](https://raw.githubusercontent.com/NorbertRuff/NorbertRuff/master/profile-summary-card-output/dracula/3-stats.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards) [![](https://raw.githubusercontent.com/NorbertRuff/NorbertRuff/master/profile-summary-card-output/dracula/4-productive-time.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
+[![](https://raw.githubusercontent.com/NorbertRuff/NorbertRuff/master/profile-summary-card-output/dracula/4-productive-time.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 
 </div>
 
 ## My Skill Set 👩‍💻
 
-<!-- https://dev.to/envoy_/150-badges-for-github-pnk -->
 <div align="center">  
 <img src="https://www.codewars.com/users/NorbertRuff/badges/large">
 </div>
@@ -165,10 +210,6 @@ Give a ⭐️ if this project helped you!
         <img src="https://img.shields.io/badge/Material--UI-0081CB?style=flat-square&logo=material-ui&logoColor=white" height="25">
         <img src="https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white" height="25">
         <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=flat-square&logo=yarn&logoColor=white" height="25">
-
-
-
-![GoLand](https://img.shields.io/badge/GoLand-0f0f0f?&style=for-the-badge&logo=goland&logoColor=white)
 </div>
     </td>
     <td valign="top" width="25%">
