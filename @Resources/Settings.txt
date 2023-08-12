@@ -3,6 +3,79 @@
 hd1=C
 hd2=D
 hd3=E
+hd4=F
+
+; fan max speed
+fanMaxRpm=2500
+
+; sensor readings
+cpuTemp1=Value0
+cpuTemp2=Value1
+
+motherboardTemp=Value5
+motherboardTemp2=Value6
+
+12v=Value8
+5v=Value9
+
+dimm1Temp=Value10
+dimm2Temp=Value11
+dimm3Temp=Value12
+dimm4Temp=Value13
+
+disk1Temp=Value14
+disk1Rpm=Value2
+disk2Temp=Value15
+disk2Rpm=Value2
+disk3Temp=Value16
+disk3Rpm=Value2
+disk4Temp=Value17
+disk4Rpm=Value2
+
+pumpTemp=Value18
+pumpRpm=Value19
+
+fan1rpm=Value20
+fan2rpm=Value21
+fan3rpm=Value22
+fan4rpm=Value22
+
+gpuTemp=Value22
+gpuRpm=Value23
+
+pumpTemp=Value18
+pumpRpm=Value19
+
+
+
+; sensor labels
+cpuTemp1Label=Intel Core i7-10700K
+cpuTemp2Label=Intel Core i7-10700K
+
+motherboardTempLabel=MSI MPG Z490 TOMAHAWK
+motherboardTemp2Label=MSI MPG Z490 TOMAHAWK
+
+12vLabel=+12V
+5vLabel=+5V
+
+disk1Label=TOSHIBA HDWD130
+disk2Label=TOSHIBA DT01ACA300
+disk3Label=KINGSTON SNV2S1000G
+disk4Label=KINGSTON SA2000M8500G
+
+fan1Label=Corsair SP120 #1
+fan2Label=Corsair SP120 #2
+fan3Label=Corsair SP120 #3
+fan4Label=Corsair SP120 #4
+
+gpuTempLabel=MSI GTX 1060 6GB
+
+pumpLabel=Corsair H100i
+
+dimm1Label=Corsair Vengeance RGB Pro 32GB
+dimm2Label=Corsair Vengeance RGB Pro 32GB
+dimm3Label=Corsair Vengeance RGB Pro 32GB
+dimm1Label=Corsair Vengeance RGB Pro 32GB
 
 ; media player name
 mediaPlayer=CAD
@@ -11,7 +84,7 @@ mediaPlayer=CAD
 trashMax=2147483648
 
 ; time skin settings
-timeFormat="%#H:%M"
+timeFormat=%#H:%M
 dateFormat="%a, %#d %B"
 ; 0 minute, 1 hour, 2 half day, 3 day, 4 week, 5 month
 timeRoundline=3

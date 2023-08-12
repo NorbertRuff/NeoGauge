@@ -23,14 +23,14 @@ X=130
 Y=r
 W=80
 H=40
-LeftMouseUpAction=[!WriteKeyValue Variables orient left "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables orient left "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [rightCircleBg]
 Meter=Image
 MeterStyle=leftCircleBg
 X=220
 Y=r
-LeftMouseUpAction=[!WriteKeyValue Variables orient right "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables orient right "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [leftLine]
 Meter=IMAGE
@@ -99,35 +99,35 @@ MeterStyle=subText
 X=r
 Y=r
 Text=24
-LeftMouseUpAction=[!WriteKeyValue Variables radius 24 "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables radius 24 "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [r36]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=36
-LeftMouseUpAction=[!WriteKeyValue Variables radius 36 "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables radius 36 "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [r48]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=48
-LeftMouseUpAction=[!WriteKeyValue Variables radius 48 "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables radius 48 "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [r60]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=60
-LeftMouseUpAction=[!WriteKeyValue Variables radius 60 "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables radius 60 "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [rCustom]
 Meter=String
 MeterStyle=subText
 X=300
 Text=(custom)
-LeftMouseUpAction=!CommandMeasure "mAppearanceInputdisk" "ExecuteBatch 4"
+LeftMouseUpAction=!CommandMeasure "mAppearanceInputnetworkUp" "ExecuteBatch 4"
 
 ; ============================================================
 ; Margins
@@ -146,28 +146,28 @@ MeterStyle=subText
 X=r
 Y=r
 Text=(none)
-LeftMouseUpAction=[!WriteKeyValue Variables edging "0" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables edging "0" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [margin10]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=10%
-LeftMouseUpAction=[!WriteKeyValue Variables edging "(#*radius*#*0.1)" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables edging "(#*radius*#*0.1)" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [margin30]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=30%
-LeftMouseUpAction=[!WriteKeyValue Variables edging "(#*radius*#*0.3)" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables edging "(#*radius*#*0.3)" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [marginCustom]
 Meter=String
 MeterStyle=subText
 X=300
 Text=(custom)
-LeftMouseUpAction=!CommandMeasure "mAppearanceInputdisk" "ExecuteBatch 5"
+LeftMouseUpAction=!CommandMeasure "mAppearanceInputnetworkUp" "ExecuteBatch 5"
 
 ; ============================================================
 ; font
@@ -186,7 +186,7 @@ Meter=String
 MeterStyle=subText
 X=130
 Text=N
-LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Normal" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Normal" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 ToolTipText=Normal/none
 
 [bold]
@@ -195,7 +195,7 @@ MeterStyle=subText
 StringStyle=Bold
 X=5R
 Text=B
-LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Bold" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Bold" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 ToolTipText=Bold
 
 [italic]
@@ -204,7 +204,7 @@ MeterStyle=subText
 StringStyle=Italic
 X=5R
 Text=I
-LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Italic" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "Italic" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 ToolTipText=Italic
 
 [boldItalic]
@@ -213,7 +213,7 @@ MeterStyle=subText
 StringStyle=BoldItalic
 X=5R
 Text=BI
-LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "BoldItalic" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "fontStyle" "BoldItalic" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 ToolTipText=Bold + Italic
 
 ; ============================================================
@@ -257,7 +257,7 @@ Y=315
 Meter=IMAGE
 MeterStyle=1ColorSqr
 SolidColor=#innerRingColor#
-LeftMouseUpAction=["#@#Addons\RainRGB4.exe" "VarName=innerRingColor" "FileName=#@#Apparence\disk.txt"]
+LeftMouseUpAction=["#@#Addons\RainRGB4.exe" "VarName=innerRingColor" "FileName=#@#Apparence\networkUp.txt"]
 ToolTipText="Edit the secondary color in RainRGB"
 
 [3ColorBG]
@@ -269,7 +269,7 @@ Y=350
 Meter=IMAGE
 MeterStyle=1ColorSqr
 SolidColor=#pieBgColor#
-LeftMouseUpAction=["#@#Addons\RainRGB4.exe" "VarName=pieBgColor" "FileName=#@#Apparence\disk.txt"]
+LeftMouseUpAction=["#@#Addons\RainRGB4.exe" "VarName=pieBgColor" "FileName=#@#Apparence\networkUp.txt"]
 ToolTipText="Edit the circle background color in RainRGB"
 
 [1ColorAlphaBg]
@@ -327,21 +327,21 @@ Group=p1 | allPages
 Text=#pieColor#
 X=160
 Y=290
-LeftMouseUpAction=!CommandMeasure "mAppearanceInputdisk" "ExecuteBatch 1"
+LeftMouseUpAction=!CommandMeasure "mAppearanceInputnetworkUp" "ExecuteBatch 1"
 
 [2ColorString]
 Meter=String
 MeterStyle=1ColorString
 Text=#innerRingColor#
 Y=325
-LeftMouseUpAction=!CommandMeasure "mAppearanceInputdisk" "ExecuteBatch 2"
+LeftMouseUpAction=!CommandMeasure "mAppearanceInputnetworkUp" "ExecuteBatch 2"
 
 [3ColorString]
 Meter=String
 MeterStyle=1ColorString
 Text=#pieBgColor#
 Y=360
-LeftMouseUpAction=!CommandMeasure "mAppearanceInputdisk" "ExecuteBatch 3"
+LeftMouseUpAction=!CommandMeasure "mAppearanceInputnetworkUp" "ExecuteBatch 3"
 
 ; ============================================================
 ; color presets
@@ -368,7 +368,7 @@ X=132
 Y=417
 W=30
 H=10
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "250,250,250,230" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "250,250,250,230" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [yellow]
 Meter=Image
@@ -376,7 +376,7 @@ SolidColor=252,212,75,230
 MeterStyle=white
 X=2R
 Y=r
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "252,212,75,230" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "252,212,75,230" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [green]
 Meter=Image
@@ -384,7 +384,7 @@ SolidColor=182,200,80,230
 MeterStyle=white
 X=2R
 Y=r
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "182,200,80,230" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "182,200,80,230" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [blue]
 Meter=Image
@@ -392,7 +392,7 @@ SolidColor=89,186,255,230
 MeterStyle=white
 X=2R
 Y=r
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "89,186,255,230" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "89,186,255,230" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [red]
 Meter=Image
@@ -400,7 +400,7 @@ SolidColor=250,100,100,230
 MeterStyle=white
 X=2R
 Y=r
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "250,100,100,230" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "250,100,100,230" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "innerRingColor" "250,250,250,155" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,51" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [black]
 Meter=Image
@@ -409,32 +409,32 @@ X=132
 Y=429
 W=30
 H=10
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "10,10,10,180" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "innerRingColor" "48,48,48,175" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,80" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "10,10,10,180" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "innerRingColor" "48,48,48,175" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,80" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [dyellow]
 Meter=Image
 MeterStyle=black
 SolidColor=204,100,8,209
 X=2R
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "204,100,8,209" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,127" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "204,100,8,209" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,127" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [dgreen]
 Meter=Image
 MeterStyle=black
 SolidColor=99,130,55,234
 X=2R
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "99,130,55,234" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,153" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "99,130,55,234" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,153" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [dblue]
 Meter=Image
 MeterStyle=black
 SolidColor=57,76,128,211
 X=2R
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "57,76,128,211" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,186" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "57,76,128,211" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,186" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,43" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
 
 [dred]
 Meter=Image
 MeterStyle=black
 SolidColor=117,53,46,234
 X=2R
-LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "117,53,46,234" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,204" "#@#Apparence\disk.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,76" "#@#Apparence\disk.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "pieColor" "117,53,46,234" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "innerRingColor" "20,20,20,204" "#@#Apparence\networkUp.txt"][!WriteKeyValue "Variables" "pieBgColor" "100,100,100,76" "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]

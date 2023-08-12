@@ -18,7 +18,7 @@ Meter=String
 MeterStyle=allText
 FontColor=#textColor#
 FontSize=10
-Text="Norbert Ruff | based on Flying Hyrax Circuitous"
+Text="Norbert Ruff | https://github.com/NorbertRuff"
 X=133
 Y=35
 
@@ -34,7 +34,7 @@ Text=Credits + Inspirations
 Meter=String
 MeterStyle=subText
 FontSize=10
-Text=Flying Hyrax Circuitous
+Text=Flying Hyrax Circoustwo
 Y=r
 LeftMouseUpAction=["https://www.deviantart.com/flyinghyrax"]
 
