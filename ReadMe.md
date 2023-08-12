@@ -66,7 +66,7 @@ Learn more about Rainmeter in [docs](https://docs.rainmeter.net/manual/)
 
 ![screenshot1](https://raw.githubusercontent.com/NorbertRuff/NeoGauge/master/blob/screenShot1.png?raw=true)
 ![screenshot2](https://raw.githubusercontent.com/NorbertRuff/NeoGauge/master/blob/screenShot2.png?raw=true)
-![screenshot3](https://raw.githubusercontent.com/NorbertRuff/NeoGauge/master/blob/screenShot3.png?raw=true)
+![screenshot3](https://raw.githubusercontent.com/NorbertRuff/NeoGauge/master/blob/screenshot3.png?raw=true)
 
 ---
 
