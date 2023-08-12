@@ -17,14 +17,8 @@ It allows users to create and display user-generated customizable desktop widget
 or applets called "skins" that display information.
 
 Rainmeter will run on any Windows PC running Windows 7 or later.
-It was first designed to display weather information but now can also be used to display other information such as RSS feeds, calendar, e-mail, news, notes, clock, battery 
-status, etc.
 
-Rainmeter uses a custom, language called Rainmeter Skin Language (RSL), to create and modify skins.
-The language is object-oriented, similar to XML. Rainmeter is written in C++ and C# for Windows.
-
-Rainmeter can be customized with .ini files, which can be edited with any text editor ,
-and many skins have an options panel that allows changes to colors or other settings.
+Rainmeter can be customized with .ini files and lua scripts, which can be edited with any text editor.
 
 Learn more about Rainmeter in [docs](https://docs.rainmeter.net/manual/)
 
@@ -82,7 +76,7 @@ Prerequisites for this project are:
 
 
 ### Scripting language:
-- Rainmeter Skin Language (RSL)
+- Rainmeter Skin Language
 - Lua
 - Ini
 
