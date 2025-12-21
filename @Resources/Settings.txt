@@ -4,44 +4,47 @@ hd1=C
 hd2=D
 hd3=E
 hd4=F
+hd5=H
 
 ; fan max speed
 fanMaxRpm=2500
 
 ; sensor readings
-cpuTemp1=Value0
-cpuTemp2=Value1
+cpuTemp1=Value1
+cpuTemp2=Value0
 
-motherboardTemp=Value5
-motherboardTemp2=Value6
+motherboardTemp=Value2
+motherboardTemp2=Value3
 
-12v=Value8
-5v=Value9
+12v=Value4
+5v=Value5
 
-dimm1Temp=Value10
-dimm2Temp=Value11
-dimm3Temp=Value12
-dimm4Temp=Value13
+dimm1Temp=Value9
+dimm2Temp=Value10
+dimm3Temp=Value11
+dimm4Temp=Value12
 
-disk1Temp=Value14
+disk1Temp=Value13
 disk1Rpm=Value2
-disk2Temp=Value15
+disk2Temp=Value14
 disk2Rpm=Value2
-disk3Temp=Value16
+disk3Temp=Value15
 disk3Rpm=Value2
-disk4Temp=Value17
+disk4Temp=Value16
 disk4Rpm=Value2
+disk5Temp=Value17
+disk5Rpm=Value17
 
 pumpTemp=Value18
-pumpRpm=Value19
+pumpRpm=Value8
 
-fan1rpm=Value20
-fan2rpm=Value21
-fan3rpm=Value22
-fan4rpm=Value22
+fan1rpm=Value7
+fan2rpm=Value8
+fan3rpm=Value9
+fan4rpm=Value10
 
-gpuTemp=Value22
-gpuRpm=Value23
+gpuTemp=Value18
+gpuRpm=Value19
 
 pumpTemp=Value18
 pumpRpm=Value19
@@ -62,13 +65,14 @@ disk1Label=TOSHIBA HDWD130
 disk2Label=TOSHIBA DT01ACA300
 disk3Label=KINGSTON SNV2S1000G
 disk4Label=KINGSTON SA2000M8500G
+disk5Label=SAMSUNG 870 SSD EVO
 
 fan1Label=Corsair SP120 #1
 fan2Label=Corsair SP120 #2
 fan3Label=Corsair SP120 #3
 fan4Label=Corsair SP120 #4
 
-gpuTempLabel=MSI GTX 1060 6GB
+gpuTempLabel=MSI RTX 4070 12GB
 
 pumpLabel=Corsair H100i
 
