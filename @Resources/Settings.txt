@@ -46,9 +46,6 @@ fan4rpm=Value10
 gpuTemp=Value18
 gpuRpm=Value19
 
-pumpTemp=Value18
-pumpRpm=Value19
-
 
 
 ; sensor labels
@@ -79,7 +76,7 @@ pumpLabel=Corsair H100i
 dimm1Label=Corsair Vengeance RGB Pro 32GB
 dimm2Label=Corsair Vengeance RGB Pro 32GB
 dimm3Label=Corsair Vengeance RGB Pro 32GB
-dimm1Label=Corsair Vengeance RGB Pro 32GB
+dimm4Label=Corsair Vengeance RGB Pro 32GB
 
 ; media player name
 mediaPlayer=CAD

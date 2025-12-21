@@ -42,6 +42,22 @@ Text=#hd3#:\
 LeftMouseUpAction=!CommandMeasure "mSettingsInput" "ExecuteBatch 3"
 ToolTipText="click to set disk 3"
 
+[disk4]
+Meter=String
+MeterStyle=subText
+X=250
+Text=#hd4#:\
+LeftMouseUpAction=!CommandMeasure "mSettingsInput" "ExecuteBatch 9"
+ToolTipText="click to set disk 4"
+
+[disk5]
+Meter=String
+MeterStyle=subText
+X=290
+Text=#hd5#:\
+LeftMouseUpAction=!CommandMeasure "mSettingsInput" "ExecuteBatch 10"
+ToolTipText="click to set disk 5"
+
 ; ============================================================
 ; Recycle Bin Size
 
@@ -59,28 +75,28 @@ MeterStyle=subText
 X=r
 Y=r
 Text=512 MB
-LeftMouseUpAction=[!WriteKeyValue "Variables" "trashMax" "536870912" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Recycle Bin"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "trashMax" "536870912" "#@#Settings.txt"][!Refresh "#rootConfigName#\Recycle Bin"][!Refresh #CURRENTCONFIG#]
 
 [bin1]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=1 GB
-LeftMouseUpAction=[!WriteKeyValue "Variables" "trashMax" "1073741824" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Recycle Bin"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "trashMax" "1073741824" "#@#Settings.txt"][!Refresh "#rootConfigName#\Recycle Bin"][!Refresh #CURRENTCONFIG#]
 
 [bin2]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=2 GB
-LeftMouseUpAction=[!WriteKeyValue "Variables" "trashMax" "2147483648" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Recycle Bin"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "trashMax" "2147483648" "#@#Settings.txt"][!Refresh "#rootConfigName#\Recycle Bin"][!Refresh #CURRENTCONFIG#]
 
 [bin5]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=5 GB
-LeftMouseUpAction=[!WriteKeyValue "Variables" "trashMax" "5368709120" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Recycle Bin"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "trashMax" "5368709120" "#@#Settings.txt"][!Refresh "#rootConfigName#\Recycle Bin"][!Refresh #CURRENTCONFIG#]
 
 ; ============================================================
 ; Network Speeds
@@ -127,14 +143,14 @@ ToolTipText="Selects which media player should be interfaced by the NowPlaying s
 Meter=String
 MeterStyle=subText
 Text=AIMP
-LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "AIMP" "#@#Settings.txt"][!Refresh "\RSMTwo\NowPlaying"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "AIMP" "#@#Settings.txt"][!Refresh "#rootConfigName#\NowPlaying"][!Refresh #CURRENTCONFIG#]
 ToolTipText=AIMP
 
 [cad]
 Meter=String
 MeterStyle=subText
 Text=CAD
-LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "CAD" "#@#Settings.txt"][!Refresh "\RSMTwo\NowPlaying"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "CAD" "#@#Settings.txt"][!Refresh "#rootConfigName#\NowPlaying"][!Refresh #CURRENTCONFIG#]
 ToolTipText="foobar2000 (w/ plugin), J. River Media Center and Media Jukebox (w/ plugin), MusicBee, VLC (w/ plugin)"
 X=2R
 
@@ -142,7 +158,7 @@ X=2R
 Meter=String
 MeterStyle=subText
 Text=iTunes
-LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "iTunes" "#@#Settings.txt"][!Refresh "\RSMTwo\NowPlaying"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "iTunes" "#@#Settings.txt"][!Refresh "#rootConfigName#\NowPlaying"][!Refresh #CURRENTCONFIG#]
 ToolTipText=iTunes
 X=2R
 
@@ -150,7 +166,7 @@ X=2R
 Meter=String
 MeterStyle=subText
 Text=WMP
-LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "WMP" "#@#Settings.txt"][!Refresh "\RSMTwo\NowPlaying"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "WMP" "#@#Settings.txt"][!Refresh "#rootConfigName#\NowPlaying"][!Refresh #CURRENTCONFIG#]
 ToolTipText=Windows Media Player
 X=2R
 
@@ -158,7 +174,7 @@ X=2R
 Meter=String
 MeterStyle=subText
 Text=MediaMonkey
-LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "MediaMonkey" "#@#Settings.txt"][!Refresh "\RSMTwo\NowPlaying"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "MediaMonkey" "#@#Settings.txt"][!Refresh "#rootConfigName#\NowPlaying"][!Refresh #CURRENTCONFIG#]
 ToolTipText=MediaMonkey
 X=130
 Y=R
@@ -167,7 +183,7 @@ Y=R
 Meter=String
 MeterStyle=subText
 Text=Winamp
-LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "Winamp" "#@#Settings.txt"][!Refresh "\RSMTwo\NowPlaying"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "Winamp" "#@#Settings.txt"][!Refresh "#rootConfigName#\NowPlaying"][!Refresh #CURRENTCONFIG#]
 ToolTipText=Winamp
 X=2R
 

@@ -19,27 +19,27 @@ ToolTipText="The roundline meter will be displayed as a percentage of one of the
 Meter=String
 MeterStyle=subText
 Text=Minute
-LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "0" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Time"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "0" "#@#Settings.txt"][!Refresh "#rootConfigName#\Time"][!Refresh #CURRENTCONFIG#]
 
 [roundHour]
 Meter=String
 MeterStyle=subText
 Text=Hour
-LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "1" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Time"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "1" "#@#Settings.txt"][!Refresh "#rootConfigName#\Time"][!Refresh #CURRENTCONFIG#]
 X=5R
 
 [round12]
 Meter=String
 MeterStyle=subText
 Text=Half-day
-LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "2" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Time"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "2" "#@#Settings.txt"][!Refresh "#rootConfigName#\Time"][!Refresh #CURRENTCONFIG#]
 X=5R
 
 [round24]
 Meter=String
 MeterStyle=subText
 Text=Day
-LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "3" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Time"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "3" "#@#Settings.txt"][!Refresh "#rootConfigName#\Time"][!Refresh #CURRENTCONFIG#]
 X=130
 Y=R
 
@@ -47,14 +47,14 @@ Y=R
 Meter=String
 MeterStyle=subText
 Text=Week
-LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "4" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Time"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "4" "#@#Settings.txt"][!Refresh "#rootConfigName#\Time"][!Refresh #CURRENTCONFIG#]
 X=5R
 
 [roundMonth]
 Meter=String
 MeterStyle=subText
 Text=Month
-LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "5" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Time"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "timeRoundline" "5" "#@#Settings.txt"][!Refresh "#rootConfigName#\Time"][!Refresh #CURRENTCONFIG#]
 X=5R
 
 ; [roundYear]
@@ -80,14 +80,14 @@ LeftMouseUpAction=["http://docs.rainmeter.net/manual/measures/time#FormatCodes"]
 Meter=String
 MeterStyle=subText
 Text="12-hour"
-LeftMouseUpAction=[!WriteKeyValue "Variables" "timeFormat" "%#I:%M" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Time"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "timeFormat" "%#I:%M" "#@#Settings.txt"][!Refresh "#rootConfigName#\Time"][!Refresh #CURRENTCONFIG#]
 
 [tf24hr]
 Meter=String
 MeterStyle=subText
 X=5R
 Text="24-hour"
-LeftMouseUpAction=[!WriteKeyValue "Variables" "timeFormat" "%#H:%M" "#@#Settings.txt"][!Refresh "RainMeter-system-monitor-skin\Time"][!Refresh #CURRENTCONFIG#]
+LeftMouseUpAction=[!WriteKeyValue "Variables" "timeFormat" "%#H:%M" "#@#Settings.txt"][!Refresh "#rootConfigName#\Time"][!Refresh #CURRENTCONFIG#]
 
 [tfCustom]
 Meter=String

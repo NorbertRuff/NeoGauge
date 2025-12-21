@@ -1,5 +1,24 @@
 isDbg = false
 
+-- Helper function to set color alpha bars for appearance pages
+function setColorAlphaBars()
+	local colors = { 	SKIN:GetVariable('pieColor'),
+						SKIN:GetVariable('innerRingColor'),
+						SKIN:GetVariable('pieBgColor') }
+
+	local bars = {	SKIN:GetMeter('1ColorAlpha'),
+					SKIN:GetMeter('2ColorAlpha'),
+					SKIN:GetMeter('3ColorAlpha') }
+
+	local maxBarW = SKIN:GetMeter('1ColorAlphaBg'):GetW()
+
+	-- set the width of the bars that show the alpha of the three colors
+	for i=1,#colors do
+		local tempW = math.floor(getStringAlphaPercent(colors[i]) * maxBarW)
+		SKIN:Bang('!SetOption', bars[i]:GetName(), 'W', tempW)
+	end
+end
+
 function Initialize()
 
 	hexChars = { 	[0]='0', [1]='1', [2]='2', [3]='3',
@@ -14,156 +33,39 @@ function Initialize()
 
 	SKIN:Bang('!SetOptionGroup','pButtons','FontColor','#*textColor*#')
 
-	if (page == 1) then
-		SKIN:Bang('!SetOption','page1','FontColor','#*highlightColor*#')
-
-	elseif page == 2 then
-		SKIN:Bang('!SetOption','page2','FontColor','#*highlightColor*#')
-
-		colors = { 	SKIN:GetVariable('pieColor'),
-					SKIN:GetVariable('innerRingColor'),
-					SKIN:GetVariable('pieBgColor') }
-
-		bars = {	SKIN:GetMeter('1ColorAlpha'),
-					SKIN:GetMeter('2ColorAlpha'),
-					SKIN:GetMeter('3ColorAlpha') }
-
-		maxBarW = SKIN:GetMeter('1ColorAlphaBg'):GetW()
-
-		-- set the width of the bars that show the alpha of the three colors
-		for i=1,#colors do
-			tempW = math.floor(getStringAlphaPercent(colors[i]) * maxBarW)
-			SKIN:Bang('!SetOption', bars[i]:GetName(), 'W', tempW)
+	-- Pages 2-8 all use the same color alpha bar logic
+	local colorAlphaPages = {2, 3, 4, 5, 6, 7, 8}
+	local isColorAlphaPage = false
+	for _, p in ipairs(colorAlphaPages) do
+		if page == p then
+			isColorAlphaPage = true
+			SKIN:Bang('!SetOption','page' .. p,'FontColor','#*highlightColor*#')
+			setColorAlphaBars()
+			break
 		end
+	end
 
-	elseif page == 3 then
-		SKIN:Bang('!SetOption','page3','FontColor','#*highlightColor*#')
+	if not isColorAlphaPage then
+		if (page == 1) then
+			SKIN:Bang('!SetOption','page1','FontColor','#*highlightColor*#')
 
-		colors = { 	SKIN:GetVariable('pieColor'),
-					SKIN:GetVariable('innerRingColor'),
-					SKIN:GetVariable('pieBgColor') }
+		elseif page == 9 then
+			SKIN:Bang('!SetOption','page9','FontColor','#*highlightColor*#')
 
-		bars = {	SKIN:GetMeter('1ColorAlpha'),
-					SKIN:GetMeter('2ColorAlpha'),
-					SKIN:GetMeter('3ColorAlpha') }
+			SKIN:Bang('!SetOption', 'uploadMaxDisplay', 'Text', string.format("%.2f", bytesToMegabits(ulBytes)))
+			SKIN:Bang('!SetOption', 'downloadMaxDisplay', 'Text', string.format("%.2f", bytesToMegabits(dlBytes)))
 
-		maxBarW = SKIN:GetMeter('1ColorAlphaBg'):GetW()
+		elseif page == 10 then
+			SKIN:Bang('!SetOption','page10','FontColor','#*highlightColor*#')
 
-		-- set the width of the bars that show the alpha of the three colors
-		for i=1,#colors do
-			tempW = math.floor(getStringAlphaPercent(colors[i]) * maxBarW)
-			SKIN:Bang('!SetOption', bars[i]:GetName(), 'W', tempW)
+		elseif page == 11 then
+			SKIN:Bang('!SetOption','page11','FontColor','#*highlightColor*#')
+
+		else
+			if isDbg then
+				print('Settings.lua: Invalid page number: ' .. tostring(page))
+			end
 		end
-
-	elseif page == 4 then
-		SKIN:Bang('!SetOption','page4','FontColor','#*highlightColor*#')
-
-		colors = { 	SKIN:GetVariable('pieColor'),
-					SKIN:GetVariable('innerRingColor'),
-					SKIN:GetVariable('pieBgColor') }
-
-		bars = {	SKIN:GetMeter('1ColorAlpha'),
-					SKIN:GetMeter('2ColorAlpha'),
-					SKIN:GetMeter('3ColorAlpha') }
-
-		maxBarW = SKIN:GetMeter('1ColorAlphaBg'):GetW()
-
-		-- set the width of the bars that show the alpha of the three colors
-		for i=1,#colors do
-			tempW = math.floor(getStringAlphaPercent(colors[i]) * maxBarW)
-			SKIN:Bang('!SetOption', bars[i]:GetName(), 'W', tempW)
-		end
-
-	elseif page == 5 then
-		SKIN:Bang('!SetOption','page5','FontColor','#*highlightColor*#')
-
-		colors = { 	SKIN:GetVariable('pieColor'),
-					SKIN:GetVariable('innerRingColor'),
-					SKIN:GetVariable('pieBgColor') }
-
-		bars = {	SKIN:GetMeter('1ColorAlpha'),
-					SKIN:GetMeter('2ColorAlpha'),
-					SKIN:GetMeter('3ColorAlpha') }
-
-		maxBarW = SKIN:GetMeter('1ColorAlphaBg'):GetW()
-
-		-- set the width of the bars that show the alpha of the three colors
-		for i=1,#colors do
-			tempW = math.floor(getStringAlphaPercent(colors[i]) * maxBarW)
-			SKIN:Bang('!SetOption', bars[i]:GetName(), 'W', tempW)
-		end
-
-	elseif page == 6 then
-		SKIN:Bang('!SetOption','page6','FontColor','#*highlightColor*#')
-
-		colors = { 	SKIN:GetVariable('pieColor'),
-					SKIN:GetVariable('innerRingColor'),
-					SKIN:GetVariable('pieBgColor') }
-
-		bars = {	SKIN:GetMeter('1ColorAlpha'),
-					SKIN:GetMeter('2ColorAlpha'),
-					SKIN:GetMeter('3ColorAlpha') }
-
-		maxBarW = SKIN:GetMeter('1ColorAlphaBg'):GetW()
-
-		-- set the width of the bars that show the alpha of the three colors
-		for i=1,#colors do
-			tempW = math.floor(getStringAlphaPercent(colors[i]) * maxBarW)
-			SKIN:Bang('!SetOption', bars[i]:GetName(), 'W', tempW)
-		end
-
-	elseif page == 7 then
-		SKIN:Bang('!SetOption','page7','FontColor','#*highlightColor*#')
-
-		colors = { 	SKIN:GetVariable('pieColor'),
-					SKIN:GetVariable('innerRingColor'),
-					SKIN:GetVariable('pieBgColor') }
-
-		bars = {	SKIN:GetMeter('1ColorAlpha'),
-					SKIN:GetMeter('2ColorAlpha'),
-					SKIN:GetMeter('3ColorAlpha') }
-
-		maxBarW = SKIN:GetMeter('1ColorAlphaBg'):GetW()
-
-		-- set the width of the bars that show the alpha of the three colors
-		for i=1,#colors do
-			tempW = math.floor(getStringAlphaPercent(colors[i]) * maxBarW)
-			SKIN:Bang('!SetOption', bars[i]:GetName(), 'W', tempW)
-		end
-
-	elseif page == 8 then
-		SKIN:Bang('!SetOption','page8','FontColor','#*highlightColor*#')
-
-		colors = { 	SKIN:GetVariable('pieColor'),
-					SKIN:GetVariable('innerRingColor'),
-					SKIN:GetVariable('pieBgColor') }
-
-		bars = {	SKIN:GetMeter('1ColorAlpha'),
-					SKIN:GetMeter('2ColorAlpha'),
-					SKIN:GetMeter('3ColorAlpha') }
-
-		maxBarW = SKIN:GetMeter('1ColorAlphaBg'):GetW()
-
-		-- set the width of the bars that show the alpha of the three colors
-		for i=1,#colors do
-			tempW = math.floor(getStringAlphaPercent(colors[i]) * maxBarW)
-			SKIN:Bang('!SetOption', bars[i]:GetName(), 'W', tempW)
-		end
-
-	elseif page == 9 then
-		SKIN:Bang('!SetOption','page9','FontColor','#*highlightColor*#')
-
-		SKIN:Bang('!SetOption', 'uploadMaxDisplay', 'Text', string.format("%.2f", bytesToMegabits(ulBytes)))
-		SKIN:Bang('!SetOption', 'downloadMaxDisplay', 'Text', string.format("%.2f", bytesToMegabits(dlBytes)))
-
-	elseif page == 10 then
-		SKIN:Bang('!SetOption','page10','FontColor','#*highlightColor*#')
-
-	elseif page == 11 then
-		SKIN:Bang('!SetOption','page11','FontColor','#*highlightColor*#')
-
-	else
-		print('C2: wtf? invalid page number in settings skin')
 	end
 	SKIN:Bang('!Redraw')
 end
@@ -191,7 +93,7 @@ function changeAlpha(color, percent)
 	SKIN:Bang('!WriteKeyValue','Variables',color,newColor,'#@#default.txt')
 end
 
--- intended to retreive the alpha component of an RGBA or hex color and return as a percent 0.0 to 1.0
+-- intended to retrieve the alpha component of an RGBA or hex color and return as a percent 0.0 to 1.0
 function getStringAlphaPercent(color)
 	local alpha
 	if (string.find(color, ",") ~= nil) then
@@ -254,7 +156,14 @@ end
 -- Functions for audjusting maximum network speeds on page 3
 
 function setNetworkSpeed(variable, speed)
-	SKIN:Bang('!WriteKeyValue', 'Variables', variable, megabitsToBytes(speed), "#@#Settings.txt")
+	local speedNum = tonumber(speed)
+	if speedNum == nil or speedNum < 0 then
+		if isDbg then
+			print('Settings.lua: Invalid network speed value: ' .. tostring(speed))
+		end
+		return
+	end
+	SKIN:Bang('!WriteKeyValue', 'Variables', variable, megabitsToBytes(speedNum), "#@#Settings.txt")
 end
 
 function megabitsToBytes(mbits)
@@ -269,15 +178,19 @@ end
 -- switched weather unit
 
 function toggleWeatherUnit()
-	oldUnit = SKIN:GetVariable('unit','f')
+	local oldUnit = SKIN:GetVariable('unit','f')
 	if (string.lower(oldUnit) == 'f') then
 		SKIN:Bang('!WriteKeyValue', 'Variables', 'unit', 'c', '#@#Settings.txt')
 	elseif (string.lower(oldUnit) == 'c') then
 		SKIN:Bang('!WriteKeyValue', 'Variables', 'unit', 'f', '#@#Settings.txt')
 	else
-		print('C2: error changing weather unit')
+		if isDbg then
+			print('Settings.lua: Error changing weather unit - invalid unit value: ' .. tostring(oldUnit))
+		end
+		return
 	end
-	SKIN:Bang('!Refresh', 'RSMTwo\\Weather')
+	local rootConfig = SKIN:GetVariable('rootConfigName', '#ROOTCONFIG#')
+	SKIN:Bang('!Refresh', rootConfig .. '\\Weather')
 	SKIN:Bang('!Refresh', '#CURRENTCONFIG#')
 end
 
