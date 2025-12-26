@@ -12,7 +12,7 @@ colorIcon=255,255,255,255
 ; size and scaling
 radius=25
 innerRadius=(#radius#*0.55)
-edging=(#radius#*0.1)
+edging=(#radius#*1.3)
 orient=left
 pieSize=1.0
 pieSize=1.0

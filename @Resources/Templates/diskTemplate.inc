@@ -1,6 +1,29 @@
 ; ============================================================
-; Disk Measures Template
-; Variables required: diskDrive, diskUpdateDivider, diskIgnoreRemovable, diskTotalUpdateDivider, diskLabelUpdateDivider, diskTypeUpdateDivider
+; Disk Template
+; Displays disk usage percentage with free/total space information
+;
+; REQUIRED VARIABLES:
+;   diskDrive              - Drive letter (e.g., "C", "D") without colon
+;   diskUpdateDivider      - Update frequency for used/free space (recommended: 5-10)
+;   diskIgnoreRemovable    - Ignore removable drives: 0=no, 1=yes
+;   diskTotalUpdateDivider - Update frequency for total space (recommended: 30-60, changes rarely)
+;   diskLabelUpdateDivider - Update frequency for disk label (recommended: 60+, changes rarely)
+;   diskTypeUpdateDivider  - Update frequency for disk type (recommended: 60+, changes rarely)
+;
+; USAGE:
+;   1. Set required variables before including this template
+;   2. Include appearance file (e.g., @include2=#@#Apparence\disk.txt)
+;   3. Include this template: @include6="#@#Templates\diskTemplate.inc"
+;
+; UPDATE FREQUENCY GUIDELINES:
+;   - Used/Free space: UpdateDivider=5-10 (changes moderately)
+;   - Total space: UpdateDivider=30-60 (changes rarely, only on resize)
+;   - Label/Type: UpdateDivider=60+ (changes only when drive changes)
+;
+; ERROR HANDLING:
+;   - Handles removable drives gracefully
+;   - Shows "(removed)" when drive is disconnected
+; ============================================================
 
 [mUsedDisk]
 Measure=FreeDiskSpace

@@ -104,6 +104,7 @@ Hwinfo usage steps:
 - Open the @Resources\settings.txt file and copy the sensor value to the corresponding variables
 - Save the file and refresh the skin
 
+
 ## <div style="color:#f59800" align="center">---| Configuration :wrench: |---</div>
 You can configure the skin by editing the included config.ini file or by editing the .ini files in the skin folder.
 Each folder in the skin folder contains a .ini file that can be edited to customize the skin. 

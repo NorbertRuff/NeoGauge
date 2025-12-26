@@ -191,6 +191,6 @@ X=2R
 ; Meter=String
 ; MeterStyle=subText
 ; Text=WLM
-; LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "WLM" "#@#Settings.txt"][!Refresh "\RSMTwo\NowPlaying"][!Refresh #CURRENTCONFIG#]
+; LeftMouseUpAction=[!WriteKeyValue "Variables" "mediaPlayer" "WLM" "#@#Settings.txt"][!Refresh "#rootConfigName#\NowPlaying"][!Refresh #CURRENTCONFIG#]
 ; ToolTipText="Partial Support: Last.fm client, Media Player Classic, TTPLayer, OpenPandora, Zune"
 ; X=2R

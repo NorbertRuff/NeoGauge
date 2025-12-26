@@ -1,99 +1,163 @@
 [Variables]
-; drive letters
+; ============================================================
+; Drive Letters
+; Drive letters for hard drives/partitions to monitor
+; ============================================================
 hd1=C
 hd2=D
 hd3=E
 hd4=F
 hd5=H
 
-; fan max speed
+; ============================================================
+; Fan Configuration
+; Maximum RPM for fan speed percentage calculation
+; Set this to your fan's maximum RPM (100% fill = this value)
+; ============================================================
 fanMaxRpm=2500
 
-; sensor readings
+; ============================================================
+; HWiNFO64 Sensor Values
+; These values correspond to registry values in HKEY_CURRENT_USER\SOFTWARE\HWiNFO64\VSB
+; To find your sensor values, run: reg query HKEY_CURRENT_USER\SOFTWARE\HWiNFO64\VSB
+; ============================================================
+
+; CPU Temperature Sensors (used by Temps/CPU/CPU.ini)
 cpuTemp1=Value1
 cpuTemp2=Value0
 
-motherboardTemp=Value2
-motherboardTemp2=Value3
+; RAM (DIMM) Temperature Sensors (used by Temps/Ram/RamTemp.ini)
+dimm1Temp=Value11
+dimm2Temp=Value12
+dimm3Temp=Value13
+dimm4Temp=Value14
 
-12v=Value4
-5v=Value5
+; GPU Temperature Sensor (used by Temps/GPU/GPU.ini)
+gpuTemp=Value20
+gpuRpm=Value21
 
-dimm1Temp=Value9
-dimm2Temp=Value10
-dimm3Temp=Value11
-dimm4Temp=Value12
-
-disk1Temp=Value13
-disk1Rpm=Value2
-disk2Temp=Value14
-disk2Rpm=Value2
-disk3Temp=Value15
-disk3Rpm=Value2
-disk4Temp=Value16
-disk4Rpm=Value2
-disk5Temp=Value17
-disk5Rpm=Value17
-
+; Pump Temperature and RPM (used by Temps/Pump/Pump.ini)
 pumpTemp=Value18
 pumpRpm=Value8
 
+; Fan RPM Sensors (used by Temps/Fan1-4/*.ini)
 fan1rpm=Value7
+fan1RawRpm=ValueRaw7
 fan2rpm=Value8
+fan2RawRpm=ValueRaw8
 fan3rpm=Value9
+fan3RawRpm=ValueRaw9
 fan4rpm=Value10
+fan4RawRpm=ValueRaw10
 
-gpuTemp=Value18
-gpuRpm=Value19
+; Disk Temperature Sensors (used by Temps/Disks/diskTemp.ini)
+disk1Temp=Value17
+disk2Temp=Value16
+disk3Temp=Value19
+disk4Temp=Value15
+disk5Temp=Value17
+
+; Disk RPM Sensors (NOTE: Currently unused - disk components don't display RPM)
+; These values appear to be placeholder/example values and may need to be configured
+; based on your specific hardware if you want to add RPM monitoring for disks
+disk1Rpm=Value2
+disk2Rpm=Value2
+disk3Rpm=Value2
+disk4Rpm=Value2
+disk5Rpm=Value17
+
+; ============================================================
+; Unused Sensor Variables
+; The following variables are defined but not currently used by any components.
+; They are kept here as examples for future use or custom configurations.
+; ============================================================
+; Motherboard Temperature Sensors (not currently used)
+motherboardTemp=Value2
+motherboardTemp2=Value3
+
+; Voltage Sensors (not currently used)
+12v=Value4
+5v=Value5
 
 
 
-; sensor labels
+; ============================================================
+; Sensor Labels
+; Display names for sensors (shown in tooltips and subtext)
+; Update these to match your hardware configuration
+; ============================================================
+
+; CPU Labels
 cpuTemp1Label=Intel Core i7-10700K
 cpuTemp2Label=Intel Core i7-10700K
 
-motherboardTempLabel=MSI MPG Z490 TOMAHAWK
-motherboardTemp2Label=MSI MPG Z490 TOMAHAWK
+; RAM (DIMM) Labels
+dimm1Label=Corsair Vengeance RGB Pro 32GB
+dimm2Label=Corsair Vengeance RGB Pro 32GB
+dimm3Label=Corsair Vengeance RGB Pro 32GB
+dimm4Label=Corsair Vengeance RGB Pro 32GB
 
-12vLabel=+12V
-5vLabel=+5V
+; GPU Label
+gpuTempLabel=MSI RTX 4070 12GB
 
+; Pump Label
+pumpLabel=Corsair H100i
+
+; Fan Labels
+fan1Label=Corsair SP120 #1
+fan2Label=Corsair SP120 #2
+fan3Label=Corsair SP120 #3
+fan4Label=Corsair SP120 #4
+
+; Disk Labels
 disk1Label=TOSHIBA HDWD130
 disk2Label=TOSHIBA DT01ACA300
 disk3Label=KINGSTON SNV2S1000G
 disk4Label=KINGSTON SA2000M8500G
 disk5Label=SAMSUNG 870 SSD EVO
 
-fan1Label=Corsair SP120 #1
-fan2Label=Corsair SP120 #2
-fan3Label=Corsair SP120 #3
-fan4Label=Corsair SP120 #4
+; Unused Sensor Labels (for reference/future use)
+motherboardTempLabel=MSI MPG Z490 TOMAHAWK
+motherboardTemp2Label=MSI MPG Z490 TOMAHAWK
+12vLabel=+12V
+5vLabel=+5V
 
-gpuTempLabel=MSI RTX 4070 12GB
-
-pumpLabel=Corsair H100i
-
-dimm1Label=Corsair Vengeance RGB Pro 32GB
-dimm2Label=Corsair Vengeance RGB Pro 32GB
-dimm3Label=Corsair Vengeance RGB Pro 32GB
-dimm4Label=Corsair Vengeance RGB Pro 32GB
-
-; media player name
+; ============================================================
+; Media Player Configuration
+; ============================================================
+; Media player name for NowPlaying component
+; Supported: AIMP, CAD (foobar2000, MusicBee, VLC, etc.), iTunes, WMP, MediaMonkey, Winamp
 mediaPlayer=CAD
 
-; max desired size of recycle bin in Bytes
+; ============================================================
+; Recycle Bin Configuration
+; ============================================================
+; Maximum desired size of recycle bin in Bytes (default: 2GB)
 trashMax=2147483648
 
-; time skin settings
+; ============================================================
+; Time Component Settings
+; ============================================================
+; Time format string (see Rainmeter Time measure documentation)
 timeFormat=%#H:%M
+; Date format string
 dateFormat="%a, %#d %B"
-; 0 minute, 1 hour, 2 half day, 3 day, 4 week, 5 month
+; Roundline display mode: 0=minute, 1=hour, 2=half day, 3=day, 4=week, 5=month
 timeRoundline=3
 
+; ============================================================
+; Network Component Settings
+; ============================================================
 ; Maximum upload and download speeds in Bytes per second
+; Used for calculating percentage display in network components
 uploadMax=2250000
 downloadMax=33125000
 
-;Weather woeid and unit
+; ============================================================
+; Weather Component Settings
+; ============================================================
+; WOEID (Where On Earth ID) for weather location
+; Find your WOEID at: https://www.woeidlookup.com/
 woeid=615702
+; Temperature unit: c=Celsius, f=Fahrenheit
 unit=c
