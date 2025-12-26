@@ -30,6 +30,22 @@
 Measure=Calc
 Formula=(mNetwork/#networkMaxVar#)
 
+[mNetworkThreshold]
+Measure=Calc
+Formula=(mNetwork/#networkMaxVar#)*100
+DynamicVariables=1
+; Dynamic color coding based on network usage
+; < 75% = Original color (default)
+; 75-90% = Yellow (high usage)
+; >= 90% = Red (near max capacity)
+IfConditionMode=1
+IfCondition=(mNetwork/#networkMaxVar#)*100 < 75
+IfTrueAction=[!SetOption pie LineColor "#pieColor#"][!UpdateMeter pie]
+IfCondition2=((mNetwork/#networkMaxVar#)*100 >= 75) && ((mNetwork/#networkMaxVar#)*100 < 90)
+IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie]
+IfCondition3=(mNetwork/#networkMaxVar#)*100 >= 90
+IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie]
+
 @include5="#@#sharedMeters.inc"
 
 [pie]
@@ -47,8 +63,10 @@ MeterStyle=mainTextStyle | mainTextCommon
 MeasureName=mNetworkPercent
 MeasureName2=#networkIpMeasure#
 Percentual=1
-ToolTipText="#networkIpLabel#: %2"
+ToolTipText="#networkIpLabel#: %2#CRLF#Speed: [mNetwork:]B/s#CRLF#Min: [mNetwork:MinValue]B/s | Max: [mNetwork:MaxValue]B/s#CRLF#Right-click to reset peaks"
 Text="#networkLabel# %1%"
+RightMouseUpAction=[!ResetStats mNetwork][!UpdateMeasure mNetwork][!UpdateMeter mainText][!Redraw]
+DynamicVariables=1
 
 [subText]
 Meter=STRING

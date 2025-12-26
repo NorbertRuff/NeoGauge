@@ -45,6 +45,14 @@ IgnoreRemovable=#diskIgnoreRemovable#
 UpdateDivider=#diskTotalUpdateDivider#
 Total=1
 
+[mDiskPercent]
+Measure=Calc
+Formula=(mUsedDisk / mTotalDisk) * 100
+; This calculates the actual percentage from bytes
+; Track peak values automatically
+MinValue=0
+MaxValue=100
+
 [mDiskLabel]
 Measure=FreeDiskSpace
 Drive=#diskDrive#:
@@ -63,12 +71,28 @@ IfBelowValue=3
 IfAboveAction=[!SetVariable "textA" "%1B free"][!SetVariable "textB" "%2B total"]
 IfAboveValue=1
 
+[mDiskThreshold]
+Measure=Calc
+Formula=mDiskPercent
+DynamicVariables=1
+; Dynamic color coding based on disk usage percentage
+; < 75% = Original color (default)
+; 75-90% = Yellow (warning - low space)
+; >= 90% = Red (critical - very low space)
+IfConditionMode=1
+IfCondition=mDiskPercent < 75
+IfTrueAction=[!SetOption pie LineColor "#pieColor#"][!UpdateMeter pie][!Redraw]
+IfCondition2=(mDiskPercent >= 75) && (mDiskPercent < 90)
+IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie][!Redraw]
+IfCondition3=mDiskPercent >= 90
+IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie][!Redraw]
+
 @include5="#@#sharedMeters.inc"
 
 [pie]
 Meter=ROUNDLINE
 MeterStyle=roundlineCommon | pieCommon
-MeasureName=mUsedDisk
+MeasureName=mDiskPercent
 
 [divider]
 Meter=IMAGE
@@ -77,12 +101,13 @@ MeterStyle=dividerStyle | dividerCommon
 [mainText]
 Meter=STRING
 MeterStyle=mainTextStyle | mainTextCommon
-MeasureName=mUsedDisk
+MeasureName=mDiskPercent
 MeasureName2=mDiskLabel
-Percentual=1
 Text="#diskDrive#:\ %1%"
 LeftMouseUpAction=["#diskDrive#:"]
-ToolTipText=%2
+ToolTipText="%2 (#diskDrive#:)#CRLF#Used: %1%#CRLF#Min: [mDiskPercent:MinValue]% | Max: [mDiskPercent:MaxValue]%#CRLF#Right-click to reset peaks"
+RightMouseUpAction=[!ResetStats mDiskPercent][!UpdateMeasure mDiskPercent][!UpdateMeter mainText][!Redraw]
+DynamicVariables=1
 
 [subText]
 Meter=STRING

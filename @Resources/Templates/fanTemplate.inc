@@ -31,6 +31,9 @@ RegValue=#fanRpmRawRegValue#
 ; UpdateDivider=3 - Fan RPM can change quickly, update every 3 seconds (3000ms)
 ; Uncomment and adjust based on your needs
 ; NOTE: Uses raw value (ValueRaw7, etc.) for numeric calculations without commas or "RPM" text
+; Track peak values automatically
+MinValue=0
+MaxValue=5000
 
 [mRpmDisplay]
 Measure=Registry
@@ -46,6 +49,22 @@ Measure=Calc
 ; Roundline meter expects values 0-1 (as a fraction, like temp and network templates)
 Formula=mRpm/#fanMaxRpm#
 DynamicVariables=1
+
+[mFanThreshold]
+Measure=Calc
+Formula=(mRpm/#fanMaxRpm#)*100
+DynamicVariables=1
+; Dynamic color coding based on fan RPM percentage
+; < 75% = Original color (default)
+; 75-90% = Yellow (high speed)
+; >= 90% = Red (very high speed)
+IfConditionMode=1
+IfCondition=(mRpm/#fanMaxRpm#)*100 < 75
+IfTrueAction=[!SetOption pie LineColor "#pieColor#"][!UpdateMeter pie]
+IfCondition2=((mRpm/#fanMaxRpm#)*100 >= 75) && ((mRpm/#fanMaxRpm#)*100 < 90)
+IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie]
+IfCondition3=(mRpm/#fanMaxRpm#)*100 >= 90
+IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie]
 
 @include5="#@#sharedMeters.inc"
 
@@ -67,6 +86,9 @@ ClipStringW=(#radius#*4)
 ClipStringH=(#radius#*1.6)
 ClipString=1
 Text="%1"
+ToolTipText="Current: %1#CRLF#Min: [mRpm:MinValue] RPM | Max: [mRpm:MaxValue] RPM#CRLF#Right-click to reset peaks"
+RightMouseUpAction=[!ResetStats mRpm][!UpdateMeasure mRpm][!UpdateMeter mainText][!Redraw]
+DynamicVariables=1
 
 [subText]
 Meter=STRING

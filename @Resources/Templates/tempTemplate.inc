@@ -40,6 +40,22 @@ Substitute="Unknown":"N/A","-1":"N/A","":"N/A"
 Measure=Calc
 Formula=(mTemp/100)
 
+[mTempThreshold]
+Measure=Calc
+Formula=mTemp
+DynamicVariables=1
+; Dynamic color coding based on temperature
+; < 75°C = Original color (default)
+; 75-90°C = Yellow (warning)
+; >= 90°C = Red (critical)
+IfConditionMode=1
+IfCondition=mTemp < 75
+IfTrueAction=[!SetOption pie LineColor "#pieColor#"][!UpdateMeter pie]
+IfCondition2=(mTemp >= 75) && (mTemp < 90)
+IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie]
+IfCondition3=mTemp >= 90
+IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie]
+
 @include5="#@#sharedMeters.inc"
 
 [pie]
@@ -60,6 +76,9 @@ ClipStringW=(#radius#*4)
 ClipStringH=(#radius#*1.6)
 ClipString=1
 Text="%1"
+ToolTipText="Current: %1°C#CRLF#Min: [mTemp:MinValue]°C | Max: [mTemp:MaxValue]°C#CRLF#Right-click to reset peaks"
+RightMouseUpAction=[!ResetStats mTemp][!UpdateMeasure mTemp][!UpdateMeter mainText][!Redraw]
+DynamicVariables=1
 
 [subText]
 Meter=STRING

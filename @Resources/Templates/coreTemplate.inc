@@ -25,10 +25,6 @@ Processor=#coreNumber#
 MinValue=0
 MaxValue=100
 
-[mCoreLoad]
-Measure=CPU
-Processor=#coreNumber#
-
 [mCoreFreq]
 Measure=Plugin
 Plugin=PerfMon
@@ -39,6 +35,22 @@ PerfMonDifference=0
 ; UpdateDivider=5 - Frequency changes less frequently, update every 5 seconds
 ; Handle missing frequency data gracefully
 Substitute="Unknown":"N/A","-1":"N/A","":"N/A"
+
+[mCoreThreshold]
+Measure=Calc
+Formula=mCoreLoad
+DynamicVariables=1
+; Dynamic color coding based on CPU load
+; < 75% = Original color (default)
+; 75-90% = Yellow (warning)
+; >= 90% = Red (critical)
+IfConditionMode=1
+IfCondition=mCoreLoad < 75
+IfTrueAction=[!SetOption pie LineColor "#pieColor#"][!UpdateMeter pie]
+IfCondition2=(mCoreLoad >= 75) && (mCoreLoad < 90)
+IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie]
+IfCondition3=mCoreLoad >= 90
+IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie]
 
 @include5="#@#sharedMeters.inc"
 
@@ -57,6 +69,9 @@ MeterStyle=mainTextStyle | mainTextCommon
 MeasureName=mCoreLoad
 Percentual=1
 Text="c#coreNumber# %1%"
+ToolTipText="Core #coreNumber#: %1%#CRLF#Min: [mCoreLoad:MinValue]% | Max: [mCoreLoad:MaxValue]%#CRLF#Freq: [mCoreFreq:] MHz#CRLF#Right-click to reset peaks"
+RightMouseUpAction=[!ResetStats mCoreLoad][!UpdateMeasure mCoreLoad][!UpdateMeter mainText][!Redraw]
+DynamicVariables=1
 
 [subText]
 Meter=STRING
