@@ -63,8 +63,8 @@ MeterStyle=dividerStyle | dividerCommon
 Meter=STRING
 MeterStyle=mainTextStyle | mainTextCommon
 MeasureName=mRpmDisplay
-ClipStringW=20
-ClipStringH=40
+ClipStringW=(#radius#*4)
+ClipStringH=(#radius#*1.6)
 ClipString=1
 Text="%1"
 
@@ -72,7 +72,7 @@ Text="%1"
 Meter=STRING
 MeterStyle=subTextStyle | subTextCommon
 ClipString=2
-ClipStringW=80
+ClipStringW=100
 Text=#fanLabel#
 
 [Icon]

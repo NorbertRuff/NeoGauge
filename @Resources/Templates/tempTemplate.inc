@@ -56,8 +56,8 @@ MeterStyle=dividerStyle | dividerCommon
 Meter=STRING
 MeterStyle=mainTextStyle | mainTextCommon
 MeasureName=mTemp
-ClipStringW=20
-ClipStringH=40
+ClipStringW=(#radius#*4)
+ClipStringH=(#radius#*1.6)
 ClipString=1
 Text="%1"
 
@@ -67,7 +67,7 @@ MeterStyle=subTextStyle | subTextCommon
 MeasureName=mPercent
 NumOfDecimals=2
 ClipString=2
-ClipStringW=80
+ClipStringW=100
 Text=#tempLabel#
 
 [Icon]

@@ -88,7 +88,7 @@ motherboardTemp2=Value3
 ; ============================================================
 
 ; CPU Labels
-cpuTemp1Label=Intel Core i7-10700K
+cpuTemp1Label=Intel i7-10700K
 cpuTemp2Label=Intel Core i7-10700K
 
 ; RAM (DIMM) Labels
@@ -98,7 +98,7 @@ dimm3Label=Corsair Vengeance RGB Pro 32GB
 dimm4Label=Corsair Vengeance RGB Pro 32GB
 
 ; GPU Label
-gpuTempLabel=MSI RTX 4070 12GB
+gpuTempLabel=MSI RTX 4070
 
 ; Pump Label
 pumpLabel=Corsair H100i

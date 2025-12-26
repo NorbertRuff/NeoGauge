@@ -24,7 +24,6 @@ This document tracks future improvements, refactoring tasks, and maintenance ite
 
 - [x] **Implement Rainmeter Best Practices**
   - [ ] Use Calc measures with IfAboveValue/IfBelowValue for dynamic colors (CPU/RAM/Temp thresholds) - Feature enhancement, separate task
-  - [ ] Add OnChangeAction to measures to reduce unnecessary updates - Performance optimization, separate task
   - [x] Improve Substitute usage for better error handling (handle "Unknown", "-1", missing values) - Added to templates
   - [x] Use MinValue/MaxValue for automatic peak tracking - Added to temperature, fan, and CPU core templates
   - [ ] Optimize DynamicVariables usage (only where needed) - Needs code review
