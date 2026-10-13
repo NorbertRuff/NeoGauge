@@ -1,257 +1,205 @@
-isDbg = false
+-- Settings.lua: logic for Config.ini
+--
+-- Pages mark their choices with meter names, and Initialize() colors them:
+--   opt_<variable>_<value>  highlighted when the variable has that value
+--                           (dots in the value become underscores)
+--   tog_<variable>          bright when on, dim when off (see TOGGLES)
 
--- Helper function to set color alpha bars for appearance pages
-function setColorAlphaBars()
-	local colors = { 	SKIN:GetVariable('pieColor'),
-						SKIN:GetVariable('innerRingColor'),
-						SKIN:GetVariable('pieBgColor') }
+-- Variables whose current value picks an opt_ meter. The ones with a custom
+-- meter fall back to it when no preset matches.
+local OPTIONS = {
+	{ var = 'page' },
+	{ var = 'component' },
+	{ var = 'orient' },
+	{ var = 'fontStyle' },
+	{ var = 'size', custom = true },
+	{ var = 'scale', custom = true },
+	{ var = 'trashMax' },
+	{ var = 'timeRoundline' },
+}
 
-	local bars = {	SKIN:GetMeter('1ColorAlpha'),
-					SKIN:GetMeter('2ColorAlpha'),
-					SKIN:GetMeter('3ColorAlpha') }
+-- tog_ meters: the value that counts as "on"
+local TOGGLES = {
+	hideInnerEdge = '0',
+	hideOuterEdge = '0',
+	hidePieBg = '0',
+	hideDivider = '0',
+	hideSubText = '0',
+	trashAutoEmpty = '1',
+}
 
-	local maxBarW = SKIN:GetMeter('1ColorAlphaBg'):GetW()
+local USED_BY = {
+	cpu = 'CPU',
+	ram = 'RAM, swap',
+	io = 'drive activity',
+	disk = 'disks 1-5',
+	fan = 'CPU / GPU / RAM / disk / pump temperatures, fans 1-4',
+	networkDown = 'download, uptime',
+	networkUp = 'upload',
+	wifi = 'wifi',
+	battery = 'battery',
+	default = 'CPU cores, clock, volume, recycle bin, background bars',
+}
 
-	-- set the width of the bars that show the alpha of the three colors
-	for i=1,#colors do
-		local tempW = math.floor(getStringAlphaPercent(colors[i]) * maxBarW)
-		SKIN:Bang('!SetOption', bars[i]:GetName(), 'W', tempW)
+local COLOR_VARS = { 'pieColor', 'innerRingColor', 'pieBgColor' }
+
+function Initialize()
+	local s = tonumber(SKIN:GetVariable('scale', '1')) or 1
+	accent = SKIN:GetVariable('pageColor')
+	dim = SKIN:GetVariable('dimColor')
+
+	resources = SKIN:ReplaceVariables('#@#')
+	settingsFile = resources .. 'Settings.txt'
+	appFile = resources .. 'Apparence\\' .. SKIN:GetVariable('component', 'default') .. '.txt'
+
+	-- InputText can't evaluate formulas, so hand it ready-made pixel sizes
+	-- (FontSize is in points, which take more pixels than the box height suggests)
+	SKIN:Bang('!SetVariable', 'inFont', math.floor(8 * s + 0.5))
+	SKIN:Bang('!SetVariable', 'inW', math.floor(180 * s + 0.5))
+	SKIN:Bang('!SetVariable', 'inH', math.floor(24 * s + 0.5))
+
+	highlightOptions()
+	paintToggles()
+
+	local page = SKIN:GetVariable('page')
+	if page == 'appearance' then
+		setAlphaBars()
+		setText('usedBy', 'used by: ' .. (USED_BY[SKIN:GetVariable('component')] or '?'))
+	elseif page == 'system' then
+		setText('uploadMax', string.format('%.1f', bytesToMegabits(SKIN:GetVariable('uploadMax'))))
+		setText('downloadMax', string.format('%.1f', bytesToMegabits(SKIN:GetVariable('downloadMax'))))
 	end
 end
 
-function Initialize()
+-- ------------------------------------------------------------------
+-- Highlighting
 
-	hexChars = { 	[0]='0', [1]='1', [2]='2', [3]='3',
-				[4]='4', [5]='5', [6]='6', [7]='7',
-				[8]='8', [9]='9', [10]='a', [11]='b',
-				[12]='c', [13]='d', [14]='e', [15]='f' }
-
-	page = tonumber(SKIN:GetVariable('page',1))
-
-	ulBytes = SKIN:GetVariable('uploadMax')
-	dlBytes = SKIN:GetVariable('downloadMax')
-
-	SKIN:Bang('!SetOptionGroup','pButtons','FontColor','#*textColor*#')
-
-	-- Pages 2-8 all use the same color alpha bar logic
-	local colorAlphaPages = {2, 3, 4, 5, 6, 7, 8}
-	local isColorAlphaPage = false
-	for _, p in ipairs(colorAlphaPages) do
-		if page == p then
-			isColorAlphaPage = true
-			SKIN:Bang('!SetOption','page' .. p,'FontColor','#*highlightColor*#')
-			setColorAlphaBars()
-			break
-		end
+function setText(meter, text)
+	if SKIN:GetMeter(meter) then
+		SKIN:Bang('!SetOption', meter, 'Text', text)
 	end
+end
 
-	if not isColorAlphaPage then
-		if (page == 1) then
-			SKIN:Bang('!SetOption','page1','FontColor','#*highlightColor*#')
+function setColor(meter, color)
+	if SKIN:GetMeter(meter) then
+		SKIN:Bang('!SetOption', meter, 'FontColor', color)
+	end
+end
 
-		elseif page == 9 then
-			SKIN:Bang('!SetOption','page9','FontColor','#*highlightColor*#')
+function meterKey(value)
+	return (tostring(value):gsub('^%s+', ''):gsub('%s+$', ''):gsub('%.', '_'))
+end
 
-			SKIN:Bang('!SetOption', 'uploadMaxDisplay', 'Text', string.format("%.2f", bytesToMegabits(ulBytes)))
-			SKIN:Bang('!SetOption', 'downloadMaxDisplay', 'Text', string.format("%.2f", bytesToMegabits(dlBytes)))
-
-		elseif page == 10 then
-			SKIN:Bang('!SetOption','page10','FontColor','#*highlightColor*#')
-
-		elseif page == 11 then
-			SKIN:Bang('!SetOption','page11','FontColor','#*highlightColor*#')
-
-		else
-			if isDbg then
-				print('Settings.lua: Invalid page number: ' .. tostring(page))
+function highlightOptions()
+	for _, o in ipairs(OPTIONS) do
+		local value = SKIN:GetVariable(o.var)
+		if value then
+			local name = 'opt_' .. o.var .. '_' .. meterKey(value)
+			if SKIN:GetMeter(name) then
+				setColor(name, accent)
+			elseif o.custom then
+				setColor('opt_' .. o.var .. '_custom', accent)
 			end
 		end
 	end
-	SKIN:Bang('!Redraw')
-end
 
-function Update()
-
-
-end
-
--- ==========================================================================================
--- Functions used for displaying and changing the transparency of the colors on page 2
-
--- called from skin - changes alpha value on a color in default.txt
-function changeAlpha(color, percent)
-	baseColor = SKIN:GetVariable(color)
-	alpha = math.floor(percent*0.01*255)
-	if (string.find(baseColor, ",") ~= nil) then
-		rgb = string.match(baseColor, "%d+,%d+,%d+")
-		newColor = rgb .. ',' .. alpha
+	-- Margins are stored as a formula like (#radius#*0.3): match the factor
+	local edging = SKIN:GetVariable('edging') or ''
+	if edging == '0' then
+		setColor('opt_edging_0', accent)
 	else
-		rgb = string.sub(baseColor,1,6)
-		alpha = decToHex(alpha)
-		newColor = rgb .. alpha
-	end
-	SKIN:Bang('!WriteKeyValue','Variables',color,newColor,'#@#default.txt')
-end
-
--- intended to retrieve the alpha component of an RGBA or hex color and return as a percent 0.0 to 1.0
-function getStringAlphaPercent(color)
-	local alpha
-	if (string.find(color, ",") ~= nil) then
-
-		rgbIt = string.gmatch(color,"%d+")
-		rgbTable = {}
-		for match in rgbIt do
-			table.insert(rgbTable, match)
-		end
-
-		if (#rgbTable < 4) then
-			alpha = 1
+		local factor = tonumber(edging:match('%*%s*([%d%.]+)%s*%)%s*$') or '')
+		local name = factor and ('opt_edging_' .. math.floor(factor * 100 + 0.5))
+		if name and SKIN:GetMeter(name) then
+			setColor(name, accent)
 		else
-			alpha = (rgbTable[4] / 255)
-			alpha = string.format("%.2f",alpha)
-		end
-	else
-		if (string.len(color)) > 6 then
-			alpha = hexToDec(string.sub(color,7,8))
-			alpha = (alpha / 255)
-			alpha = string.format("%.2f",alpha)
-		else
-			alpha = 1
+			setColor('opt_edging_custom', accent)
 		end
 	end
-	return tonumber(alpha)
+
+	-- Clock presets are whole format strings
+	local timeFormat = SKIN:GetVariable('timeFormat') or ''
+	if timeFormat == '%#I:%M' then setColor('opt_timeFormat_12', accent) end
+	if timeFormat == '%#H:%M' then setColor('opt_timeFormat_24', accent) end
 end
 
--- converts a hexadecimal string to a decimal number
-function hexToDec(hexNum)
-	hexNum = string.lower(hexNum)
-	sum = 0
-	for i=1,#hexNum,1 do
-		sum = sum + (findHexChar(string.sub(hexNum,i,i)) * 16^(#hexNum-i))
+function paintToggles()
+	for var, onValue in pairs(TOGGLES) do
+		local on = (SKIN:GetVariable(var) or '') == onValue
+		setColor('tog_' .. var, on and accent or dim)
 	end
-	return sum
 end
 
--- converts decimal number to hexadecimal string
-function decToHex(decNum)
-	local result = {}
-	while (decNum > 0) do
-		table.insert(result, 1, hexChars[math.fmod(decNum, 16)])
-		decNum = math.floor(decNum / 16)
+-- ------------------------------------------------------------------
+-- Actions called from the page meters
+
+-- where: 'app' = current appearance file, 'settings' = Settings.txt
+function toggle(var, where)
+	local current = SKIN:GetVariable(var) or '0'
+	local file = (where == 'settings') and settingsFile or appFile
+	SKIN:Bang('!WriteKeyValue', 'Variables', var, current == '1' and '0' or '1', file)
+	SKIN:Bang('!RefreshGroup', 'rsm')
+end
+
+function setColors(arc, rings, track)
+	SKIN:Bang('!WriteKeyValue', 'Variables', 'pieColor', arc, appFile)
+	SKIN:Bang('!WriteKeyValue', 'Variables', 'innerRingColor', rings, appFile)
+	SKIN:Bang('!WriteKeyValue', 'Variables', 'pieBgColor', track, appFile)
+	SKIN:Bang('!RefreshGroup', 'rsm')
+end
+
+-- percent: where the opacity bar was clicked, 0-100
+function changeAlpha(var, percent)
+	local r, g, b = parseColor(SKIN:GetVariable(var))
+	if not r then return end
+	local alpha = math.floor(math.max(0, math.min(100, percent)) * 2.55 + 0.5)
+	SKIN:Bang('!WriteKeyValue', 'Variables', var, string.format('%d,%d,%d,%d', r, g, b, alpha), appFile)
+	SKIN:Bang('!RefreshGroup', 'rsm')
+end
+
+-- ------------------------------------------------------------------
+-- Colors: "R,G,B[,A]" or hex "RRGGBB[AA]"
+
+function parseColor(color)
+	color = color or ''
+	local r, g, b, a = color:match('^%s*(%d+)%s*,%s*(%d+)%s*,%s*(%d+)%s*,?%s*(%d*)')
+	if r then
+		return tonumber(r), tonumber(g), tonumber(b), tonumber(a) or 255
 	end
-	return table.concat(result,'',1,#result)
+	local hr, hg, hb, ha = color:match('^%s*(%x%x)(%x%x)(%x%x)(%x?%x?)')
+	if hr then
+		return tonumber(hr, 16), tonumber(hg, 16), tonumber(hb, 16), (ha ~= '' and tonumber(ha, 16)) or 255
+	end
+	return nil
 end
 
--- linearly searches hexChar array for a given character and returns its index
-function findHexChar(char)
-	for i=0,#hexChars do
-		if hexChars[i] == char then
-			return i
+function setAlphaBars()
+	for i, var in ipairs(COLOR_VARS) do
+		local bg = SKIN:GetMeter('c' .. i .. 'AlphaBg')
+		local _, _, _, a = parseColor(SKIN:GetVariable(var))
+		if bg and a then
+			SKIN:Bang('!SetOption', 'c' .. i .. 'Alpha', 'W', math.floor(bg:GetW() * a / 255 + 0.5))
 		end
 	end
-	return -1
 end
 
--- ==========================================================================================
--- Functions for audjusting maximum network speeds on page 3
+-- ------------------------------------------------------------------
+-- Network speeds are stored in bytes/s but shown in Mb/s
 
-function setNetworkSpeed(variable, speed)
-	local speedNum = tonumber(speed)
-	if speedNum == nil or speedNum < 0 then
-		if isDbg then
-			print('Settings.lua: Invalid network speed value: ' .. tostring(speed))
-		end
-		return
-	end
-	SKIN:Bang('!WriteKeyValue', 'Variables', variable, megabitsToBytes(speedNum), "#@#Settings.txt")
+function setNetworkSpeed(var, text)
+	local mbps = tonumber(text)
+	if not mbps or mbps <= 0 then return end
+	SKIN:Bang('!WriteKeyValue', 'Variables', var, megabitsToBytes(mbps), settingsFile)
 end
 
+-- TODO: pick the unit. Internet plans are sold in decimal megabits
+-- (1 Mb = 1,000,000 bits), but the old config used binary (1,048,576).
+-- Your Settings.txt has downloadMax=33125000 bytes/s: that is 265 Mb/s in
+-- decimal or 252.7 Mb/s in binary. Make these two functions agree.
 function megabitsToBytes(mbits)
-	return math.floor((mbits*1024*1024)/8)
+	return math.floor(mbits * 1024 * 1024 / 8)
 end
 
 function bytesToMegabits(bytes)
-	return ((bytes*8)/1024/1024)
-end
-
--- ==========================================================================================
--- switched weather unit
-
-function toggleWeatherUnit()
-	local oldUnit = SKIN:GetVariable('unit','f')
-	if (string.lower(oldUnit) == 'f') then
-		SKIN:Bang('!WriteKeyValue', 'Variables', 'unit', 'c', '#@#Settings.txt')
-	elseif (string.lower(oldUnit) == 'c') then
-		SKIN:Bang('!WriteKeyValue', 'Variables', 'unit', 'f', '#@#Settings.txt')
-	else
-		if isDbg then
-			print('Settings.lua: Error changing weather unit - invalid unit value: ' .. tostring(oldUnit))
-		end
-		return
-	end
-	local rootConfig = SKIN:GetVariable('rootConfigName', '#ROOTCONFIG#')
-	SKIN:Bang('!Refresh', rootConfig .. '\\Weather')
-	SKIN:Bang('!Refresh', '#CURRENTCONFIG#')
-end
-
--- ==========================================================================================
--- function rewrites default.txt and settings.txt with default values
-
-function resetAllVariables()
-
-	settingsDefaults = {
-		{ 'hd1', 'C' },
-		{ 'hd2', 'D' },
-		{ 'hd3', 'E' },
-		{ 'mediaPlayer', 'CAD' },
-		{ 'trashMax', '2147483648' },
-		{ 'trashAutoEmpty', '0' },
-		{ 'timeFormat', '\"%#H:%M\"' },
-		{ 'dateFormat', '"%a, %#d %B"' },
-		{ 'timeRoundline', '3' },
-		{ 'uploadMax', '393216' },
-		{ 'downloadMax', '655360' },
-		{ 'woeid', '615702' },
-		{ 'unit', 'c' },
-		{'sfTempIndex', '2'},
-		{'sfVoltIndex', '2'},
-		{'sfMaxTemp', '100'}
-	}
-
-	appearanceDefaults = {
-		{ 'innerRingColor', '250,250,250,155' },
-		{ 'outerRingColor', '#*innerRingColor*#' },
-		{ 'pieBgColor', '100,100,100,51' },
-		{ 'pieColor', '250,250,250,230' },
-		{ 'TextMainColor', '#*pieColor*#' },
-		{ 'TextSubColor', '#*innerRingColor*#' },
-		{'bgBarColor', '10,10,10,200'},
-		{ 'size', '36' },
-		{ 'innerRadius', '(#*radius*#*0.55)' },
-		{ 'edging', '(#*radius*#*0.3)' },
-		{ 'orient', 'left' },
-		{ 'pieSize', '1.0' },
-		{ 'pieStart', '0' },
-		{ 'hideInnerEdge', '0' },
-		{ 'hideOuterEdge', '0' },
-		{ 'hidePieBg', '0' },
-		{ 'hideDivider', '0' },
-		{ 'hideSubText', '0' },
-		{ 'mainFont', 'Ubuntu Nerd Font' },
-		{ 'subFont', '#*mainFont*#' },
-		{ 'subTwoLines', '0' },
-		{ 'fontStyle', 'Normal' }
-	}
-
-	for _,t in pairs(settingsDefaults) do
-		SKIN:Bang('!WriteKeyValue', 'Variables', t[1], t[2], '#@#Settings.txt')
-	end
-
-	for _,t in pairs(appearanceDefaults) do
-		SKIN:Bang('!WriteKeyValue', 'Variables', t[1], t[2], '#@#default.txt')
-	end
-
-	SKIN:Bang('!RefreshGroup', 'rsm')
-
-	print('C2: all user settings reset to default')
+	return (tonumber(bytes) or 0) * 8 / 1024 / 1024
 end
