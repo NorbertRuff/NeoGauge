@@ -71,32 +71,15 @@ IfBelowValue=3
 IfAboveAction=[!SetVariable "textA" "%1B free"][!SetVariable "textB" "%2B total"]
 IfAboveValue=1
 
-[mDiskThreshold]
-Measure=Calc
-Formula=mDiskPercent
-DynamicVariables=1
-; Dynamic color coding based on disk usage percentage
-; < 75% = Original color (default)
-; 75-90% = Yellow (warning - low space)
-; >= 90% = Red (critical - very low space)
-IfConditionMode=1
-IfCondition=mDiskPercent < 75
-IfTrueAction=[!SetOption pie LineColor "#pieColor#"][!UpdateMeter pie][!Redraw]
-IfCondition2=(mDiskPercent >= 75) && (mDiskPercent < 90)
-IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie][!Redraw]
-IfCondition3=mDiskPercent >= 90
-IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie][!Redraw]
-
 [Variables]
 peakSource=mDiskPercent
+; Ring (ringTemplate.inc)
+fxSource=mDiskPercent
+fxMax=100
+fxLevels=1
 @include7="#@#Templates\peakTemplate.inc"
 
-@include5="#@#sharedMeters.inc"
-
-[pie]
-Meter=ROUNDLINE
-MeterStyle=roundlineCommon | pieCommon
-MeasureName=mDiskPercent
+@include5="#@#Templates\ringTemplate.inc"
 
 [divider]
 Meter=IMAGE
@@ -127,4 +110,3 @@ Meter=Image
 MeterStyle=iconStyle
 ImageName=icon.png
 ImageTint=#colorIcon#
-

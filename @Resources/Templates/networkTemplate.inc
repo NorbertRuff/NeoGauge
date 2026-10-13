@@ -30,32 +30,15 @@
 Measure=Calc
 Formula=(mNetwork/#networkMaxVar#)
 
-[mNetworkThreshold]
-Measure=Calc
-Formula=(mNetwork/#networkMaxVar#)*100
-DynamicVariables=1
-; Dynamic color coding based on network usage
-; < 75% = Original color (default)
-; 75-90% = Yellow (high usage)
-; >= 90% = Red (near max capacity)
-IfConditionMode=1
-IfCondition=(mNetwork/#networkMaxVar#)*100 < 75
-IfTrueAction=[!SetOption pie LineColor "#pieColor#"][!UpdateMeter pie]
-IfCondition2=((mNetwork/#networkMaxVar#)*100 >= 75) && ((mNetwork/#networkMaxVar#)*100 < 90)
-IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie]
-IfCondition3=(mNetwork/#networkMaxVar#)*100 >= 90
-IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie]
-
 [Variables]
 peakSource=mNetwork
+; Ring (ringTemplate.inc)
+fxSource=mNetworkPercent
+fxMax=1
+fxLevels=1
 @include7="#@#Templates\peakTemplate.inc"
 
-@include5="#@#sharedMeters.inc"
-
-[pie]
-Meter=ROUNDLINE
-MeterStyle=roundlineCommon | pieCommon
-MeasureName=mNetworkPercent
+@include5="#@#Templates\ringTemplate.inc"
 
 [divider]
 Meter=IMAGE
@@ -84,4 +67,3 @@ Meter=Image
 MeterStyle=iconStyle
 ImageName=icon.png
 ImageTint=#colorIcon#
-

@@ -132,6 +132,24 @@ motherboardTemp2Label=MSI MPG Z490 TOMAHAWK
 scale=2
 
 ; ============================================================
+; Ring effects (every gauge; set on the config tool's "effects" page)
+; ============================================================
+; Ease the ring to each new reading instead of jumping: 0/1, and how fast (ms)
+fxSmooth=1
+fxEaseMs=280
+; Glow around the arc: 0 = off, 1 = always, 2 = grows with load (55-90 %)
+fxGlow=2
+fxGlowStrength=0.9
+; Peak tick that holds the recent high, then slides back: 0/1
+fxPeak=0
+; Arc brightens toward its tip, with a bright head: 0/1
+fxComet=0
+; Drops fade out instead of vanishing: 0/1
+fxAfterglow=1
+; Rounded arc ends: 0/1
+fxRoundCaps=0
+
+; ============================================================
 ; Fonts
 ; Defaults for every gauge. An Apparence\*.txt file can override mainFont
 ; (the config tool writes it there).

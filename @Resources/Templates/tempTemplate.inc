@@ -40,33 +40,15 @@ Substitute="Unknown":"N/A","-1":"N/A","":"N/A"
 Measure=Calc
 Formula=(mTemp/100)
 
-[mTempThreshold]
-Measure=Calc
-Formula=mTemp
-DynamicVariables=1
-; Dynamic color coding based on temperature
-; < 75°C = Original color (default)
-; 75-90°C = Yellow (warning)
-; >= 90°C = Red (critical)
-IfConditionMode=1
-IfCondition=mTemp < 75
-IfTrueAction=[!SetOption pie LineColor "#pieColor#"][!UpdateMeter pie]
-IfCondition2=(mTemp >= 75) && (mTemp < 90)
-IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie]
-IfCondition3=mTemp >= 90
-IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie]
-
 [Variables]
 peakSource=mTemp
+; Ring (ringTemplate.inc)
+fxSource=mPercent
+fxMax=1
+fxLevels=1
 @include7="#@#Templates\peakTemplate.inc"
 
-@include5="#@#sharedMeters.inc"
-
-[pie]
-Meter=ROUNDLINE
-MeterStyle=roundlineCommon | pieCommon
-MeasureName=mPercent
-LineColor=#pieColor#
+@include5="#@#Templates\ringTemplate.inc"
 
 [divider]
 Meter=IMAGE
@@ -98,4 +80,3 @@ Meter=Image
 MeterStyle=iconStyle
 ImageName=icon.png
 ImageTint=#colorIcon#
-

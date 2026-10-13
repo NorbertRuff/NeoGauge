@@ -16,6 +16,17 @@ local OPTIONS = {
 	{ var = 'scale', custom = true },
 	{ var = 'trashMax' },
 	{ var = 'timeRoundline' },
+	{ var = 'fxEaseMs' },
+	{ var = 'fxGlow' },
+	{ var = 'fxGlowStrength' },
+}
+
+-- Effects page presets (fx* in Settings.txt)
+local FX_PRESETS = {
+	off = { fxSmooth = 0, fxGlow = 0, fxPeak = 0, fxAfterglow = 0, fxComet = 0, fxRoundCaps = 0 },
+	light = { fxSmooth = 1, fxGlow = 0, fxPeak = 0, fxAfterglow = 0, fxComet = 0, fxRoundCaps = 0 },
+	balanced = { fxSmooth = 1, fxGlow = 2, fxPeak = 1, fxAfterglow = 1, fxComet = 0, fxRoundCaps = 0 },
+	everything = { fxSmooth = 1, fxGlow = 2, fxPeak = 1, fxAfterglow = 1, fxComet = 1, fxRoundCaps = 1 },
 }
 
 -- tog_ meters: the value that counts as "on"
@@ -26,6 +37,11 @@ local TOGGLES = {
 	hideDivider = '0',
 	hideSubText = '0',
 	trashAutoEmpty = '1',
+	fxSmooth = '1',
+	fxPeak = '1',
+	fxAfterglow = '1',
+	fxComet = '1',
+	fxRoundCaps = '1',
 }
 
 local USED_BY = {
@@ -117,6 +133,21 @@ function highlightOptions()
 		end
 	end
 
+	-- Effects preset: highlight the one every fx switch matches, if any
+	for name, preset in pairs(FX_PRESETS) do
+		local match = true
+		for var, value in pairs(preset) do
+			-- fxGlow only has to be on/off to count (any glow mode fits a preset with glow)
+			local current = tonumber(SKIN:GetVariable(var) or '') or -1
+			if var == 'fxGlow' then
+				if (current > 0) ~= (value > 0) then match = false end
+			elseif current ~= value then
+				match = false
+			end
+		end
+		if match then setColor('opt_fxPreset_' .. name, accent) end
+	end
+
 	-- Clock presets are whole format strings
 	local timeFormat = SKIN:GetVariable('timeFormat') or ''
 	if timeFormat == '%#I:%M' then setColor('opt_timeFormat_12', accent) end
@@ -138,6 +169,15 @@ function toggle(var, where)
 	local current = SKIN:GetVariable(var) or '0'
 	local file = (where == 'settings') and settingsFile or appFile
 	SKIN:Bang('!WriteKeyValue', 'Variables', var, current == '1' and '0' or '1', file)
+	SKIN:Bang('!RefreshGroup', 'rsm')
+end
+
+function setFxPreset(name)
+	local preset = FX_PRESETS[name]
+	if not preset then return end
+	for var, value in pairs(preset) do
+		SKIN:Bang('!WriteKeyValue', 'Variables', var, value, settingsFile)
+	end
 	SKIN:Bang('!RefreshGroup', 'rsm')
 end
 

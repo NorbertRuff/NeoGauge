@@ -50,33 +50,15 @@ Measure=Calc
 Formula=mRpm/#fanMaxRpm#
 DynamicVariables=1
 
-[mFanThreshold]
-Measure=Calc
-Formula=(mRpm/#fanMaxRpm#)*100
-DynamicVariables=1
-; Dynamic color coding based on fan RPM percentage
-; < 75% = Original color (default)
-; 75-90% = Yellow (high speed)
-; >= 90% = Red (very high speed)
-IfConditionMode=1
-IfCondition=(mRpm/#fanMaxRpm#)*100 < 75
-IfTrueAction=[!SetOption pie LineColor "#pieColor#"][!UpdateMeter pie]
-IfCondition2=((mRpm/#fanMaxRpm#)*100 >= 75) && ((mRpm/#fanMaxRpm#)*100 < 90)
-IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie]
-IfCondition3=(mRpm/#fanMaxRpm#)*100 >= 90
-IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie]
-
 [Variables]
 peakSource=mRpm
+; Ring (ringTemplate.inc)
+fxSource=mPercent
+fxMax=1
+fxLevels=1
 @include7="#@#Templates\peakTemplate.inc"
 
-@include5="#@#sharedMeters.inc"
-
-[pie]
-Meter=ROUNDLINE
-MeterStyle=roundlineCommon | pieCommon
-MeasureName=mPercent
-LineColor=#pieColor#
+@include5="#@#Templates\ringTemplate.inc"
 
 [divider]
 Meter=IMAGE
@@ -106,4 +88,3 @@ Meter=Image
 MeterStyle=iconStyle
 ImageName=icon.png
 ImageTint=#colorIcon#
-

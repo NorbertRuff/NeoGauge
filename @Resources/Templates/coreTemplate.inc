@@ -45,32 +45,15 @@ PerfMonDifference=0
 Measure=Calc
 Formula=mCoreFreqRaw
 
-[mCoreThreshold]
-Measure=Calc
-Formula=mCoreLoad
-DynamicVariables=1
-; Dynamic color coding based on CPU load
-; < 75% = Original color (default)
-; 75-90% = Yellow (warning)
-; >= 90% = Red (critical)
-IfConditionMode=1
-IfCondition=mCoreLoad < 75
-IfTrueAction=[!SetOption pie LineColor "#pieColor#"][!UpdateMeter pie]
-IfCondition2=(mCoreLoad >= 75) && (mCoreLoad < 90)
-IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie]
-IfCondition3=mCoreLoad >= 90
-IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie]
-
 [Variables]
 peakSource=mCoreLoad
+; Ring (ringTemplate.inc)
+fxSource=mCoreLoad
+fxMax=100
+fxLevels=1
 @include7="#@#Templates\peakTemplate.inc"
 
-@include5="#@#sharedMeters.inc"
-
-[pie]
-Meter=ROUNDLINE
-MeterStyle=roundlineCommon | pieCommon
-MeasureName=mCoreLoad
+@include5="#@#Templates\ringTemplate.inc"
 
 [divider]
 Meter=IMAGE
@@ -92,4 +75,3 @@ MeterStyle=subTextStyle | subTextCommon
 MeasureName=mCoreFreq
 Text="freq: %1 MHz"
 NumOfDecimals=0
-
