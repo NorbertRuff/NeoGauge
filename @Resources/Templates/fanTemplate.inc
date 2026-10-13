@@ -98,7 +98,7 @@ DynamicVariables=1
 Meter=STRING
 MeterStyle=subTextStyle | subTextCommon
 ClipString=2
-ClipStringW=100
+ClipStringW=(#radius#*4)
 Text=#fanLabel#
 
 [Icon]

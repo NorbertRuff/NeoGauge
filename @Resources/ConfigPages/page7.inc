@@ -99,28 +99,28 @@ MeterStyle=subText
 X=r
 Y=r
 Text=24
-LeftMouseUpAction=[!WriteKeyValue Variables radius 24 "#@#Apparence\networkDown.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables size 24 "#@#Apparence\networkDown.txt"][!RefreshGroup rsm]
 
 [r36]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=36
-LeftMouseUpAction=[!WriteKeyValue Variables radius 36 "#@#Apparence\networkDown.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables size 36 "#@#Apparence\networkDown.txt"][!RefreshGroup rsm]
 
 [r48]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=48
-LeftMouseUpAction=[!WriteKeyValue Variables radius 48 "#@#Apparence\networkDown.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables size 48 "#@#Apparence\networkDown.txt"][!RefreshGroup rsm]
 
 [r60]
 Meter=String
 MeterStyle=subText
 X=5R
 Text=60
-LeftMouseUpAction=[!WriteKeyValue Variables radius 60 "#@#Apparence\networkDown.txt"][!RefreshGroup rsm]
+LeftMouseUpAction=[!WriteKeyValue Variables size 60 "#@#Apparence\networkDown.txt"][!RefreshGroup rsm]
 
 [rCustom]
 Meter=String

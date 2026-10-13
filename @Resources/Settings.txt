@@ -123,12 +123,21 @@ motherboardTemp2Label=MSI MPG Z490 TOMAHAWK
 5vLabel=+5V
 
 ; ============================================================
+; Display scaling
+; Match your Windows display scale: 1 = 100%, 1.5 = 150%, 2 = 200%.
+; Needs Rainmeter.exe > Properties > Compatibility > Change high DPI
+; settings > "Override high DPI scaling behavior: Application", otherwise
+; Windows stretches the skins itself and they look blurry.
+; ============================================================
+scale=2
+
+; ============================================================
 ; Fonts
 ; Defaults for every gauge. An Apparence\*.txt file can override mainFont
 ; (the config tool writes it there).
 ; ============================================================
 mainFont=Ubuntu Nerd Font
-subFont=Neon 80s
+subFont=Segoe UI
 
 ; ============================================================
 ; Media Player Configuration

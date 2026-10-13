@@ -25,17 +25,22 @@ Processor=#coreNumber#
 MinValue=0
 MaxValue=100
 
-; "Actual Frequency" is the live clock (what Task Manager shows as Speed).
 ; "Processor Frequency" only reports the rated base clock, which never moves.
+; The live clock is the "Actual Frequency" counter, but PerfMon can't read it
+; (it needs a second base counter), and UsageMonitor, which can, crashes
+; Rainmeter 4.5.28 on this PC. Once that is fixed, switch back to:
+;   Plugin=UsageMonitor / Category=Processor Information /
+;   Counter=Actual Frequency / Name=#perfMonInstance#
 [mCoreFreqRaw]
 Measure=Plugin
-Plugin=UsageMonitor
-Category=Processor Information
-Counter=Actual Frequency
-Name=#perfMonInstance#
+Plugin=PerfMon
+PerfMonObject=Processor Information
+PerfMonCounter=Processor Frequency
+PerfMonInstance=#perfMonInstance#
+PerfMonDifference=0
 
-; UsageMonitor's string value is the instance name ("0,0"), which a String
-; meter would print instead of the number. A Calc has no string value.
+; Plugin measures can carry a string value that a String meter would print
+; instead of the number. A Calc has no string value.
 [mCoreFreq]
 Measure=Calc
 Formula=mCoreFreqRaw

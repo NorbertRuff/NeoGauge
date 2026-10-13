@@ -226,7 +226,7 @@ function resetAllVariables()
 		{ 'TextMainColor', '#*pieColor*#' },
 		{ 'TextSubColor', '#*innerRingColor*#' },
 		{'bgBarColor', '10,10,10,200'},
-		{ 'radius', '36' },
+		{ 'size', '36' },
 		{ 'innerRadius', '(#*radius*#*0.55)' },
 		{ 'edging', '(#*radius*#*0.3)' },
 		{ 'orient', 'left' },
