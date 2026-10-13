@@ -192,14 +192,11 @@ function setNetworkSpeed(var, text)
 	SKIN:Bang('!WriteKeyValue', 'Variables', var, megabitsToBytes(mbps), settingsFile)
 end
 
--- TODO: pick the unit. Internet plans are sold in decimal megabits
--- (1 Mb = 1,000,000 bits), but the old config used binary (1,048,576).
--- Your Settings.txt has downloadMax=33125000 bytes/s: that is 265 Mb/s in
--- decimal or 252.7 Mb/s in binary. Make these two functions agree.
+-- Decimal megabits (1 Mb = 1,000,000 bits), the unit internet plans use
 function megabitsToBytes(mbits)
-	return math.floor(mbits * 1024 * 1024 / 8)
+	return math.floor(mbits * 1000000 / 8)
 end
 
 function bytesToMegabits(bytes)
-	return (tonumber(bytes) or 0) * 8 / 1024 / 1024
+	return (tonumber(bytes) or 0) * 8 / 1000000
 end
