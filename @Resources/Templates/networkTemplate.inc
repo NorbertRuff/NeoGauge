@@ -46,6 +46,10 @@ IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie]
 IfCondition3=(mNetwork/#networkMaxVar#)*100 >= 90
 IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie]
 
+[Variables]
+peakSource=mNetwork
+@include7="#@#Templates\peakTemplate.inc"
+
 @include5="#@#sharedMeters.inc"
 
 [pie]
@@ -63,9 +67,9 @@ MeterStyle=mainTextStyle | mainTextCommon
 MeasureName=mNetworkPercent
 MeasureName2=#networkIpMeasure#
 Percentual=1
-ToolTipText="#networkIpLabel#: %2#CRLF#Speed: [mNetwork:]B/s#CRLF#Min: [mNetwork:MinValue]B/s | Max: [mNetwork:MaxValue]B/s#CRLF#Right-click to reset peaks"
+ToolTipText="#networkIpLabel#: %2#CRLF#Speed: [mNetwork:/1048576,2] MB/s#CRLF#Min: [mPeakMin:/1048576,2] MB/s | Max: [mPeakMax:/1048576,2] MB/s#CRLF#Right-click to reset peaks"
 Text="#networkLabel# %1%"
-RightMouseUpAction=[!ResetStats mNetwork][!UpdateMeasure mNetwork][!UpdateMeter mainText][!Redraw]
+RightMouseUpAction=#peakResetAction#
 DynamicVariables=1
 
 [subText]

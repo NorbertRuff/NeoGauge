@@ -87,6 +87,10 @@ IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie][!Re
 IfCondition3=mDiskPercent >= 90
 IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie][!Redraw]
 
+[Variables]
+peakSource=mDiskPercent
+@include7="#@#Templates\peakTemplate.inc"
+
 @include5="#@#sharedMeters.inc"
 
 [pie]
@@ -105,8 +109,8 @@ MeasureName=mDiskPercent
 MeasureName2=mDiskLabel
 Text="#diskDrive#:\ %1%"
 LeftMouseUpAction=["#diskDrive#:"]
-ToolTipText="%2 (#diskDrive#:)#CRLF#Used: %1%#CRLF#Min: [mDiskPercent:MinValue]% | Max: [mDiskPercent:MaxValue]%#CRLF#Right-click to reset peaks"
-RightMouseUpAction=[!ResetStats mDiskPercent][!UpdateMeasure mDiskPercent][!UpdateMeter mainText][!Redraw]
+ToolTipText="%2 (#diskDrive#:)#CRLF#Used: %1%#CRLF#Min: [mPeakMin:1]% | Max: [mPeakMax:1]%#CRLF#Right-click to reset peaks"
+RightMouseUpAction=#peakResetAction#
 DynamicVariables=1
 
 [subText]

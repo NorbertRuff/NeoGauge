@@ -56,6 +56,10 @@ IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie]
 IfCondition3=mTemp >= 90
 IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie]
 
+[Variables]
+peakSource=mTemp
+@include7="#@#Templates\peakTemplate.inc"
+
 @include5="#@#sharedMeters.inc"
 
 [pie]
@@ -76,8 +80,8 @@ ClipStringW=(#radius#*4)
 ClipStringH=(#radius#*1.6)
 ClipString=1
 Text="%1"
-ToolTipText="Current: %1°C#CRLF#Min: [mTemp:MinValue]°C | Max: [mTemp:MaxValue]°C#CRLF#Right-click to reset peaks"
-RightMouseUpAction=[!ResetStats mTemp][!UpdateMeasure mTemp][!UpdateMeter mainText][!Redraw]
+ToolTipText="Current: %1°C#CRLF#Min: [mPeakMin:0]°C | Max: [mPeakMax:0]°C#CRLF#Right-click to reset peaks"
+RightMouseUpAction=#peakResetAction#
 DynamicVariables=1
 
 [subText]

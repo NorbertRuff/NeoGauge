@@ -66,6 +66,10 @@ IfTrueAction2=[!SetOption pie LineColor "255,200,100,230"][!UpdateMeter pie]
 IfCondition3=(mRpm/#fanMaxRpm#)*100 >= 90
 IfTrueAction3=[!SetOption pie LineColor "255,100,100,230"][!UpdateMeter pie]
 
+[Variables]
+peakSource=mRpm
+@include7="#@#Templates\peakTemplate.inc"
+
 @include5="#@#sharedMeters.inc"
 
 [pie]
@@ -86,8 +90,8 @@ ClipStringW=(#radius#*4)
 ClipStringH=(#radius#*1.6)
 ClipString=1
 Text="%1"
-ToolTipText="Current: %1#CRLF#Min: [mRpm:MinValue] RPM | Max: [mRpm:MaxValue] RPM#CRLF#Right-click to reset peaks"
-RightMouseUpAction=[!ResetStats mRpm][!UpdateMeasure mRpm][!UpdateMeter mainText][!Redraw]
+ToolTipText="Current: %1#CRLF#Min: [mPeakMin:0] RPM | Max: [mPeakMax:0] RPM#CRLF#Right-click to reset peaks"
+RightMouseUpAction=#peakResetAction#
 DynamicVariables=1
 
 [subText]

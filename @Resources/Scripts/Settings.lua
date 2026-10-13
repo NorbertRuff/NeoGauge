@@ -205,6 +205,7 @@ function resetAllVariables()
 		{ 'hd3', 'E' },
 		{ 'mediaPlayer', 'CAD' },
 		{ 'trashMax', '2147483648' },
+		{ 'trashAutoEmpty', '0' },
 		{ 'timeFormat', '\"%#H:%M\"' },
 		{ 'dateFormat', '"%a, %#d %B"' },
 		{ 'timeRoundline', '3' },

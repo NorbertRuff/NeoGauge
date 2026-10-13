@@ -123,6 +123,14 @@ motherboardTemp2Label=MSI MPG Z490 TOMAHAWK
 5vLabel=+5V
 
 ; ============================================================
+; Fonts
+; Defaults for every gauge. An Apparence\*.txt file can override mainFont
+; (the config tool writes it there).
+; ============================================================
+mainFont=Ubuntu Nerd Font
+subFont=Neon 80s
+
+; ============================================================
 ; Media Player Configuration
 ; ============================================================
 ; Media player name for NowPlaying component
@@ -134,6 +142,9 @@ mediaPlayer=CAD
 ; ============================================================
 ; Maximum desired size of recycle bin in Bytes (default: 2GB)
 trashMax=2147483648
+; Permanently empty the bin, without asking, once it grows past trashMax
+; 0=off (default), 1=on
+trashAutoEmpty=0
 
 ; ============================================================
 ; Time Component Settings
