@@ -97,3 +97,5 @@ tools/out/
 /CLAUDE.md
 /tools/Probe.ps1
 /tools/Snap.ps1
+/tools/Measure.ps1
+/tools/next-session.md

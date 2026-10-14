@@ -11,6 +11,11 @@ This document tracks future improvements, refactoring tasks, and maintenance ite
 - [x] **High-DPI support**: `scale` in `Settings.txt`, every size derives from it
 - [x] **Fonts bundled** in `@Resources\Fonts` (Ubuntu Nerd Font + licence)
 - [x] Real core frequency (needs UsageMonitor, see below), drive activity on real counters, wifi label quoting, recycle bin auto-empty made opt-in
+- [x] **Performance**: measured 1.0 vs 2.0 (README, Performance section). Average CPU went from ~52 % to ~17 % of one core with balanced effects (~5 % with effects off). Changes:
+  - Top process every 30 s, with a quick first reading
+  - HWiNFO sensors every 2 s (its own refresh rate)
+  - Static background bar
+  - Uptime every 10 s
 
 ## 🐛 Known issues
 
@@ -20,6 +25,11 @@ This document tracks future improvements, refactoring tasks, and maintenance ite
   - Core gauges show the base clock (PerfMon can't read "Actual Frequency")
   - Drive activity uses PerfMon raw counters
   - The UsageMonitor versions are in comments next to each; switch back and retest once Rainmeter is updated
+
+## ⚖️ Ground rules
+
+- **Don't change the look or the animations without asking.** The current 2.0 look and the balanced effects are the intended design.
+- **Don't make the skin drastically heavier.** Measure Rainmeter's CPU/RAM before and after any change and compare with the README's Performance numbers. A costly feature must be optional.
 
 ## 🚀 Feature Enhancements
 
@@ -57,5 +67,5 @@ When implementing improvements, refer to:
 - [@Include Workshop](https://www.deviantart.com/rainmeter/journal/Rainmeter-Workshop-include-224558279)
 
 ---
-**Last Updated:** 2026-10-14
+**Last Updated:** 2026-10-14 (evening)
 **Maintainer:** Norbert Ruff

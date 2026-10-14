@@ -25,11 +25,11 @@
 
 [mTemp]
 Measure=Registry
+; HWiNFO refreshes its sensors about every 2 s, so reading faster only repeats values
+UpdateDivider=2
 RegHKey=HKEY_CURRENT_USER
 RegKey=SOFTWARE\HWiNFO64\VSB
 RegValue=#tempRegValue#
-; UpdateDivider=5 - Temperature changes slowly, update every 5 seconds (5000ms)
-; Uncomment and adjust based on your needs (lower = more frequent updates)
 ; Track peak values automatically
 MinValue=0
 MaxValue=100

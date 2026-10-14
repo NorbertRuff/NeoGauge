@@ -33,6 +33,7 @@ Learn more about Rainmeter in [docs](https://docs.rainmeter.net/manual/)
 * [---| Installation 🚀 |---](#div-stylecolorf59800-aligncenter----installation-----div)
 * [---| Usage :computer: |---](#div-stylecolorf59800-aligncenter----usage-computer----div)
 * [---| Configuration :wrench: |---</div>](#div-stylecolorf59800-aligncenter----configuration-wrench----div)
+* [---| Performance :chart_with_upwards_trend: |---](#div-stylecolorf59800-aligncenter----performance-chartwithupwardstrend----div)
 * [---| Built with 🛠️ |---](#div-stylecolorf59800-aligncenter----built-with-----div)
 * [---| Contributing 🤝 |---](#div-stylecolorf59800-aligncenter----contributing-----div)
 * [---| About Me 👨‍💻 |---](#div-stylecolorf59800-aligncenter----about-me-----div)
@@ -139,6 +140,27 @@ Animated effects only run while a ring is moving, then go idle. If Rainmeter's C
 Everything is stored in plain text files that you can also edit by hand ("edit files" in the config window opens them):
 - `@Resources\Settings.txt` - system, time and effects settings, HWiNFO sensors
 - `@Resources\Apparence\*.txt` - one appearance file per gauge group
+
+
+## <div style="color:#f59800" align="center">---| Performance :chart_with_upwards_trend: |---</div>
+
+Rainmeter's own CPU and RAM use with the same 17 gauges loaded, version 1.0 (`master`) against 2.0 (`update`, **balanced** effects):
+
+| | 1.0 (`master`) | 2.0, effects **balanced** | 2.0, effects **off** |
+|---|---|---|---|
+| CPU, average | ~52 % of one core (3.2 % of total) | ~17 % of one core (1.1 % of total) | ~5 % of one core (0.3 % of total) |
+| CPU, busiest seconds (95th percentile) | 57-59 % of one core | 48-65 % of one core | ~16 % of one core |
+| RAM in use (working set) | 55 MB | 66-67 MB | ~71 MB |
+| RAM owned by Rainmeter (private) | 26-27 MB | ~32 MB | - |
+
+- **CPU is much lower on average** mainly because the CPU gauge's "top process" check (the old AdvancedCPU plugin, the most expensive measure in the suite) runs every 30 s instead of every 3 s. Other updates are also trimmed to what's visible:
+  - HWiNFO sensors are read every 2 s, as often as HWiNFO refreshes them.
+  - The background bar draws once and never updates.
+  - Uptime updates every 10 s, since it shows only minutes.
+- **The ring animations are most of what's left** (~12 % of one core on average with balanced). A gauge redraws 20 times a second only while its ring moves, then goes idle, so busy gauges (CPU, network, disk activity) cause the peaks. The **light** or **off** preset removes most of that cost.
+- **RAM is ~10 MB higher** than 1.0: 2.0 draws the gauges at full display resolution (4x the pixels at 200 % scaling) and adds the effect meters and a small Lua script per gauge.
+
+How it was measured (2026-10-14): Rainmeter 4.5.28 64-bit, Windows 11 Pro 25H2, Intel i7-10700K (16 threads), 200 % display scaling with Rainmeter's high-DPI override on. Rainmeter was restarted, left to settle for 20 s, then sampled once a second for 60 s: 2 runs on 1.0, 2 runs on 2.0 balanced, 1 run on 2.0 off. The PC was in normal use (browser, IDE), so expect some spread between runs. Loaded gauges: CPU, RAM, disk activity, disks 1-5, download, upload, CPU and GPU temperature, fans 2-4, uptime, background bar.
 
 
 ## <div style="color:#f59800" align="center">---| Built with 🛠️ |---</div>

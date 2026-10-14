@@ -25,11 +25,11 @@
 
 [mRpm]
 Measure=Registry
+; HWiNFO refreshes its sensors about every 2 s, so reading faster only repeats values
+UpdateDivider=2
 RegHKey=HKEY_CURRENT_USER
 RegKey=SOFTWARE\HWiNFO64\VSB
 RegValue=#fanRpmRawRegValue#
-; UpdateDivider=3 - Fan RPM can change quickly, update every 3 seconds (3000ms)
-; Uncomment and adjust based on your needs
 ; NOTE: Uses raw value (ValueRaw7, etc.) for numeric calculations without commas or "RPM" text
 ; Track peak values automatically
 MinValue=0
@@ -37,6 +37,8 @@ MaxValue=5000
 
 [mRpmDisplay]
 Measure=Registry
+; HWiNFO refreshes its sensors about every 2 s, so reading faster only repeats values
+UpdateDivider=2
 RegHKey=HKEY_CURRENT_USER
 RegKey=SOFTWARE\HWiNFO64\VSB
 RegValue=#fanRpmRegValue#
