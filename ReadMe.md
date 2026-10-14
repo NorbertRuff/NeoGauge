@@ -65,13 +65,11 @@ Learn more about Rainmeter in [docs](https://docs.rainmeter.net/manual/)
 
 ## <div style="color:#f59800" align="center">---| Prerequisites :heavy_check_mark: |---</div>
 
-Prerequisites for this project are:
-- Rainmeter
-- Windows
+- Windows 10 or 11
+- [Rainmeter](https://www.rainmeter.net/) 4.5 or newer
+- [HWiNFO](https://www.hwinfo.com/download/) (optional) - only for the temperature, fan and pump gauges
 
-- HWiNFO (optional) - for hardware temperature monitoring
-- Rainmeter HWiNFO plugin
-
+The Ubuntu Nerd Font used by the gauges ships in `@Resources\Fonts` and loads automatically; nothing to install.
 
 ### Scripting language:
 - Rainmeter Skin Language
@@ -82,39 +80,72 @@ Prerequisites for this project are:
 
 ## <div style="color:#f59800" align="center">---| Installation 🚀 |---</div>
 
-Installation steps:
-1. Install Rainmeter from [here](https://www.rainmeter.net/)
-2. Install HWiNFO from [here](https://www.hwinfo.com/download/)
-3. Install Rainmeter HWiNFO plugin from [here](https://docs.rainmeter.net/tips/hwinfo/)
-4. 
-    - A. Download this repository and extract it to your Rainmeter skins folder (usually C:\Users\%username%\Documents\Rainmeter\Skins)
-    - B. Or you can use the included Rainmeter skin installer by running the .rmskin file
-5. Open Rainmeter and load the skin 
-6. Customize the skin by starting the included configuration tool (config.ini) or by editing the .ini files in the skin folder
-7. Enjoy!
+1. Install [Rainmeter](https://www.rainmeter.net/)
+2. Get the skin, either way:
+    - Download this repository into your Rainmeter skins folder (usually `C:\Users\%username%\Documents\Rainmeter\Skins\NeoGauge`)
+    - Or run the included `.rmskin` installer
+3. Open Rainmeter's Manage window and load the gauges you want from the `NeoGauge` folder
+4. Load `NeoGauge\Config.ini` to set everything up (see [Configuration](#div-stylecolorf59800-aligncenter----configuration-wrench----div))
+5. Optional: set up HWiNFO for the temperature and fan gauges (see [Usage](#div-stylecolorf59800-aligncenter----usage-computer----div))
+
+### Display scaling (125 % / 150 % / 200 %)
+
+Rainmeter does not handle Windows display scaling itself, so on a scaled display Windows stretches the skins and they look blurry. For sharp gauges:
+
+1. Right-click `C:\Program Files\Rainmeter\Rainmeter.exe` > **Properties** > **Compatibility** > **Change high DPI settings**
+2. Tick **Override high DPI scaling behavior**, set it to **Application**, and restart Rainmeter
+3. In the config tool's **system** page, set **Display scale** to your Windows scale (e.g. 200 %)
+
+Every gauge, font and the config window scale from that one setting. If your gauges jump to new spots after step 2, drag them back once.
 
 
 ## <div style="color:#f59800" align="center">---| Usage :computer: |---</div>
 
-Hwinfo usage steps:
-- Follow this [guide](https://docs.rainmeter.net/tips/hwinfo/) to install the HWiNFO plugin for Rainmeter
-- Select all the sensors you want to monitor in rainmeter
-- Open a terminal and run the following command: ` reg query HKEY_CURRENT_USER\SOFTWARE\HWiNFO64\VSB`
-- You should see a list of all the sensors you selected in rainmeter
-- Open the @Resources\settings.txt file and copy the sensor value to the corresponding variables
-- Save the file and refresh the skin
+The temperature, fan and pump gauges read sensors from HWiNFO through the Windows registry:
+
+1. In HWiNFO's sensors window, open **Settings** > **HWiNFO Gadget**, select each sensor you want and tick **Report value in Gadget**
+2. Keep HWiNFO running
+3. Open a terminal and run `reg query HKEY_CURRENT_USER\SOFTWARE\HWiNFO64\VSB` to see the reported sensors: each has a `LabelN` and a `ValueN`
+4. In `@Resources\Settings.txt`, set the matching variables (`cpuTemp1=Value1`, `fan1rpm=Value7`, `fan1RawRpm=ValueRaw7`, ...) and the display labels
+5. Refresh the skins
+
+The numbers follow the order of the sensors you enabled in HWiNFO, so adding or removing a sensor there can shift them.
+
+Other handy interactions:
+- Hover a gauge's main text for a tooltip with its peak values since load; right-click it to reset them
+- Click the CPU text to open Task Manager, a disk's text to open the drive
 
 
 ## <div style="color:#f59800" align="center">---| Configuration :wrench: |---</div>
-You can configure the skin by editing the included config.ini file or by editing the .ini files in the skin folder.
-Each folder in the skin folder contains a .ini file that can be edited to customize the skin. 
-the related style is located in the @Resources\Styles and @Resources\Apparance folders.
+
+Load `Config.ini` (the `NeoGauge` root skin) for the settings window. Every click applies right away and the current choice is highlighted:
+
+- **appearance** - pick a gauge group at the top (cpu, ram, I/O, disks, temps & fans, download, upload, wifi, battery, other), then set its orientation, size, margins, font style, colors (click a color to type a new one, click the bar to set its opacity), color presets, and which parts of the ring to show
+- **effects** - how the rings move, for every gauge at once:
+    - presets: **off** (jump once a second, the lightest), **light**, **balanced**, **everything**
+    - **smooth** motion and its speed
+    - **glow**: off, always, or growing with load (55-90 %), at three strengths
+    - **peak hold**: a tick marks the recent high, then slides back
+    - **afterglow**: drops fade out instead of vanishing
+    - **comet**: the arc brightens toward a glowing tip (the heaviest effect)
+    - **round ends** on the arc
+- **system** - display scale, fonts, the drive letters for the five disk gauges, your connection speed (the network gauges show traffic as a share of it), the fan RPM that counts as 100 %, and the recycle bin size (plus an opt-in to empty it automatically when full)
+- **time** - what the clock's ring tracks (minute to year) and the time and date formats
+
+Gauges turn yellow from 75 % and red from 90 % (not battery, wifi, volume or clock).
+
+Animated effects only run while a ring is moving, then go idle. If Rainmeter's CPU use matters to you, use the **light** or **off** preset.
+
+Everything is stored in plain text files that you can also edit by hand ("edit files" in the config window opens them):
+- `@Resources\Settings.txt` - system, time and effects settings, HWiNFO sensors
+- `@Resources\Apparence\*.txt` - one appearance file per gauge group
+
 
 ## <div style="color:#f59800" align="center">---| Built with 🛠️ |---</div>
 
 - [Rainmeter](https://www.rainmeter.net/)
 - [HWiNFO](https://www.hwinfo.com/download/)
-- [Rainmeter HWiNFO plugin](https://www.hwinfo.com/forum/Thread-Rainmeter-plug-in-for-HWiNFO-3-0)
+- [Ubuntu Nerd Font](https://www.nerdfonts.com/) (Ubuntu Font Licence)
 - [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/)
 - [❤️ and ☕]()
 
