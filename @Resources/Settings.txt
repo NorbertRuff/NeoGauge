@@ -24,34 +24,45 @@ fanMaxRpm=2500
 
 ; CPU Temperature Sensors (used by Temps/CPU/CPU.ini)
 cpuTemp1=Value1
+cpuTemp1Sensor=CPU 0: Intel Core i7-10700K: DTS|Core Temperatures
 cpuTemp2=Value0
+cpuTemp2Sensor=CPU 0: Intel Core i7-10700K: DTS|CPU Package
 
 ; RAM (DIMM) Temperature Sensors (used by Temps/Ram/RamTemp.ini)
 dimm1Temp=Value11
+dimm1TempSensor=DIMM Temperature Sensor|DIMM0 Temperature (BANK 0/ChannelA-DIMM0)
 dimm2Temp=Value12
 dimm3Temp=Value13
 dimm4Temp=Value14
 
 ; GPU Temperature Sensor (used by Temps/GPU/GPU.ini)
 gpuTemp=Value20
+gpuTempSensor=GPU 0: NVIDIA:|GPU Temperature
 gpuRpm=Value21
+gpuRpmSensor=GPU 0: NVIDIA:|GPU Fan1
 
 ; Pump Temperature and RPM (used by Temps/Pump/Pump.ini)
 pumpTemp=Value18
 pumpRpm=Value8
+pumpRpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|System 1
 
 ; Fan RPM Sensors (used by Temps/Fan1-4/*.ini)
 fan1rpm=Value7
 fan1RawRpm=ValueRaw7
+fan1rpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|CPU
 fan2rpm=Value8
 fan2RawRpm=ValueRaw8
+fan2rpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|System 1
 fan3rpm=Value9
 fan3RawRpm=ValueRaw9
+fan3rpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|System 4
 fan4rpm=Value10
 fan4RawRpm=ValueRaw10
+fan4rpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|System 5
 
 ; Disk Temperature Sensors (used by Temps/Disks/diskTemp.ini)
 disk1Temp=Value17
+disk1TempSensor=S.M.A.R.T.: TOSHIBA HDWD130 (Z7B4XS9AS)|Drive Temperature
 disk2Temp=Value16
 disk3Temp=Value19
 disk4Temp=Value15

@@ -18,8 +18,11 @@ This document tracks future improvements, refactoring tasks, and maintenance ite
   - Uptime every 10 s
 - [x] **Cleanup**: removed the weather (`woeid`, `unit`) and media player settings, `Scripts/Smurfier-Media.lua`, the disk RPM / motherboard / voltage sensor variables, `Apparence/temp.txt` and `Templates/memoryTemplate.inc`. Uptime has its own appearance file (`upTime.txt`, an "uptime" tab in the config tool)
 - [x] **Peak minimum**: `[mPeakMin]` copies the source for the first 2 updates (Calc's `Counter`), so it starts from a real reading instead of 0
+- [x] **HWiNFO sensor picker**: the config tool's **sensors** page lists HWiNFO's sensors by name (`Scripts/Sensors.lua`, Registry `OutputType=ValueList`), writes `ValueN` plus the sensor's name (`<key>Sensor`) to `Settings.txt`, and flags gauges whose sensor is missing (`!`) or moved (`~`, click to re-match)
 
 ## 🐛 Known issues
+
+- [ ] **Pump temperature has no sensor**: `pumpTemp=Value18` points at a sensor HWiNFO no longer reports (the sensors page shows it with `!`), and `pumpRpm` reads the same sensor as fan 2. Pick the right ones on the sensors page
 
 - [ ] **UsageMonitor crashes Rainmeter 4.5.28** on this PC. Until a fixed release:
   - CPU top process uses AdvancedCPU (slow: ~20 % of a core at a 3 s interval, now every 30 s)
@@ -34,7 +37,6 @@ This document tracks future improvements, refactoring tasks, and maintenance ite
 
 ## 🚀 Feature Enhancements
 
-- [ ] **HWiNFO sensor picker**: a config page that lists the sensors by label (Registry measure `OutputType`, Rainmeter 4.5.10+) instead of typing `ValueN`, so gauges survive HWiNFO reordering its sensors
 - [ ] **Core gauges for every thread**: there are 4 core skins, the CPU has 16 threads
 - [ ] **Configurable warning thresholds**: the 75 % / 90 % levels and their colors as settings
 - [ ] **Icon improvements**

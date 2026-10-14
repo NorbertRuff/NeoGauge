@@ -106,11 +106,9 @@ The temperature, fan and pump gauges read sensors from HWiNFO through the Window
 
 1. In HWiNFO's sensors window, open **Settings** > **HWiNFO Gadget**, select each sensor you want and tick **Report value in Gadget**
 2. Keep HWiNFO running
-3. Open a terminal and run `reg query HKEY_CURRENT_USER\SOFTWARE\HWiNFO64\VSB` to see the reported sensors: each has a `LabelN` and a `ValueN`
-4. In `@Resources\Settings.txt`, set the matching variables (`cpuTemp1=Value1`, `fan1rpm=Value7`, `fan1RawRpm=ValueRaw7`, ...) and the display labels
-5. Refresh the skins
+3. In the config tool's **sensors** page, click a gauge on the left, then click the sensor it should read on the right
 
-The numbers follow the order of the sensors you enabled in HWiNFO, so adding or removing a sensor there can shift them.
+HWiNFO numbers its sensors in the order you enabled them, so adding or removing one there can shift them. The sensors page marks a gauge whose sensor is gone with `!`, and one whose sensor moved with `~` (click the `~` to follow it).
 
 Other handy interactions:
 - Hover a gauge's main text for a tooltip with its peak values since load; right-click it to reset them
@@ -121,7 +119,7 @@ Other handy interactions:
 
 Load `Config.ini` (the `NeoGauge` root skin) for the settings window. Every click applies right away and the current choice is highlighted:
 
-- **appearance** - pick a gauge group at the top (cpu, ram, I/O, disks, temps & fans, download, upload, wifi, battery, other), then set its orientation, size, margins, font style, colors (click a color to type a new one, click the bar to set its opacity), color presets, and which parts of the ring to show
+- **appearance** - pick a gauge group at the top (cpu, ram, I/O, disks, temps & fans, download, upload, wifi, battery, uptime, other), then set its orientation, size, margins, font style, colors (click a color to type a new one, click the bar to set its opacity), color presets, and which parts of the ring to show
 - **effects** - how the rings move, for every gauge at once:
     - presets: **off** (jump once a second, the lightest), **light**, **balanced**, **everything**
     - **smooth** motion and its speed
@@ -131,6 +129,7 @@ Load `Config.ini` (the `NeoGauge` root skin) for the settings window. Every clic
     - **comet**: the arc brightens toward a glowing tip (the heaviest effect)
     - **round ends** on the arc
 - **system** - display scale, fonts, the drive letters for the five disk gauges, your connection speed (the network gauges show traffic as a share of it), the fan RPM that counts as 100 %, and the recycle bin size (plus an opt-in to empty it automatically when full)
+- **sensors** - which HWiNFO sensor each temperature, fan and pump gauge reads, picked by name with its live value, and the label shown under the gauge (click it to type a new one)
 - **time** - what the clock's ring tracks (minute to year) and the time and date formats
 
 Gauges turn yellow from 75 % and red from 90 % (not battery, wifi, volume or clock).
