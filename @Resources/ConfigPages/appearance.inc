@@ -69,6 +69,12 @@ MeterStyle=sText | sNext
 Text=battery
 LeftMouseUpAction=[!WriteKeyValue Variables component battery][!Refresh]
 
+[opt_component_upTime]
+Meter=String
+MeterStyle=sText | sNext
+Text=uptime
+LeftMouseUpAction=[!WriteKeyValue Variables component upTime][!Refresh]
+
 [opt_component_default]
 Meter=String
 MeterStyle=sText | sNext

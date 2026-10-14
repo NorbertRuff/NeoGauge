@@ -57,30 +57,6 @@ disk3Temp=Value19
 disk4Temp=Value15
 disk5Temp=Value17
 
-; Disk RPM Sensors (NOTE: Currently unused - disk components don't display RPM)
-; These values appear to be placeholder/example values and may need to be configured
-; based on your specific hardware if you want to add RPM monitoring for disks
-disk1Rpm=Value2
-disk2Rpm=Value2
-disk3Rpm=Value2
-disk4Rpm=Value2
-disk5Rpm=Value17
-
-; ============================================================
-; Unused Sensor Variables
-; The following variables are defined but not currently used by any components.
-; They are kept here as examples for future use or custom configurations.
-; ============================================================
-; Motherboard Temperature Sensors (not currently used)
-motherboardTemp=Value2
-motherboardTemp2=Value3
-
-; Voltage Sensors (not currently used)
-12v=Value4
-5v=Value5
-
-
-
 ; ============================================================
 ; Sensor Labels
 ; Display names for sensors (shown in tooltips and subtext)
@@ -115,12 +91,6 @@ disk2Label=TOSHIBA DT01ACA300
 disk3Label=KINGSTON SNV2S1000G
 disk4Label=KINGSTON SA2000M8500G
 disk5Label=SAMSUNG 870 SSD EVO
-
-; Unused Sensor Labels (for reference/future use)
-motherboardTempLabel=MSI MPG Z490 TOMAHAWK
-motherboardTemp2Label=MSI MPG Z490 TOMAHAWK
-12vLabel=+12V
-5vLabel=+5V
 
 ; ============================================================
 ; Display scaling
@@ -158,13 +128,6 @@ mainFont=Ubuntu Nerd Font
 subFont=Segoe UI
 
 ; ============================================================
-; Media Player Configuration
-; ============================================================
-; Media player name for NowPlaying component
-; Supported: AIMP, CAD (foobar2000, MusicBee, VLC, etc.), iTunes, WMP, MediaMonkey, Winamp
-mediaPlayer=CAD
-
-; ============================================================
 ; Recycle Bin Configuration
 ; ============================================================
 ; Maximum desired size of recycle bin in Bytes (default: 2GB)
@@ -190,12 +153,3 @@ timeRoundline=3
 ; Used for calculating percentage display in network components
 uploadMax=2250000
 downloadMax=33125000
-
-; ============================================================
-; Weather Component Settings
-; ============================================================
-; WOEID (Where On Earth ID) for weather location
-; Find your WOEID at: https://www.woeidlookup.com/
-woeid=615702
-; Temperature unit: c=Celsius, f=Fahrenheit
-unit=c

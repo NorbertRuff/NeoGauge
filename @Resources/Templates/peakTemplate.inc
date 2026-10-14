@@ -36,7 +36,8 @@ DynamicVariables=1
 
 [mPeakMin]
 Measure=Calc
-; TODO: this starts at 0 and Min() never rises above it, so the minimum
-; sticks at 0 until a reset. It needs a way to take the first real sample.
-Formula=#peakReset# ? #peakSource# : Min(#peakSource#, mPeakMin)
+; A Calc starts at 0, which Min() would never rise above, and CPU/network
+; measures read 0 on their first update. So for the first 2 updates
+; (Counter restarts on refresh) it copies the source instead of comparing.
+Formula=(#peakReset# || Counter <= 2) ? #peakSource# : Min(#peakSource#, mPeakMin)
 DynamicVariables=1

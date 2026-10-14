@@ -16,12 +16,13 @@ This document tracks future improvements, refactoring tasks, and maintenance ite
   - HWiNFO sensors every 2 s (its own refresh rate)
   - Static background bar
   - Uptime every 10 s
+- [x] **Cleanup**: removed the weather (`woeid`, `unit`) and media player settings, `Scripts/Smurfier-Media.lua`, the disk RPM / motherboard / voltage sensor variables, `Apparence/temp.txt` and `Templates/memoryTemplate.inc`. Uptime has its own appearance file (`upTime.txt`, an "uptime" tab in the config tool)
+- [x] **Peak minimum**: `[mPeakMin]` copies the source for the first 2 updates (Calc's `Counter`), so it starts from a real reading instead of 0
 
 ## 🐛 Known issues
 
-- [ ] **Peak minimum starts at 0**: in `peakTemplate.inc`, `[mPeakMin]` needs a way to take the first real sample (the `TODO` there); until then the tooltip's minimum reads 0 until a right-click reset
 - [ ] **UsageMonitor crashes Rainmeter 4.5.28** on this PC. Until a fixed release:
-  - CPU top process uses AdvancedCPU (slow: ~20 % of a core at a 3 s interval, now every 10 s)
+  - CPU top process uses AdvancedCPU (slow: ~20 % of a core at a 3 s interval, now every 30 s)
   - Core gauges show the base clock (PerfMon can't read "Actual Frequency")
   - Drive activity uses PerfMon raw counters
   - The UsageMonitor versions are in comments next to each; switch back and retest once Rainmeter is updated
@@ -45,9 +46,6 @@ This document tracks future improvements, refactoring tasks, and maintenance ite
 
 ## 🧹 Cleanup
 
-- [ ] Remove settings with no skin behind them: `woeid`, `unit` (weather, Yahoo's API is gone), `mediaPlayer` and `Scripts/Smurfier-Media.lua` (no NowPlaying skin), unused sensor variables in `Settings.txt`
-- [ ] Remove unused files: `Apparence/temp.txt`, `Apparence/upTime.txt`, `Templates/memoryTemplate.inc` (RAM/swap don't use it)
-- [ ] Uptime gauge: no ring, borrows the download appearance; give it its own
 - [ ] Finish templating: memory, wifi, battery, bin, clock, volume still carry their own meters
 - [ ] Replace the 2023 `NeoGauge_1.0.rmskin` with a fresh 2.0 package (or build it in a release)
 
