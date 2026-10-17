@@ -318,7 +318,8 @@ local function paintList(hasData)
 			setOption('rowLabel' .. r, 'Text', display(s.label))
 			setOption('rowLabel' .. r, 'FontColor', c)
 			setOption('rowLabel' .. r, 'ToolTipText', display(s.device) .. ' - ' .. display(s.label))
-			setOption('rowDevice' .. r, 'Text', display(s.device))
+			-- Drop the "S.M.A.R.T.: " prefix so the drive model fits the column
+			setOption('rowDevice' .. r, 'Text', display((s.device:gsub('^S%.M%.A%.R%.T%.:%s*', ''))))
 			setOption('rowValue' .. r, 'Text', display(s.value))
 			setOption('rowValue' .. r, 'FontColor', c)
 		elseif empty then

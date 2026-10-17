@@ -132,7 +132,7 @@ Load `Config.ini` (the `NeoGauge` root skin) for the settings window. Every clic
 - **sensors** - which HWiNFO sensor each temperature, fan and pump gauge reads, picked by name with its live value, and the label shown under the gauge (click it to type a new one)
 - **time** - what the clock's ring tracks (minute to year) and the time and date formats
 
-Gauges turn yellow from 75 % and red from 90 % (not battery, wifi, volume or clock).
+Gauges turn yellow from 75 % and red from 90 % (not battery, wifi, volume or clock). Both levels and both colours can be changed under **Warnings** on the effects page.
 
 Animated effects only run while a ring is moving, then go idle. If Rainmeter's CPU use matters to you, use the **light** or **off** preset.
 

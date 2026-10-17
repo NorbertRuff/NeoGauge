@@ -26,6 +26,23 @@ function Initialize()
 	SKIN:Bang('!SetVariable', 'fxA', a)
 	SKIN:Bang('!SetVariable', 'fxPeakRGB', peak)
 	SKIN:Bang('!SetVariable', 'fxHeadRGB', head)
+
+	-- Warning colors (warnColor / alertColor in Settings.txt), split the same way
+	setLevelColors('fxWarn', SKIN:GetVariable('warnColor'), 255, 200, 100, 230)
+	setLevelColors('fxAlert', SKIN:GetVariable('alertColor'), 255, 100, 100, 230)
+end
+
+-- Sets <prefix>RGB, <prefix>A, <prefix>PeakRGB and <prefix>HeadRGB from a
+-- color string, falling back to the given color when it can't be read
+function setLevelColors(prefix, color, r0, g0, b0, a0)
+	local r, g, b, a = parseColor(color)
+	if not r then
+		r, g, b, a = r0, g0, b0, a0
+	end
+	SKIN:Bang('!SetVariable', prefix .. 'RGB', r .. ',' .. g .. ',' .. b)
+	SKIN:Bang('!SetVariable', prefix .. 'A', a)
+	SKIN:Bang('!SetVariable', prefix .. 'PeakRGB', towardWhite(r, g, b, 0.35))
+	SKIN:Bang('!SetVariable', prefix .. 'HeadRGB', towardWhite(r, g, b, 0.5))
 end
 
 -- "R,G,B[,A]" or hex "RRGGBB[AA]"; alpha defaults to 255

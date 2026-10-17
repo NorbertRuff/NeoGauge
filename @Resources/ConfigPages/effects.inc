@@ -180,3 +180,107 @@ Meter=String
 MeterStyle=sText | sNext
 Text=round ends
 LeftMouseUpAction=[!CommandMeasure mScript "toggle('fxRoundCaps', 'settings')"]
+
+; ------------------------------------------------------------
+; Warning levels and colors (warnLevel / alertLevel / warnColor / alertColor
+; in Settings.txt), shared by every ring that shows them and the threads grid
+
+[warnHeader]
+Meter=String
+MeterStyle=sText | sHeader
+Y=(284*#s#)
+Text=Warnings
+ToolTipText=When a ring turns yellow and red (not battery, wifi, volume or clock)
+
+[warnLabel]
+Meter=String
+MeterStyle=sText | sFirst | sNote
+FontSize=(10*#s#)
+Text=yellow from
+
+[opt_warnLevel_60]
+Meter=String
+MeterStyle=sText | sNext
+Text=60
+LeftMouseUpAction=[!WriteKeyValue Variables warnLevel 60 "#@#Settings.txt"][!RefreshGroup rsm]
+
+[opt_warnLevel_70]
+Meter=String
+MeterStyle=sText | sNext
+Text=70
+LeftMouseUpAction=[!WriteKeyValue Variables warnLevel 70 "#@#Settings.txt"][!RefreshGroup rsm]
+
+[opt_warnLevel_75]
+Meter=String
+MeterStyle=sText | sNext
+Text=75
+LeftMouseUpAction=[!WriteKeyValue Variables warnLevel 75 "#@#Settings.txt"][!RefreshGroup rsm]
+
+[opt_warnLevel_80]
+Meter=String
+MeterStyle=sText | sNext
+Text=80 %
+LeftMouseUpAction=[!WriteKeyValue Variables warnLevel 80 "#@#Settings.txt"][!RefreshGroup rsm]
+
+[alertLabel]
+Meter=String
+MeterStyle=sText | sNext | sNote
+FontSize=(10*#s#)
+X=(28*#s#)R
+Text=red from
+
+[opt_alertLevel_85]
+Meter=String
+MeterStyle=sText | sNext
+Text=85
+LeftMouseUpAction=[!WriteKeyValue Variables alertLevel 85 "#@#Settings.txt"][!RefreshGroup rsm]
+
+[opt_alertLevel_90]
+Meter=String
+MeterStyle=sText | sNext
+Text=90
+LeftMouseUpAction=[!WriteKeyValue Variables alertLevel 90 "#@#Settings.txt"][!RefreshGroup rsm]
+
+[opt_alertLevel_95]
+Meter=String
+MeterStyle=sText | sNext
+Text=95 %
+LeftMouseUpAction=[!WriteKeyValue Variables alertLevel 95 "#@#Settings.txt"][!RefreshGroup rsm]
+
+; Colors: click the swatch or the text to type a new R,G,B,A
+
+[warnSwatch]
+Meter=Image
+X=(140*#s#)
+Y=(342*#s#)
+W=(18*#s#)
+H=(18*#s#)
+SolidColor=#warnColor#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 20"]
+
+[warnText]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+X=(10*#s#)R
+Y=(340*#s#)
+Text=#warnColor#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 20"]
+
+[alertSwatch]
+Meter=Image
+X=(360*#s#)
+Y=(342*#s#)
+W=(18*#s#)
+H=(18*#s#)
+SolidColor=#alertColor#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 21"]
+
+[alertText]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+X=(10*#s#)R
+Y=(340*#s#)
+Text=#alertColor#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 21"]

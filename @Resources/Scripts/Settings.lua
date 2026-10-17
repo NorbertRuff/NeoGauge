@@ -13,6 +13,8 @@ local OPTIONS = {
 	{ var = 'orient' },
 	{ var = 'fontStyle' },
 	{ var = 'threadCols' },
+	{ var = 'warnLevel' },
+	{ var = 'alertLevel' },
 	{ var = 'size', custom = true },
 	{ var = 'scale', custom = true },
 	{ var = 'trashMax' },
@@ -85,10 +87,13 @@ function Initialize()
 		setAlphaBars()
 		setText('usedBy', 'used by: ' .. (USED_BY[SKIN:GetVariable('component')] or '?'))
 		if SKIN:GetVariable('component') == 'threads' then
-			for _, m in ipairs({ 'orientHeader', 'opt_orient_left', 'opt_orient_right' }) do
+			-- Layout instead of Orientation, and size presets that suit small rings
+			for _, m in ipairs({ 'orientHeader', 'opt_orient_left', 'opt_orient_right',
+					'opt_size_24', 'opt_size_28', 'opt_size_32', 'opt_size_36', 'opt_size_48' }) do
 				SKIN:Bang('!HideMeter', m)
 			end
-			for _, m in ipairs({ 'layoutHeader', 'opt_threadCols_4', 'opt_threadCols_8', 'opt_threadCols_16' }) do
+			for _, m in ipairs({ 'layoutHeader', 'opt_threadCols_4', 'opt_threadCols_8', 'opt_threadCols_16',
+					'opt_size_10', 'opt_size_12', 'opt_size_14', 'opt_size_18', 'opt_size_22' }) do
 				SKIN:Bang('!ShowMeter', m)
 			end
 		end

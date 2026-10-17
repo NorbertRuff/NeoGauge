@@ -131,6 +131,16 @@ fxAfterglow=1
 fxRoundCaps=0
 
 ; ============================================================
+; Warning levels
+; Rings turn warnColor from warnLevel % and alertColor from alertLevel %
+; (not battery, wifi, volume or clock). Colors are R,G,B,A.
+; ============================================================
+warnLevel=75
+alertLevel=90
+warnColor=255,200,100,230
+alertColor=255,100,100,230
+
+; ============================================================
 ; Fonts
 ; Defaults for every gauge. An Apparence\*.txt file can override mainFont
 ; (the config tool writes it there).

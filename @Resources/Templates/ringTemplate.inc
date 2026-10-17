@@ -7,7 +7,8 @@
 ; REQUIRED VARIABLES (in the skin's or template's [Variables]):
 ;   fxSource - Measure that holds the value
 ;   fxMax    - Value that fills the ring: 100 for percentages, 1 for 0-1
-;   fxLevels - 1 = yellow from 75 %, red from 90 %; 0 = always pieColor
+;   fxLevels - 1 = warnColor from warnLevel %, alertColor from alertLevel %
+;              (Settings.txt, defaults 75 / 90); 0 = always pieColor
 ;              (battery, wifi, volume, clock)
 ;
 ; USAGE:
@@ -32,6 +33,15 @@ fxRGB=255,255,255
 fxA=200
 fxPeakRGB=255,255,255
 fxHeadRGB=255,255,255
+; Warning colors, split from warnColor / alertColor by Ring.lua
+fxWarnRGB=255,200,100
+fxWarnA=230
+fxWarnPeakRGB=255,219,154
+fxWarnHeadRGB=255,228,178
+fxAlertRGB=255,100,100
+fxAlertA=230
+fxAlertPeakRGB=255,154,154
+fxAlertHeadRGB=255,178,178
 
 [mFxScript]
 Measure=Script
@@ -112,26 +122,26 @@ Group=fx
 [mFxLevel]
 Measure=Calc
 DynamicVariables=1
-Formula=#fxLevels# = 0 ? 0 : (mFxValue >= 90 ? 2 : (mFxValue >= 75 ? 1 : 0))
+Formula=#fxLevels# = 0 ? 0 : (mFxValue >= #alertLevel# ? 2 : (mFxValue >= #warnLevel# ? 1 : 0))
 Group=fx
 IfCondition=mFxLevel = 0
 IfTrueAction=[!SetVariable fxRGB "[#fxBaseRGB]"][!SetVariable fxA "[#fxBaseA]"][!SetVariable fxHeadRGB "[#fxBaseHeadRGB]"]
 IfCondition2=mFxLevel = 1
-IfTrueAction2=[!SetVariable fxRGB "255,200,100"][!SetVariable fxA "230"][!SetVariable fxHeadRGB "255,228,178"]
+IfTrueAction2=[!SetVariable fxRGB "[#fxWarnRGB]"][!SetVariable fxA "[#fxWarnA]"][!SetVariable fxHeadRGB "[#fxWarnHeadRGB]"]
 IfCondition3=mFxLevel = 2
-IfTrueAction3=[!SetVariable fxRGB "255,100,100"][!SetVariable fxA "230"][!SetVariable fxHeadRGB "255,178,178"]
+IfTrueAction3=[!SetVariable fxRGB "[#fxAlertRGB]"][!SetVariable fxA "[#fxAlertA]"][!SetVariable fxHeadRGB "[#fxAlertHeadRGB]"]
 
 [mFxPeakLevel]
 Measure=Calc
 DynamicVariables=1
-Formula=#fxLevels# = 0 ? 0 : (mFxPeak >= 90 ? 2 : (mFxPeak >= 75 ? 1 : 0))
+Formula=#fxLevels# = 0 ? 0 : (mFxPeak >= #alertLevel# ? 2 : (mFxPeak >= #warnLevel# ? 1 : 0))
 Group=fx
 IfCondition=mFxPeakLevel = 0
 IfTrueAction=[!SetVariable fxPeakRGB "[#fxBasePeakRGB]"]
 IfCondition2=mFxPeakLevel = 1
-IfTrueAction2=[!SetVariable fxPeakRGB "255,219,154"]
+IfTrueAction2=[!SetVariable fxPeakRGB "[#fxWarnPeakRGB]"]
 IfCondition3=mFxPeakLevel = 2
-IfTrueAction3=[!SetVariable fxPeakRGB "255,154,154"]
+IfTrueAction3=[!SetVariable fxPeakRGB "[#fxAlertPeakRGB]"]
 
 ; Up to 100 frames (5 s at 50 ms);
 ; [mFxSettled] usually stops them much sooner

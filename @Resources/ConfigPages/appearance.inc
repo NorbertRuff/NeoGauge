@@ -187,6 +187,13 @@ Y=(142*#s#)
 Text=Size
 ToolTipText=Circle radius at 100% display scale. Width, height and fonts all follow it.
 
+; Size presets are spaced with left Padding instead of X=(14*#s#)R, so a hidden
+; preset takes no room: the threads tab hides 24-48 and shows 10-22 (Settings.lua)
+[sSizeNext]
+X=0R
+Y=r
+Padding=(14*#s#),0,0,0
+
 [opt_size_24]
 Meter=String
 MeterStyle=sText | sFirst
@@ -195,31 +202,68 @@ LeftMouseUpAction=[!WriteKeyValue Variables size 24 "#appFile#"][!RefreshGroup r
 
 [opt_size_28]
 Meter=String
-MeterStyle=sText | sNext
+MeterStyle=sText | sSizeNext
 Text=28
 LeftMouseUpAction=[!WriteKeyValue Variables size 28 "#appFile#"][!RefreshGroup rsm]
 
 [opt_size_32]
 Meter=String
-MeterStyle=sText | sNext
+MeterStyle=sText | sSizeNext
 Text=32
 LeftMouseUpAction=[!WriteKeyValue Variables size 32 "#appFile#"][!RefreshGroup rsm]
 
 [opt_size_36]
 Meter=String
-MeterStyle=sText | sNext
+MeterStyle=sText | sSizeNext
 Text=36
 LeftMouseUpAction=[!WriteKeyValue Variables size 36 "#appFile#"][!RefreshGroup rsm]
 
 [opt_size_48]
 Meter=String
-MeterStyle=sText | sNext
+MeterStyle=sText | sSizeNext
 Text=48
 LeftMouseUpAction=[!WriteKeyValue Variables size 48 "#appFile#"][!RefreshGroup rsm]
 
+[opt_size_10]
+Meter=String
+MeterStyle=sText
+X=0R
+Y=r
+Text=10
+LeftMouseUpAction=[!WriteKeyValue Variables size 10 "#appFile#"][!RefreshGroup rsm]
+Hidden=1
+
+[opt_size_12]
+Meter=String
+MeterStyle=sText | sSizeNext
+Text=12
+LeftMouseUpAction=[!WriteKeyValue Variables size 12 "#appFile#"][!RefreshGroup rsm]
+Hidden=1
+
+[opt_size_14]
+Meter=String
+MeterStyle=sText | sSizeNext
+Text=14
+LeftMouseUpAction=[!WriteKeyValue Variables size 14 "#appFile#"][!RefreshGroup rsm]
+Hidden=1
+
+[opt_size_18]
+Meter=String
+MeterStyle=sText | sSizeNext
+Text=18
+LeftMouseUpAction=[!WriteKeyValue Variables size 18 "#appFile#"][!RefreshGroup rsm]
+Hidden=1
+
+[opt_size_22]
+Meter=String
+MeterStyle=sText | sSizeNext
+Text=22
+LeftMouseUpAction=[!WriteKeyValue Variables size 22 "#appFile#"][!RefreshGroup rsm]
+Hidden=1
+
 [opt_size_custom]
 Meter=String
-MeterStyle=sText | sNext
+MeterStyle=sText | sSizeNext
 Text=custom: #size#
 ToolTipText=Type any radius
 LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 4"]
