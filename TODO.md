@@ -19,6 +19,7 @@ This document tracks future improvements, refactoring tasks, and maintenance ite
 - [x] **Cleanup**: removed the weather (`woeid`, `unit`) and media player settings, `Scripts/Smurfier-Media.lua`, the disk RPM / motherboard / voltage sensor variables, `Apparence/temp.txt` and `Templates/memoryTemplate.inc`. Uptime has its own appearance file (`upTime.txt`, an "uptime" tab in the config tool)
 - [x] **Peak minimum**: `[mPeakMin]` copies the source for the first 2 updates (Calc's `Counter`), so it starts from a real reading instead of 0
 - [x] **HWiNFO sensor picker**: the config tool's **sensors** page lists HWiNFO's sensors by name (`Scripts/Sensors.lua`, Registry `OutputType=ValueList`), writes `ValueN` plus the sensor's name (`<key>Sensor`) to `Settings.txt`, and flags gauges whose sensor is missing (`!`) or moved (`~`, click to re-match)
+- [x] **CPU threads grid**: `Processor\threads` shows every thread (up to 16, count read from `NUMBER_OF_PROCESSORS`) as small plain rings with the warning colours; layout 4 x 4 / 2 x 8 / 1 x 16 and size on the appearance page's **threads** tab. Costs ~2 MB RAM, no measurable CPU
 
 ## 🐛 Known issues
 
@@ -37,8 +38,11 @@ This document tracks future improvements, refactoring tasks, and maintenance ite
 
 ## 🚀 Feature Enhancements
 
-- [ ] **Core gauges for every thread**: there are 4 core skins, the CPU has 16 threads
 - [ ] **Configurable warning thresholds**: the 75 % / 90 % levels and their colors as settings
+- [ ] **Easier HWiNFO setup** (sensors page)
+  - [ ] Auto-assign: one click matches gauges to HWiNFO sensors by name (CPU Package, GPU Temperature, DIMM, Drive Temperature, fan headers); fix any misses by hand
+  - [ ] Setup checklist: HWiNFO running? Gadget reporting on? How many sensors reported? Each with what to do
+  - [ ] README tip: back up the HWiNFO ticks with `reg export HKCU\SOFTWARE\HWiNFO64\Sensors hwinfo-sensors.reg`, then double-click the file after a reinstall (same hardware only)
 - [ ] **Icon improvements**
   - [ ] Status indicators (e.g., warning icon for high temp)
   - [ ] Better icon visibility (the PNG icons are small for 200 % scale)

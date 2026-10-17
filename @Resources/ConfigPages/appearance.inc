@@ -19,6 +19,12 @@ Y=(20*#s#)
 Text=cpu
 LeftMouseUpAction=[!WriteKeyValue Variables component cpu][!Refresh]
 
+[opt_component_threads]
+Meter=String
+MeterStyle=sText | sNext
+Text=threads
+LeftMouseUpAction=[!WriteKeyValue Variables component threads][!Refresh]
+
 [opt_component_ram]
 Meter=String
 MeterStyle=sText | sNext
@@ -111,6 +117,37 @@ Meter=String
 MeterStyle=sText | sNext
 Text=right
 LeftMouseUpAction=[!WriteKeyValue Variables orient right "#appFile#"][!RefreshGroup rsm]
+
+; Threads tab only: the grid has no left/right orientation, so Settings.lua
+; shows this Layout row in the Orientation row's place
+[layoutHeader]
+Meter=String
+MeterStyle=sText | sHeader
+Y=(96*#s#)
+Text=Layout
+ToolTipText=Rings per row in the CPU threads grid
+Hidden=1
+
+[opt_threadCols_4]
+Meter=String
+MeterStyle=sText | sFirst
+Text=4 x 4
+LeftMouseUpAction=[!WriteKeyValue Variables threadCols 4 "#appFile#"][!RefreshGroup rsm]
+Hidden=1
+
+[opt_threadCols_8]
+Meter=String
+MeterStyle=sText | sNext
+Text=2 x 8
+LeftMouseUpAction=[!WriteKeyValue Variables threadCols 8 "#appFile#"][!RefreshGroup rsm]
+Hidden=1
+
+[opt_threadCols_16]
+Meter=String
+MeterStyle=sText | sNext
+Text=1 x 16
+LeftMouseUpAction=[!WriteKeyValue Variables threadCols 16 "#appFile#"][!RefreshGroup rsm]
+Hidden=1
 
 [fontStyleHeader]
 Meter=String

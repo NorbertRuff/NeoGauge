@@ -119,7 +119,7 @@ Other handy interactions:
 
 Load `Config.ini` (the `NeoGauge` root skin) for the settings window. Every click applies right away and the current choice is highlighted:
 
-- **appearance** - pick a gauge group at the top (cpu, ram, I/O, disks, temps & fans, download, upload, wifi, battery, uptime, other), then set its orientation, size, margins, font style, colors (click a color to type a new one, click the bar to set its opacity), color presets, and which parts of the ring to show
+- **appearance** - pick a gauge group at the top (cpu, threads, ram, I/O, disks, temps & fans, download, upload, wifi, battery, uptime, other), then set its orientation (for **threads**: the layout, 4 x 4, 2 x 8 or 1 x 16), size, margins, font style, colors (click a color to type a new one, click the bar to set its opacity), color presets, and which parts of the ring to show
 - **effects** - how the rings move, for every gauge at once:
     - presets: **off** (jump once a second, the lightest), **light**, **balanced**, **everything**
     - **smooth** motion and its speed
@@ -158,6 +158,7 @@ Rainmeter's own CPU and RAM use with the same 17 gauges loaded, version 1.0 (`ma
   - Uptime updates every 10 s, since it shows only minutes.
 - **The ring animations are most of what's left** (~12 % of one core on average with balanced). A gauge redraws 20 times a second only while its ring moves, then goes idle, so busy gauges (CPU, network, disk activity) cause the peaks. The **light** or **off** preset removes most of that cost.
 - **RAM is ~10 MB higher** than 1.0: 2.0 draws the gauges at full display resolution (4x the pixels at 200 % scaling) and adds the effect meters and a small Lua script per gauge.
+- **The CPU threads grid** (`Processor\threads`, 16 small rings, no animation) adds ~2 MB of RAM and no measurable CPU: 14-17 % of one core and 68.7 MB with it loaded on top of the gauges above (2 runs, 2026-10-17).
 
 How it was measured (2026-10-14): Rainmeter 4.5.28 64-bit, Windows 11 Pro 25H2, Intel i7-10700K (16 threads), 200 % display scaling with Rainmeter's high-DPI override on. Rainmeter was restarted, left to settle for 20 s, then sampled once a second for 60 s: 2 runs on 1.0, 2 runs on 2.0 balanced, 1 run on 2.0 off. The PC was in normal use (browser, IDE), so expect some spread between runs. Loaded gauges: CPU, RAM, disk activity, disks 1-5, download, upload, CPU and GPU temperature, fans 2-4, uptime, background bar.
 

@@ -12,6 +12,7 @@ local OPTIONS = {
 	{ var = 'component' },
 	{ var = 'orient' },
 	{ var = 'fontStyle' },
+	{ var = 'threadCols' },
 	{ var = 'size', custom = true },
 	{ var = 'scale', custom = true },
 	{ var = 'trashMax' },
@@ -46,6 +47,7 @@ local TOGGLES = {
 
 local USED_BY = {
 	cpu = 'CPU',
+	threads = 'CPU threads grid',
 	ram = 'RAM, swap',
 	io = 'drive activity',
 	disk = 'disks 1-5',
@@ -82,6 +84,14 @@ function Initialize()
 	if page == 'appearance' then
 		setAlphaBars()
 		setText('usedBy', 'used by: ' .. (USED_BY[SKIN:GetVariable('component')] or '?'))
+		if SKIN:GetVariable('component') == 'threads' then
+			for _, m in ipairs({ 'orientHeader', 'opt_orient_left', 'opt_orient_right' }) do
+				SKIN:Bang('!HideMeter', m)
+			end
+			for _, m in ipairs({ 'layoutHeader', 'opt_threadCols_4', 'opt_threadCols_8', 'opt_threadCols_16' }) do
+				SKIN:Bang('!ShowMeter', m)
+			end
+		end
 	elseif page == 'system' then
 		setText('uploadMax', string.format('%.1f', bytesToMegabits(SKIN:GetVariable('uploadMax'))))
 		setText('downloadMax', string.format('%.1f', bytesToMegabits(SKIN:GetVariable('downloadMax'))))
