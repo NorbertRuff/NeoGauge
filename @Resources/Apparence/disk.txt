@@ -8,6 +8,8 @@ textMainColor=255,255,255,255
 textSubColor=#innerRingColor#
 bgBarColor=10,10,10,200
 colorIcon=200,150,255,255
+; icon style (an image in @Resources/Icons), picked on the config tool's appearance page
+icon=classic
 
 ; size and scaling
 ; size = circle radius at 100% display scaling

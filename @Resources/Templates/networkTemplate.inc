@@ -8,6 +8,8 @@
 ;   networkLabel    - Display label (e.g., "up" for upload, "dn" for download)
 ;   networkIpMeasure - Measure name for IP address (e.g., "mWanIp" or "mLanIp")
 ;   networkIpLabel  - Label for IP type (e.g., "wan" or "lan")
+;   networkIcon     - Icon file prefix: "down" or "up" (the style comes from
+;                     the appearance file's icon variable)
 ;
 ; REQUIRED MEASURE (must be defined before including this template):
 ;   mNetwork - Network measure (NetIn or NetOut) for speed in bytes/second
@@ -62,8 +64,9 @@ MeasureName=mNetwork
 Text="%1 B/s"
 AutoScale=1
 
+; icon (from the appearance file) picks @Resources\Icons\<networkIcon>-<icon>.png
 [Icon]
 Meter=Image
 MeterStyle=iconStyle
-ImageName=icon.png
+ImageName=#@#Icons\#networkIcon#-#icon#.png
 ImageTint=#colorIcon#

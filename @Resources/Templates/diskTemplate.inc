@@ -105,8 +105,9 @@ Text=#textA#
 AutoScale=1
 DynamicVariables=1
 
+; icon (from disk.txt) picks @Resources\Icons\disk-<icon>.png
 [Icon]
 Meter=Image
 MeterStyle=iconStyle
-ImageName=icon.png
+ImageName=#@#Icons\disk-#icon#.png
 ImageTint=#colorIcon#

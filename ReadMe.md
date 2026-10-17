@@ -119,7 +119,7 @@ Other handy interactions:
 
 Load `Config.ini` (the `NeoGauge` root skin) for the settings window. Every click applies right away and the current choice is highlighted:
 
-- **appearance** - pick a gauge group at the top (cpu, threads, ram, I/O, disks, temps & fans, download, upload, wifi, battery, uptime, other), then set its orientation (for **threads**: the layout, 4 x 4, 2 x 8 or 1 x 16), size, margins, font style, colors (click a color to type a new one, click the bar to set its opacity), color presets, and which parts of the ring to show
+- **appearance** - pick a gauge group at the top (cpu, threads, ram, I/O, disks, temps & fans, download, upload, wifi, battery, uptime, other), then set its orientation (for **threads**: the layout, 4 x 4, 2 x 8 or 1 x 16), size, margins, font style, colors (click a color to type a new one, click the bar to set its opacity), color presets, which parts of the ring to show, and (disks, download and upload) the icon
 - **effects** - how the rings move, for every gauge at once:
     - presets: **off** (jump once a second, the lightest), **light**, **balanced**, **everything**
     - **smooth** motion and its speed

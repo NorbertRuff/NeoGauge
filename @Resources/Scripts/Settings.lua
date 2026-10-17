@@ -64,6 +64,13 @@ local USED_BY = {
 
 local COLOR_VARS = { 'pieColor', 'innerRingColor', 'pieBgColor' }
 
+-- Appearance tabs with an icon picker: the ico_<set>_<name> meters to show
+local ICONS = {
+	disk = { set = 'disk', names = { 'classic', 'harddisk', 'hdd', 'database', 'server' } },
+	networkDown = { set = 'net', names = { 'classic', 'bold', 'tray', 'circle', 'network', 'cloud' } },
+	networkUp = { set = 'net', names = { 'classic', 'bold', 'tray', 'circle', 'network', 'cloud' } },
+}
+
 function Initialize()
 	local s = tonumber(SKIN:GetVariable('scale', '1')) or 1
 	accent = SKIN:GetVariable('pageColor')
@@ -97,6 +104,7 @@ function Initialize()
 				SKIN:Bang('!ShowMeter', m)
 			end
 		end
+		showIcons()
 	elseif page == 'system' then
 		setText('uploadMax', string.format('%.1f', bytesToMegabits(SKIN:GetVariable('uploadMax'))))
 		setText('downloadMax', string.format('%.1f', bytesToMegabits(SKIN:GetVariable('downloadMax'))))
@@ -105,6 +113,19 @@ end
 
 -- ------------------------------------------------------------------
 -- Highlighting
+
+-- Icon row: show this tab's choices, the current one in the page accent
+function showIcons()
+	local icons = ICONS[SKIN:GetVariable('component')]
+	if not icons then return end
+	local current = SKIN:GetVariable('icon', 'classic')
+	SKIN:Bang('!ShowMeter', 'iconHeader')
+	for _, name in ipairs(icons.names) do
+		local meter = 'ico_' .. icons.set .. '_' .. name
+		SKIN:Bang('!SetOption', meter, 'ImageTint', name == current and accent or dim)
+		SKIN:Bang('!ShowMeter', meter)
+	end
+end
 
 function setText(meter, text)
 	if SKIN:GetMeter(meter) then

@@ -28,8 +28,8 @@ The backlog: what's next, ideas for later, and what 2.0 finished. Each item has 
   - [ ] README tip: back up the HWiNFO ticks with `reg export HKCU\SOFTWARE\HWiNFO64\Sensors hwinfo-sensors.reg`, then double-click the file after a reinstall (same hardware only)
 - [ ] **More from HWiNFO** (M, ~0): the live CPU clock (fixes the base-clock issue without UsageMonitor), plus GPU load, CPU/GPU power and VRAM, through one generic sensor template. Each sensor has to be ticked in HWiNFO first
 - [ ] **Icons** (S, ~0)
-  - [ ] Replace the disk (disks 1-5) and download/upload icons. They don't match the others: the HDD outline looks odd, and the arrows are thin outlines, while the rest are bold solid glyphs (bolt, RAM stick, chip, fan). Candidate source: the Material Design glyphs in the bundled Ubuntu Nerd Font (e.g. harddisk, download/upload), rendered to PNG; check and credit their licence
-  - [ ] Make them sharp: the 32 px PNGs are drawn at 48 px at 200 %, so re-export them all at 96 px
+  - [x] Disk and download/upload icons are picked on the appearance page: classic plus 4 disk and 5 arrow styles at 96 px, in `@Resources\Icons` (licences in `credits.txt`). Default stays classic
+  - [ ] Make the other icons sharp: the 32 px PNGs are drawn at 48 px at 200 %, so re-export them at 96 px
   - [ ] Optional: the icon tint follows the warning colour
 - [ ] **2.0 release package** (S): replace the 2023 `NeoGauge_1.0.rmskin`. Build it with *Variable files* = `Settings.txt` + `Apparence\*.txt` so updates keep the user's settings. Fix the README install step, which points at the 1.0 package. Move the config window state (`page`, `component`, `sensorSlot`) out of the tracked `Config.ini`
 

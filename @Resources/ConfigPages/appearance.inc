@@ -554,3 +554,106 @@ Meter=String
 MeterStyle=sText | sNext
 Text=second line
 LeftMouseUpAction=[!CommandMeasure mScript "toggle('hideSubText', 'app')"]
+
+; ------------------------------------------------------------
+; Icon (disks, download and upload tabs only; Settings.lua shows the row
+; and tints the current one). Images live in @Resources\Icons.
+
+[iconHeader]
+Meter=String
+MeterStyle=sText | sHeader
+Y=(446*#s#)
+Text=Icon
+Hidden=1
+
+[sIcon]
+X=(12*#s#)R
+Y=r
+W=(24*#s#)
+H=(24*#s#)
+PreserveAspectRatio=1
+ImageTint=#dimColor#
+SolidColor=0,0,0,1
+Hidden=1
+
+[ico_disk_classic]
+Meter=Image
+MeterStyle=sIcon
+X=(140*#s#)
+Y=(470*#s#)
+ImageName=#@#Icons\disk-classic.png
+ToolTipText=classic
+LeftMouseUpAction=[!WriteKeyValue Variables icon classic "#appFile#"][!RefreshGroup rsm]
+
+[ico_disk_harddisk]
+Meter=Image
+MeterStyle=sIcon
+ImageName=#@#Icons\disk-harddisk.png
+ToolTipText=hard disk
+LeftMouseUpAction=[!WriteKeyValue Variables icon harddisk "#appFile#"][!RefreshGroup rsm]
+
+[ico_disk_hdd]
+Meter=Image
+MeterStyle=sIcon
+ImageName=#@#Icons\disk-hdd.png
+ToolTipText=drive
+LeftMouseUpAction=[!WriteKeyValue Variables icon hdd "#appFile#"][!RefreshGroup rsm]
+
+[ico_disk_database]
+Meter=Image
+MeterStyle=sIcon
+ImageName=#@#Icons\disk-database.png
+ToolTipText=database
+LeftMouseUpAction=[!WriteKeyValue Variables icon database "#appFile#"][!RefreshGroup rsm]
+
+[ico_disk_server]
+Meter=Image
+MeterStyle=sIcon
+ImageName=#@#Icons\disk-server.png
+ToolTipText=server
+LeftMouseUpAction=[!WriteKeyValue Variables icon server "#appFile#"][!RefreshGroup rsm]
+
+; Network: one choice writes both files, so download and upload always match
+[ico_net_classic]
+Meter=Image
+MeterStyle=sIcon
+X=(140*#s#)
+Y=(470*#s#)
+ImageName=#@#Icons\down-classic.png
+ToolTipText=classic (download and upload)
+LeftMouseUpAction=[!WriteKeyValue Variables icon classic "#@#Apparence\networkDown.txt"][!WriteKeyValue Variables icon classic "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
+
+[ico_net_bold]
+Meter=Image
+MeterStyle=sIcon
+ImageName=#@#Icons\down-bold.png
+ToolTipText=bold arrows (download and upload)
+LeftMouseUpAction=[!WriteKeyValue Variables icon bold "#@#Apparence\networkDown.txt"][!WriteKeyValue Variables icon bold "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
+
+[ico_net_tray]
+Meter=Image
+MeterStyle=sIcon
+ImageName=#@#Icons\down-tray.png
+ToolTipText=tray (download and upload)
+LeftMouseUpAction=[!WriteKeyValue Variables icon tray "#@#Apparence\networkDown.txt"][!WriteKeyValue Variables icon tray "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
+
+[ico_net_circle]
+Meter=Image
+MeterStyle=sIcon
+ImageName=#@#Icons\down-circle.png
+ToolTipText=circle (download and upload)
+LeftMouseUpAction=[!WriteKeyValue Variables icon circle "#@#Apparence\networkDown.txt"][!WriteKeyValue Variables icon circle "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
+
+[ico_net_network]
+Meter=Image
+MeterStyle=sIcon
+ImageName=#@#Icons\down-network.png
+ToolTipText=network (download and upload)
+LeftMouseUpAction=[!WriteKeyValue Variables icon network "#@#Apparence\networkDown.txt"][!WriteKeyValue Variables icon network "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]
+
+[ico_net_cloud]
+Meter=Image
+MeterStyle=sIcon
+ImageName=#@#Icons\down-cloud.png
+ToolTipText=cloud (download and upload)
+LeftMouseUpAction=[!WriteKeyValue Variables icon cloud "#@#Apparence\networkDown.txt"][!WriteKeyValue Variables icon cloud "#@#Apparence\networkUp.txt"][!RefreshGroup rsm]

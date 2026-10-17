@@ -1,0 +1,14 @@
+Gauge icons picked on the config tool's appearance page (disks, download, upload).
+
+*-classic.png
+  The original NeoGauge / Circoustwo icons.
+
+disk-harddisk, disk-database, disk-server, down-bold, up-bold, down-network, up-network
+  Material Design Icons, Pictogrammers - https://pictogrammers.com
+  Apache License 2.0
+
+disk-hdd, down-tray, up-tray, down-circle, up-circle, down-cloud, up-cloud
+  Font Awesome (Fonticons, Inc.), as shipped in Nerd Fonts - https://fontawesome.com
+  Font: SIL OFL 1.1, icons: CC BY 4.0
+
+All were rendered from the bundled Ubuntu Nerd Font (Nerd Fonts, MIT), 96x96 white on transparent.
