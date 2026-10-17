@@ -90,3 +90,13 @@ fabric.properties
 !.idea/runConfigurations
 
 # End of https://www.toptal.com/developers/gitignore/api/webstorm+all
+
+### NeoGauge dev tools ###
+_probe/
+tools/out/
+/CLAUDE.md
+/tools/Probe.ps1
+/tools/Snap.ps1
+/tools/Measure.ps1
+/tools/next-session.md
+/tools/specs/

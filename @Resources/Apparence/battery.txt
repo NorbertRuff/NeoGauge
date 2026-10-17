@@ -10,7 +10,9 @@ bgBarColor=10,10,10,200
 colorIcon=255,255,255,255
 
 ; size and scaling
-radius=28
+; size = circle radius at 100% display scaling
+size=28
+radius=(#size#*#scale#)
 innerRadius=(#radius#*0.35)
 edging=(#radius#*0.3)
 orient=left

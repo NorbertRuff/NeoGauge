@@ -1,3 +1,5 @@
+; Uptime (no ring: only the divider, text and font values are used;
+; the ring values keep the config tool's appearance page working)
 [Variables]
 ; color settings
 innerRingColor=70,188,70,255
@@ -7,11 +9,13 @@ pieColor=70,188,70,255
 textMainColor=255,255,255,255
 textSubColor=#innerRingColor#
 bgBarColor=10,10,10,200
-colorIcon=255,255,255,255
+colorIcon=#innerRingColor#
 
 ; size and scaling
-radius=30
-innerRadius=(#radius#*0.35)
+; size = circle radius at 100% display scaling
+size=30
+radius=(#size#*#scale#)
+innerRadius=(#radius#*0.45)
 edging=(#radius#*0.3)
 orient=left
 pieSize=1.0

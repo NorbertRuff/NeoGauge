@@ -1,98 +1,166 @@
 [Variables]
-; drive letters
+; ============================================================
+; Drive Letters
+; Drive letters for hard drives/partitions to monitor
+; ============================================================
 hd1=C
 hd2=D
 hd3=E
 hd4=F
+hd5=H
 
-; fan max speed
+; ============================================================
+; Fan Configuration
+; Maximum RPM for fan speed percentage calculation
+; Set this to your fan's maximum RPM (100% fill = this value)
+; ============================================================
 fanMaxRpm=2500
 
-; sensor readings
-cpuTemp1=Value0
-cpuTemp2=Value1
+; ============================================================
+; HWiNFO64 Sensor Values
+; These values correspond to registry values in HKEY_CURRENT_USER\SOFTWARE\HWiNFO64\VSB
+; To find your sensor values, run: reg query HKEY_CURRENT_USER\SOFTWARE\HWiNFO64\VSB
+; ============================================================
 
-motherboardTemp=Value5
-motherboardTemp2=Value6
+; CPU Temperature Sensors (used by Temps/CPU/CPU.ini)
+cpuTemp1=Value1
+cpuTemp1Sensor=CPU 0: Intel Core i7-10700K: DTS|Core Temperatures
+cpuTemp2=Value0
+cpuTemp2Sensor=CPU 0: Intel Core i7-10700K: DTS|CPU Package
 
-12v=Value8
-5v=Value9
+; RAM (DIMM) Temperature Sensors (used by Temps/Ram/RamTemp.ini)
+dimm1Temp=Value11
+dimm1TempSensor=DIMM Temperature Sensor|DIMM0 Temperature (BANK 0/ChannelA-DIMM0)
+dimm2Temp=Value12
+dimm3Temp=Value13
+dimm4Temp=Value14
 
-dimm1Temp=Value10
-dimm2Temp=Value11
-dimm3Temp=Value12
-dimm4Temp=Value13
+; GPU Temperature Sensor (used by Temps/GPU/GPU.ini)
+gpuTemp=Value20
+gpuTempSensor=GPU 0: NVIDIA:|GPU Temperature
+gpuRpm=Value21
+gpuRpmSensor=GPU 0: NVIDIA:|GPU Fan1
 
-disk1Temp=Value14
-disk1Rpm=Value2
-disk2Temp=Value15
-disk2Rpm=Value2
-disk3Temp=Value16
-disk3Rpm=Value2
-disk4Temp=Value17
-disk4Rpm=Value2
-
+; Pump Temperature and RPM (used by Temps/Pump/Pump.ini)
 pumpTemp=Value18
-pumpRpm=Value19
+pumpRpm=Value8
+pumpRpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|System 1
 
-fan1rpm=Value20
-fan2rpm=Value21
-fan3rpm=Value22
-fan4rpm=Value22
+; Fan RPM Sensors (used by Temps/Fan1-4/*.ini)
+fan1rpm=Value7
+fan1RawRpm=ValueRaw7
+fan1rpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|CPU
+fan2rpm=Value8
+fan2RawRpm=ValueRaw8
+fan2rpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|System 1
+fan3rpm=Value9
+fan3RawRpm=ValueRaw9
+fan3rpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|System 4
+fan4rpm=Value10
+fan4RawRpm=ValueRaw10
+fan4rpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|System 5
 
-gpuTemp=Value22
-gpuRpm=Value23
+; Disk Temperature Sensors (used by Temps/Disks/diskTemp.ini)
+disk1Temp=Value17
+disk1TempSensor=S.M.A.R.T.: TOSHIBA HDWD130 (Z7B4XS9AS)|Drive Temperature
+disk2Temp=Value16
+disk3Temp=Value19
+disk4Temp=Value15
+disk5Temp=Value17
 
-pumpTemp=Value18
-pumpRpm=Value19
+; ============================================================
+; Sensor Labels
+; Display names for sensors (shown in tooltips and subtext)
+; Update these to match your hardware configuration
+; ============================================================
 
-
-
-; sensor labels
-cpuTemp1Label=Intel Core i7-10700K
+; CPU Labels
+cpuTemp1Label=Intel i7-10700K
 cpuTemp2Label=Intel Core i7-10700K
 
-motherboardTempLabel=MSI MPG Z490 TOMAHAWK
-motherboardTemp2Label=MSI MPG Z490 TOMAHAWK
+; RAM (DIMM) Labels
+dimm1Label=Corsair Vengeance RGB Pro 32GB
+dimm2Label=Corsair Vengeance RGB Pro 32GB
+dimm3Label=Corsair Vengeance RGB Pro 32GB
+dimm4Label=Corsair Vengeance RGB Pro 32GB
 
-12vLabel=+12V
-5vLabel=+5V
+; GPU Label
+gpuTempLabel=MSI RTX 4070
 
-disk1Label=TOSHIBA HDWD130
-disk2Label=TOSHIBA DT01ACA300
-disk3Label=KINGSTON SNV2S1000G
-disk4Label=KINGSTON SA2000M8500G
+; Pump Label
+pumpLabel=Corsair H100i
 
+; Fan Labels
 fan1Label=Corsair SP120 #1
 fan2Label=Corsair SP120 #2
 fan3Label=Corsair SP120 #3
 fan4Label=Corsair SP120 #4
 
-gpuTempLabel=MSI GTX 1060 6GB
+; Disk Labels
+disk1Label=TOSHIBA HDWD130
+disk2Label=TOSHIBA DT01ACA300
+disk3Label=KINGSTON SNV2S1000G
+disk4Label=KINGSTON SA2000M8500G
+disk5Label=SAMSUNG 870 SSD EVO
 
-pumpLabel=Corsair H100i
+; ============================================================
+; Display scaling
+; Match your Windows display scale: 1 = 100%, 1.5 = 150%, 2 = 200%.
+; Needs Rainmeter.exe > Properties > Compatibility > Change high DPI
+; settings > "Override high DPI scaling behavior: Application", otherwise
+; Windows stretches the skins itself and they look blurry.
+; ============================================================
+scale=2
 
-dimm1Label=Corsair Vengeance RGB Pro 32GB
-dimm2Label=Corsair Vengeance RGB Pro 32GB
-dimm3Label=Corsair Vengeance RGB Pro 32GB
-dimm1Label=Corsair Vengeance RGB Pro 32GB
+; ============================================================
+; Ring effects (every gauge; set on the config tool's "effects" page)
+; ============================================================
+; Ease the ring to each new reading instead of jumping: 0/1, and how fast (ms)
+fxSmooth=1
+fxEaseMs=280
+; Glow around the arc: 0 = off, 1 = always, 2 = grows with load (55-90 %)
+fxGlow=2
+fxGlowStrength=0.9
+; Peak tick that holds the recent high, then slides back: 0/1
+fxPeak=0
+; Arc brightens toward its tip, with a bright head: 0/1
+fxComet=0
+; Drops fade out instead of vanishing: 0/1
+fxAfterglow=1
+; Rounded arc ends: 0/1
+fxRoundCaps=0
 
-; media player name
-mediaPlayer=CAD
+; ============================================================
+; Fonts
+; Defaults for every gauge. An Apparence\*.txt file can override mainFont
+; (the config tool writes it there).
+; ============================================================
+mainFont=Ubuntu Nerd Font
+subFont=Segoe UI
 
-; max desired size of recycle bin in Bytes
+; ============================================================
+; Recycle Bin Configuration
+; ============================================================
+; Maximum desired size of recycle bin in Bytes (default: 2GB)
 trashMax=2147483648
+; Permanently empty the bin, without asking, once it grows past trashMax
+; 0=off (default), 1=on
+trashAutoEmpty=0
 
-; time skin settings
+; ============================================================
+; Time Component Settings
+; ============================================================
+; Time format string (see Rainmeter Time measure documentation)
 timeFormat=%#H:%M
+; Date format string
 dateFormat="%a, %#d %B"
-; 0 minute, 1 hour, 2 half day, 3 day, 4 week, 5 month
+; Roundline display mode: 0=minute, 1=hour, 2=half day, 3=day, 4=week, 5=month
 timeRoundline=3
 
+; ============================================================
+; Network Component Settings
+; ============================================================
 ; Maximum upload and download speeds in Bytes per second
+; Used for calculating percentage display in network components
 uploadMax=2250000
 downloadMax=33125000
-
-;Weather woeid and unit
-woeid=615702
-unit=c
