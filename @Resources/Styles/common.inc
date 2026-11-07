@@ -50,8 +50,8 @@ Hidden=#hideDivider#
 
 [mainTextCommon]
 AntiAlias=1
-StringCase=Normal
-FontFace=Ubuntu Nerd Font
+StringCase=None
+FontFace=#mainFont#
 FontSize=(#radius#*0.5)
 FontColor=#textMainColor#
 StringStyle=#fontStyle#
@@ -62,7 +62,7 @@ AntiAlias=1
 ClipStringW=(#radius#*4)
 ClipStringH=(#subTwoLines# = 1 ? (#radius#) : (#radius#*0.5))
 ClipString=2
-FontFace=Neon 80s
+FontFace=#subFont#
 FontSize=(#radius#*0.32)
 FontColor=#textSubColor#
 StringStyle=#fontStyle#
