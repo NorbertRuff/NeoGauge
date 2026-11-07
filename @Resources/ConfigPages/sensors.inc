@@ -33,6 +33,13 @@ RegKey=SOFTWARE\HWiNFO64\VSB
 RegValue=Value0
 UpdateDivider=-1
 
+; 1 while HWiNFO64 runs, -1 otherwise (setup checklist)
+[mHwinfoRunning]
+Measure=Plugin
+Plugin=Process
+ProcessName=HWiNFO64.exe
+UpdateDivider=2
+
 [mSensors]
 Measure=Script
 ScriptFile=#@#Scripts\Sensors.lua
@@ -581,6 +588,55 @@ Y=(398*#s#)
 Hidden=1
 Text=
 LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 19"]
+
+; ------------------------------------------------------------
+; Setup checklist and auto-assign (Sensors.lua paintChecklist / autoAssign)
+
+[checkHeader]
+Meter=String
+MeterStyle=sText | sNote
+X=(140*#s#)
+Y=(440*#s#)
+Text=Setup
+
+[check1]
+Meter=String
+MeterStyle=sText | sSensRow
+FontSize=(10*#s#)
+X=(140*#s#)
+Y=(458*#s#)
+W=(316*#s#)
+Text=
+
+[check2]
+Meter=String
+MeterStyle=sText | sSensRow
+FontSize=(10*#s#)
+X=(140*#s#)
+Y=(482*#s#)
+W=(316*#s#)
+Text=
+
+[check3]
+Meter=String
+MeterStyle=sText | sSensRow
+FontSize=(10*#s#)
+X=(140*#s#)
+Y=(506*#s#)
+W=(316*#s#)
+Hidden=1
+Text=
+
+[autoAssign]
+Meter=String
+MeterStyle=sText
+FontColor=#pageColor#
+X=(140*#s#)
+Y=(540*#s#)
+Hidden=1
+Text=auto-assign
+ToolTipText=Give every gauge without a working sensor one by name (CPU Package, GPU Temperature, DIMM, Drive Temperature, fan headers) and a label from it. Gauges that already work are kept.
+LeftMouseUpAction=[!CommandMeasure mSensors "autoAssign()"]
 
 ; ------------------------------------------------------------
 ; Sensors of the selected slot's unit (right): label, device, live value

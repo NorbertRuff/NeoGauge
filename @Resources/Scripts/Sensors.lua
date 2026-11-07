@@ -30,6 +30,20 @@ SLOTS = {
 local NO_DATA_NOTE = "HWiNFO isn't reporting sensors. In HWiNFO: Settings > HWiNFO Gadget > "
 	.. "Enable reporting to Gadget, then tick each sensor's 'Report value in Gadget'."
 
+-- Auto-assign: HWiNFO label patterns per slot, best first (lowercase Lua
+-- patterns, matched anywhere in the label). Fan 1-4 have no list: they take
+-- the remaining fan headers in HWiNFO's order (not GPU fans, not pumps).
+local AUTO = {
+	cpuTemp1 = { 'cpu package', 'tctl', 'cpu die', 'core max', '^cpu$' },
+	cpuTemp2 = { 'core max', 'core temperatures', 'tctl', 'cpu package', '^cpu$' },
+	dimm1Temp = { 'dimm', 'spd hub' },
+	gpuTemp = { 'gpu temperature', 'gpu core' },
+	gpuRpm = { 'gpu fan' },
+	pumpTemp = { 'coolant', 'liquid', 'water', 'pump' },
+	pumpRpm = { 'pump', 'aio' },
+	disk1Temp = { 'drive temperature$', 'drive temperature' },
+}
+
 sensors = {}
 order = {}
 
@@ -58,11 +72,11 @@ end
 -- Every 2 s: re-read ValueN for the 12 slots and the visible list rows only
 -- (at most 28 registry reads), then repaint. paint() sends a bang only for
 -- what changed. With no HWiNFO data it looks for the value list again, so the
--- page fills in once HWiNFO starts.
+-- page fills in once HWiNFO starts or turns on Gadget reporting.
 function Update()
 	if #order == 0 then
 		loadSensors()
-		if #order > 0 then paint() end
+		paint()   -- also keeps the checklist's "running" line current
 		return 0
 	end
 
@@ -344,6 +358,44 @@ local function paintLabel(hasData)
 	setVariable('sensorLabelText', (label:gsub('"', '')))
 end
 
+-- Setup checklist (bottom left): is HWiNFO running, is it reporting, and how
+-- many gauges have a sensor. Lines in red say what to do; the tooltips say how.
+local function checkLine(r, text, ok, tip)
+	setOption('check' .. r, 'Text', text)
+	setOption('check' .. r, 'FontColor', ok and color('textColor') or MARK_MISSING)
+	setOption('check' .. r, 'ToolTipText', tip or '')
+end
+
+function hwinfoRunning()
+	local m = SKIN:GetMeasure('mHwinfoRunning')
+	return m ~= nil and m:GetValue() == 1
+end
+
+local function paintChecklist(hasData)
+	local running = hwinfoRunning()
+	checkLine(1, running and 'HWiNFO64 is running' or "HWiNFO64 isn't running", running,
+		running and '' or "Start HWiNFO64 (Sensors-only is enough). In its settings, tick Auto Start "
+		.. "and Minimize Main Window on Startup so it runs with Windows.")
+
+	local temps, fans = 0, 0
+	for _, n in ipairs(order) do
+		if sensors[n].unit == 'temp' then temps = temps + 1 elseif sensors[n].unit == 'rpm' then fans = fans + 1 end
+	end
+	checkLine(2, hasData and string.format('%d sensors reported (%d temperature, %d fan)', #order, temps, fans)
+		or 'Gadget reporting is off', hasData, hasData and '' or NO_DATA_NOTE)
+
+	local found = 0
+	for i = 1, #SLOTS do
+		local n = slotIndex(i)
+		if n and sensors[n] then found = found + 1 end
+	end
+	setHidden('check3', not hasData)
+	checkLine(3, string.format('%d of %d gauges have a sensor', found, #SLOTS), found == #SLOTS,
+		"! = no sensor: pick one on the right, or tick 'Report value in Gadget' for it in HWiNFO. "
+		.. "~ = HWiNFO renumbered it: click the mark. Gauges you don't load can stay empty.")
+	setHidden('autoAssign', not hasData)
+end
+
 function paint()
 	local hasData = #order > 0
 
@@ -354,20 +406,20 @@ function paint()
 	paintSlots(hasData)
 	paintList(hasData)
 	paintLabel(hasData)
+	paintChecklist(hasData)
 	flush()
 end
 
 -- ------------------------------------------------------------------
 -- Actions
 
--- Remember the selection in Config.ini without refreshing the skin
+-- Remember the selection in the window state file without refreshing the skin
 function selectSlot(i)
 	i = tonumber(i)
 	if not i or not SLOTS[i] then return end
 	curSlot = i
 	page = 1
-	SKIN:Bang('!WriteKeyValue', 'Variables', 'sensorSlot', tostring(i),
-		SKIN:ReplaceVariables('#CURRENTPATH##CURRENTFILE#'))
+	SKIN:Bang('!WriteKeyValue', 'Variables', 'sensorSlot', tostring(i), SKIN:GetVariable('stateFile'))
 	paint()
 end
 
@@ -395,13 +447,101 @@ local function write(key, value)
 end
 
 -- Point slot i at sensor n: the ValueN variable(s) plus the name the check compares
-local function assign(i, n)
+local function store(i, n)
 	local slot, s = SLOTS[i], sensors[n]
 	if not slot or not s then return end
 	write(slot.key, 'Value' .. n)
 	if slot.raw then write(slot.raw, 'ValueRaw' .. n) end
 	write(slot.key .. 'Sensor', s.name)
+end
+
+local function assign(i, n)
+	store(i, n)
 	SKIN:Bang('!RefreshGroup', 'rsm')
+end
+
+-- ------------------------------------------------------------------
+-- Auto-assign
+
+-- A label for the gauge from the sensor: the device for temperatures
+-- ("CPU [#0]: Intel Core i7-10700K: DTS" -> "Intel Core i7-10700K"), the
+-- HWiNFO label for fans ("System 1")
+function autoLabel(i, n)
+	local slot, s = SLOTS[i], sensors[n]
+	if not slot or not s then return '' end
+	local text = s.label
+	if slot.unit == 'temp' then
+		text = s.device:gsub('^%u+ %[#%d+%]:%s*', ''):gsub('^S%.M%.A%.R%.T%.:%s*', '')
+			:gsub(':%s*DTS$', ''):gsub('%s*%(.-%)$', ''):gsub(':$', '')
+	end
+	return trim((text:gsub('[#%[%]"]', '')))
+end
+
+-- The first free sensor of the slot's unit that the slot's patterns match
+local function autoFind(slot, used)
+	local function free(n)
+		return not used[n] and sensors[n].unit == slot.unit
+	end
+	local patterns = AUTO[slot.key]
+	if patterns then
+		for _, p in ipairs(patterns) do
+			for _, n in ipairs(order) do
+				if free(n) and sensors[n].label:lower():find(p) then return n end
+			end
+		end
+	elseif slot.key:match('^fan%drpm$') then
+		for _, n in ipairs(order) do
+			local s = sensors[n]
+			if free(n) and not s.device:lower():find('^gpu') and not s.label:lower():find('pump') then
+				return n
+			end
+		end
+	end
+	return nil
+end
+
+-- What auto-assign would do: { {slot, n, byName}, ... }. Slots that work
+-- ('ok') are kept; a moved sensor follows its name; the rest go by AUTO.
+function autoPlan()
+	local used, todo, plan = {}, {}, {}
+	for i = 1, #SLOTS do
+		if slotStatus(i) == 'ok' then used[slotIndex(i)] = true else todo[#todo + 1] = i end
+	end
+	for _, i in ipairs(todo) do
+		local _, n = slotStatus(i)
+		local byName = n ~= nil and not used[n]
+		if not byName then n = autoFind(SLOTS[i], used) end
+		if n then
+			used[n] = true
+			plan[#plan + 1] = { slot = i, n = n, byName = byName }
+		end
+	end
+	return plan
+end
+
+-- The auto-assign button. A gauge that gets a new sensor by pattern also gets
+-- a label from it (a followed name keeps the label it had).
+function autoAssign()
+	local plan = autoPlan()
+	for _, step in ipairs(plan) do
+		store(step.slot, step.n)
+		local slot = SLOTS[step.slot]
+		if slot.label and not step.byName then
+			local label = autoLabel(step.slot, step.n)
+			if label ~= '' then write(slot.label, label) end
+		end
+	end
+	if #plan > 0 then SKIN:Bang('!RefreshGroup', 'rsm') end
+	return #plan
+end
+
+-- Probe test: "slot:N" for each planned step, or "none"
+function autoPlanText()
+	local parts = {}
+	for _, step in ipairs(autoPlan()) do
+		parts[#parts + 1] = step.slot .. ':' .. step.n .. (step.byName and 'n' or '')
+	end
+	return #parts > 0 and table.concat(parts, ',') or 'none'
 end
 
 -- Click on list row `row` (1..16 of the current page): the selected slot reads that sensor

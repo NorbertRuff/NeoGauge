@@ -17,37 +17,37 @@ MeterStyle=sText
 X=(140*#s#)
 Y=(20*#s#)
 Text=cpu
-LeftMouseUpAction=[!WriteKeyValue Variables component cpu][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component cpu "#stateFile#"][!Refresh]
 
 [opt_component_threads]
 Meter=String
 MeterStyle=sText | sNext
 Text=threads
-LeftMouseUpAction=[!WriteKeyValue Variables component threads][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component threads "#stateFile#"][!Refresh]
 
 [opt_component_ram]
 Meter=String
 MeterStyle=sText | sNext
 Text=ram
-LeftMouseUpAction=[!WriteKeyValue Variables component ram][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component ram "#stateFile#"][!Refresh]
 
 [opt_component_io]
 Meter=String
 MeterStyle=sText | sNext
 Text=I/O
-LeftMouseUpAction=[!WriteKeyValue Variables component io][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component io "#stateFile#"][!Refresh]
 
 [opt_component_disk]
 Meter=String
 MeterStyle=sText | sNext
 Text=disks
-LeftMouseUpAction=[!WriteKeyValue Variables component disk][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component disk "#stateFile#"][!Refresh]
 
 [opt_component_fan]
 Meter=String
 MeterStyle=sText | sNext
 Text=temps & fans
-LeftMouseUpAction=[!WriteKeyValue Variables component fan][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component fan "#stateFile#"][!Refresh]
 
 [opt_component_networkDown]
 Meter=String
@@ -55,37 +55,37 @@ MeterStyle=sText
 X=(140*#s#)
 Y=(4*#s#)R
 Text=download
-LeftMouseUpAction=[!WriteKeyValue Variables component networkDown][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component networkDown "#stateFile#"][!Refresh]
 
 [opt_component_networkUp]
 Meter=String
 MeterStyle=sText | sNext
 Text=upload
-LeftMouseUpAction=[!WriteKeyValue Variables component networkUp][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component networkUp "#stateFile#"][!Refresh]
 
 [opt_component_wifi]
 Meter=String
 MeterStyle=sText | sNext
 Text=wifi
-LeftMouseUpAction=[!WriteKeyValue Variables component wifi][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component wifi "#stateFile#"][!Refresh]
 
 [opt_component_battery]
 Meter=String
 MeterStyle=sText | sNext
 Text=battery
-LeftMouseUpAction=[!WriteKeyValue Variables component battery][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component battery "#stateFile#"][!Refresh]
 
 [opt_component_upTime]
 Meter=String
 MeterStyle=sText | sNext
 Text=uptime
-LeftMouseUpAction=[!WriteKeyValue Variables component upTime][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component upTime "#stateFile#"][!Refresh]
 
 [opt_component_default]
 Meter=String
 MeterStyle=sText | sNext
 Text=other
-LeftMouseUpAction=[!WriteKeyValue Variables component default][!Refresh]
+LeftMouseUpAction=[!WriteKeyValue Variables component default "#stateFile#"][!Refresh]
 
 [usedBy]
 Meter=String

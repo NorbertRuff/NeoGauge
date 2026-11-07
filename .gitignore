@@ -100,3 +100,5 @@ tools/out/
 /tools/Measure.ps1
 /tools/next-session.md
 /tools/specs/
+/@Resources/ConfigState.inc
+/dist/

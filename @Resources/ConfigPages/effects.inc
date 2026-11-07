@@ -190,7 +190,7 @@ Meter=String
 MeterStyle=sText | sHeader
 Y=(284*#s#)
 Text=Warnings
-ToolTipText=When a ring turns yellow and red (not battery, wifi, volume or clock)
+ToolTipText=When a ring turns yellow and red (not battery, wifi, volume or clock). Temperature and fan gauges use their own levels below.
 
 [warnLabel]
 Meter=String
@@ -284,3 +284,218 @@ X=(10*#s#)R
 Y=(340*#s#)
 Text=#alertColor#
 LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 21"]
+
+; ------------------------------------------------------------
+; Own levels for the temperature and fan gauges (chipTempWarn ... fanAlert in
+; Settings.txt). Click a number to type a new one (mInput commands 22-31).
+
+[ownHeader]
+Meter=String
+MeterStyle=sText | sNote
+FontSize=(10*#s#)
+X=(140*#s#)
+Y=(376*#s#)
+Text=own levels
+ToolTipText=These gauges use their own levels instead of the % ones above
+
+[ownWarnHeader]
+Meter=String
+MeterStyle=sText | sNote
+FontSize=(10*#s#)
+X=(300*#s#)
+Y=r
+Text=yellow
+
+[ownAlertHeader]
+Meter=String
+MeterStyle=sText | sNote
+FontSize=(10*#s#)
+X=(360*#s#)
+Y=r
+Text=red
+
+[chipTempLabel]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+X=(140*#s#)
+Y=(398*#s#)
+Text=CPU, GPU
+ToolTipText=CPU and GPU temperature
+
+[chipTempWarn]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+FontColor=#warnColor#
+X=(300*#s#)
+Y=r
+Text=#chipTempWarn#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 22"]
+
+[chipTempAlert]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+FontColor=#alertColor#
+X=(360*#s#)
+Y=r
+Text=#chipTempAlert#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 23"]
+
+[chipTempUnit]
+Meter=String
+MeterStyle=sText | sNote
+FontSize=(10*#s#)
+X=(420*#s#)
+Y=r
+Text=degrees
+
+[ramTempLabel]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+X=(140*#s#)
+Y=(422*#s#)
+Text=RAM
+ToolTipText=RAM (DIMM) temperature
+
+[ramTempWarn]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+FontColor=#warnColor#
+X=(300*#s#)
+Y=r
+Text=#ramTempWarn#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 24"]
+
+[ramTempAlert]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+FontColor=#alertColor#
+X=(360*#s#)
+Y=r
+Text=#ramTempAlert#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 25"]
+
+[ramTempUnit]
+Meter=String
+MeterStyle=sText | sNote
+FontSize=(10*#s#)
+X=(420*#s#)
+Y=r
+Text=degrees
+
+[driveTempLabel]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+X=(140*#s#)
+Y=(446*#s#)
+Text=drives
+ToolTipText=Drive temperature. Hard disks like to stay under 50
+
+[driveTempWarn]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+FontColor=#warnColor#
+X=(300*#s#)
+Y=r
+Text=#driveTempWarn#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 26"]
+
+[driveTempAlert]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+FontColor=#alertColor#
+X=(360*#s#)
+Y=r
+Text=#driveTempAlert#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 27"]
+
+[driveTempUnit]
+Meter=String
+MeterStyle=sText | sNote
+FontSize=(10*#s#)
+X=(420*#s#)
+Y=r
+Text=degrees
+
+[coolantTempLabel]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+X=(140*#s#)
+Y=(470*#s#)
+Text=coolant
+ToolTipText=Pump gauge: liquid cooler coolant temperature
+
+[coolantTempWarn]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+FontColor=#warnColor#
+X=(300*#s#)
+Y=r
+Text=#coolantTempWarn#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 28"]
+
+[coolantTempAlert]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+FontColor=#alertColor#
+X=(360*#s#)
+Y=r
+Text=#coolantTempAlert#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 29"]
+
+[coolantTempUnit]
+Meter=String
+MeterStyle=sText | sNote
+FontSize=(10*#s#)
+X=(420*#s#)
+Y=r
+Text=degrees
+
+[fanLabel]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+X=(140*#s#)
+Y=(494*#s#)
+Text=fans
+ToolTipText=Fans 1-4, in % of the max rpm on the system page. A busy fan is not a fault
+
+[fanWarn]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+FontColor=#warnColor#
+X=(300*#s#)
+Y=r
+Text=#fanWarn#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 30"]
+
+[fanAlert]
+Meter=String
+MeterStyle=sText
+FontSize=(10*#s#)
+FontColor=#alertColor#
+X=(360*#s#)
+Y=r
+Text=#fanAlert#
+LeftMouseUpAction=[!CommandMeasure mInput "ExecuteBatch 31"]
+
+[fanUnit]
+Meter=String
+MeterStyle=sText | sNote
+FontSize=(10*#s#)
+X=(420*#s#)
+Y=r
+Text=% of max rpm
+

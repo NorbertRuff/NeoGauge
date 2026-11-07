@@ -14,7 +14,6 @@ colorIcon=255,255,255,255
 ; size and scaling
 ; size = one thread ring's radius at 100% display scaling
 size=14
-radius=(#size#*#scale#)
 innerRadius=(#radius#*0.60)
 edging=(#radius#*0.3)
 orient=left

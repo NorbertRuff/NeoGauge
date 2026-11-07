@@ -8,6 +8,8 @@
 ;                        Find values by running: reg query HKEY_CURRENT_USER\SOFTWARE\HWiNFO64\VSB
 ;   fanLabel           - Display label for the fan (shown in subtext)
 ;   fanMaxRpm          - Maximum RPM for percentage calculation (e.g., 2500)
+;   gaugeSlot          - Row on the config tool's sensors page (SLOTS in Sensors.lua);
+;                        a gauge without a sensor opens it on click
 ;
 ; OPTIONAL VARIABLES:
 ;   fanTempRegValue - HWiNFO64 registry value for temperature (if showing temp on hover)
@@ -20,7 +22,8 @@
 ; ERROR HANDLING:
 ;   - Handles missing/invalid registry values with Substitute
 ;   - Displays "N/A" for unavailable sensors
-;   - Peak values tracked automatically with MinValue/MaxValue
+;   - Peaks come from peakTemplate.inc (right-click resets)
+;   - Yellow / red from fanWarn / fanAlert % of fanMaxRpm (Settings.txt)
 ; ============================================================
 
 [mRpm]
@@ -58,7 +61,13 @@ peakSource=mRpm
 fxSource=mPercent
 fxMax=1
 fxLevels=1
+; Own levels (% of fanMaxRpm, Settings.txt): a busy fan isn't a fault
+fxWarn=#fanWarn#
+fxAlert=#fanAlert#
+noSensorSource=mRpmDisplay
+noSensorLabel=#fanLabel#
 @include7="#@#Templates\peakTemplate.inc"
+@include8="#@#Templates\noSensorTemplate.inc"
 
 @include5="#@#Templates\ringTemplate.inc"
 
@@ -76,6 +85,7 @@ ClipString=1
 Text="%1"
 ToolTipText="Current: %1#CRLF#Min: [mPeakMin:0] RPM | Max: [mPeakMax:0] RPM#CRLF#Right-click to reset peaks"
 RightMouseUpAction=#peakResetAction#
+LeftMouseUpAction=#noSensorClick#
 DynamicVariables=1
 
 [subText]

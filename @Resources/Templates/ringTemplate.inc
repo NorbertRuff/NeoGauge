@@ -7,9 +7,13 @@
 ; REQUIRED VARIABLES (in the skin's or template's [Variables]):
 ;   fxSource - Measure that holds the value
 ;   fxMax    - Value that fills the ring: 100 for percentages, 1 for 0-1
-;   fxLevels - 1 = warnColor from warnLevel %, alertColor from alertLevel %
-;              (Settings.txt, defaults 75 / 90); 0 = always pieColor
-;              (battery, wifi, volume, clock)
+;   fxLevels - 1 = warnColor from fxWarn %, alertColor from fxAlert %; 0 = always
+;              pieColor (battery, wifi, volume, clock)
+;
+; OPTIONAL VARIABLES:
+;   fxWarn / fxAlert - Levels in % of fxMax. Settings.txt sets them to
+;              warnLevel / alertLevel (75 / 90); the temp and fan templates
+;              replace them with their group's own levels
 ;
 ; USAGE:
 ;   Include after the fxSource measure, before [divider]:
@@ -122,7 +126,7 @@ Group=fx
 [mFxLevel]
 Measure=Calc
 DynamicVariables=1
-Formula=#fxLevels# = 0 ? 0 : (mFxValue >= #alertLevel# ? 2 : (mFxValue >= #warnLevel# ? 1 : 0))
+Formula=#fxLevels# = 0 ? 0 : (mFxValue >= #fxAlert# ? 2 : (mFxValue >= #fxWarn# ? 1 : 0))
 Group=fx
 IfCondition=mFxLevel = 0
 IfTrueAction=[!SetVariable fxRGB "[#fxBaseRGB]"][!SetVariable fxA "[#fxBaseA]"][!SetVariable fxHeadRGB "[#fxBaseHeadRGB]"]
@@ -134,7 +138,7 @@ IfTrueAction3=[!SetVariable fxRGB "[#fxAlertRGB]"][!SetVariable fxA "[#fxAlertA]
 [mFxPeakLevel]
 Measure=Calc
 DynamicVariables=1
-Formula=#fxLevels# = 0 ? 0 : (mFxPeak >= #alertLevel# ? 2 : (mFxPeak >= #warnLevel# ? 1 : 0))
+Formula=#fxLevels# = 0 ? 0 : (mFxPeak >= #fxAlert# ? 2 : (mFxPeak >= #fxWarn# ? 1 : 0))
 Group=fx
 IfCondition=mFxPeakLevel = 0
 IfTrueAction=[!SetVariable fxPeakRGB "[#fxBasePeakRGB]"]

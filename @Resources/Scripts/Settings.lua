@@ -79,6 +79,7 @@ function Initialize()
 	resources = SKIN:ReplaceVariables('#@#')
 	settingsFile = resources .. 'Settings.txt'
 	appFile = resources .. 'Apparence\\' .. SKIN:GetVariable('component', 'default') .. '.txt'
+	createStateFile()
 
 	-- InputText can't evaluate formulas, so hand it ready-made pixel sizes
 	-- (FontSize is in points, which take more pixels than the box height suggests)
@@ -115,6 +116,21 @@ end
 -- Highlighting
 
 -- Icon row: show this tab's choices, the current one in the page accent
+-- The window state file (stateFile in Config.ini) is not tracked in git, and
+-- !WriteKeyValue can't create a file, so make it with the defaults if missing
+function createStateFile()
+	local path = SKIN:GetVariable('stateFile')
+	local f = io.open(path, 'r')
+	if f then f:close() return end
+	f = io.open(path, 'w')
+	if not f then return end
+	f:write('[Variables]\n')
+	for _, var in ipairs({ 'page', 'component', 'sensorSlot' }) do
+		f:write(var .. '=' .. SKIN:GetVariable(var) .. '\n')
+	end
+	f:close()
+end
+
 function showIcons()
 	local icons = ICONS[SKIN:GetVariable('component')]
 	if not icons then return end

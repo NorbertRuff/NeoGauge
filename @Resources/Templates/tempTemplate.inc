@@ -5,12 +5,12 @@
 ;   tempRegValue    - HWiNFO64 registry value name (e.g., "Value1", "Value13")
 ;                     Find values by running: reg query HKEY_CURRENT_USER\SOFTWARE\HWiNFO64\VSB
 ;   tempLabel       - Display label for the sensor (shown in subtext)
+;   tempWarn / tempAlert - Yellow / red level in degrees, one of the groups in
+;                     Settings.txt (e.g. #chipTempWarn# / #chipTempAlert#)
+;   gaugeSlot       - Row on the config tool's sensors page (SLOTS in Sensors.lua);
+;                     a gauge without a sensor opens it on click
 ;
-; OPTIONAL VARIABLES:
-;   tempPercentFormula - Formula for percentage calculation (defaults to mTemp/100)
-;   tempRpmRegValue    - RPM registry value if showing RPM on hover
-;   tempRpmLabel       - Label for RPM display
-;   tempShowRpm         - Set to 1 to show RPM, 0 to hide (default: 0)
+; The ring is full at 100 degrees.
 ;
 ; USAGE:
 ;   1. Set required variables before including this template
@@ -20,7 +20,7 @@
 ; ERROR HANDLING:
 ;   - Handles missing/invalid registry values with Substitute
 ;   - Displays "N/A" for unavailable sensors
-;   - Peak values tracked automatically with MinValue/MaxValue
+;   - Peaks come from peakTemplate.inc (right-click resets)
 ; ============================================================
 
 [mTemp]
@@ -46,7 +46,13 @@ peakSource=mTemp
 fxSource=mPercent
 fxMax=1
 fxLevels=1
+; The ring is in degrees (temp / 100 of fxMax=1), so the levels are too
+fxWarn=#tempWarn#
+fxAlert=#tempAlert#
+noSensorSource=mTemp
+noSensorLabel=#tempLabel#
 @include7="#@#Templates\peakTemplate.inc"
+@include8="#@#Templates\noSensorTemplate.inc"
 
 @include5="#@#Templates\ringTemplate.inc"
 
@@ -64,6 +70,7 @@ ClipString=1
 Text="%1"
 ToolTipText="Current: %1°C#CRLF#Min: [mPeakMin:0]°C | Max: [mPeakMax:0]°C#CRLF#Right-click to reset peaks"
 RightMouseUpAction=#peakResetAction#
+LeftMouseUpAction=#noSensorClick#
 DynamicVariables=1
 
 [subText]

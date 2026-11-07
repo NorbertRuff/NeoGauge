@@ -83,11 +83,13 @@ The Ubuntu Nerd Font used by the gauges ships in `@Resources\Fonts` and loads au
 
 1. Install [Rainmeter](https://www.rainmeter.net/)
 2. Get the skin, either way:
-    - Download this repository into your Rainmeter skins folder (usually `C:\Users\%username%\Documents\Rainmeter\Skins\NeoGauge`)
-    - Or run the included `.rmskin` installer
+    - Download `NeoGauge_2.0.rmskin` from the [latest release](https://github.com/NorbertRuff/NeoGauge/releases/latest) and double-click it. The installer opens the config tool when it's done
+    - Or clone this repository into your Rainmeter skins folder (usually `C:\Users\%username%\Documents\Rainmeter\Skins\NeoGauge`) and refresh Rainmeter
 3. Open Rainmeter's Manage window and load the gauges you want from the `NeoGauge` folder
-4. Load `NeoGauge\Config.ini` to set everything up (see [Configuration](#div-stylecolorf59800-aligncenter----configuration-wrench----div))
+4. Use `NeoGauge\Config.ini` to set everything up (see [Configuration](#div-stylecolorf59800-aligncenter----configuration-wrench----div))
 5. Optional: set up HWiNFO for the temperature and fan gauges (see [Usage](#div-stylecolorf59800-aligncenter----usage-computer----div))
+
+**Updating:** install the new `.rmskin` over the old one. Your `Settings.txt` and appearance files keep their values, and new settings get their defaults. The installer moves the old version to `Skins\@Backup`. From 1.0, your old sensor numbers are kept, so open the config tool's **sensors** page and press **Auto-assign**.
 
 ### Display scaling (125 % / 150 % / 200 %)
 
@@ -104,11 +106,15 @@ Every gauge, font and the config window scale from that one setting. If your gau
 
 The temperature, fan and pump gauges read sensors from HWiNFO through the Windows registry:
 
-1. In HWiNFO's sensors window, open **Settings** > **HWiNFO Gadget**, select each sensor you want and tick **Report value in Gadget**
+1. In HWiNFO's sensors window, open **Settings** > **HWiNFO Gadget**, tick **Enable reporting to Gadget**, then select each sensor you want and tick **Report value in Gadget**
 2. Keep HWiNFO running
-3. In the config tool's **sensors** page, click a gauge on the left, then click the sensor it should read on the right
+3. In the config tool's **sensors** page, click **auto-assign**: it matches the gauges to sensors by name (CPU Package, GPU Temperature, DIMM, Drive Temperature, fan headers). Fix any misses by clicking a gauge on the left, then the sensor it should read on the right
+
+The **Setup** lines on the sensors page say whether HWiNFO is running, how many sensors it reports and how many gauges have one; hover a red line for what to do. A gauge without a sensor shows N/A and "no sensor": click it to open the sensors page on that gauge.
 
 HWiNFO numbers its sensors in the order you enabled them, so adding or removing one there can shift them. The sensors page marks a gauge whose sensor is gone with `!`, and one whose sensor moved with `~` (click the `~` to follow it).
+
+Tip: back up your HWiNFO sensor ticks with `reg export HKCU\SOFTWARE\HWiNFO64\Sensors hwinfo-sensors.reg`, and double-click the file after reinstalling HWiNFO (same hardware only).
 
 Other handy interactions:
 - Hover a gauge's main text for a tooltip with its peak values since load; right-click it to reset them
@@ -132,7 +138,7 @@ Load `Config.ini` (the `NeoGauge` root skin) for the settings window. Every clic
 - **sensors** - which HWiNFO sensor each temperature, fan and pump gauge reads, picked by name with its live value, and the label shown under the gauge (click it to type a new one)
 - **time** - what the clock's ring tracks (minute to year) and the time and date formats
 
-Gauges turn yellow from 75 % and red from 90 % (not battery, wifi, volume or clock). Both levels and both colours can be changed under **Warnings** on the effects page.
+Gauges turn yellow from 75 % and red from 90 % (not battery, wifi, volume or clock). Both levels and both colours can be changed under **Warnings** on the effects page. Temperatures and fans have their own levels there (click a number to change it): CPU/GPU 75 / 90 °C, RAM 55 / 65 °C, drives 50 / 55 °C, coolant 40 / 45 °C, and fans 90 / 100 % of the max RPM.
 
 Animated effects only run while a ring is moving, then go idle. If Rainmeter's CPU use matters to you, use the **light** or **off** preset.
 

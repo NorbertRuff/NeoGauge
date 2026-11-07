@@ -43,8 +43,8 @@ gpuRpmSensor=GPU 0: NVIDIA:|GPU Fan1
 
 ; Pump Temperature and RPM (used by Temps/Pump/Pump.ini)
 pumpTemp=Value18
-pumpRpm=Value8
-pumpRpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|System 1
+pumpRpm=Value7
+pumpRpmSensor=MSI MAG Z490 TOMAHAWK (MS-7C80) (Nuvoton NCT6687D)|CPU
 
 ; Fan RPM Sensors (used by Temps/Fan1-4/*.ini)
 fan1rpm=Value7
@@ -91,7 +91,7 @@ gpuTempLabel=MSI RTX 4070
 pumpLabel=Corsair H100i
 
 ; Fan Labels
-fan1Label=Corsair SP120 #1
+fan1Label=Corsair H100i pump
 fan2Label=Corsair SP120 #2
 fan3Label=Corsair SP120 #3
 fan4Label=Corsair SP120 #4
@@ -139,6 +139,26 @@ warnLevel=75
 alertLevel=90
 warnColor=255,200,100,230
 alertColor=255,100,100,230
+; Own levels for these gauges, in their own unit: temperatures in degrees,
+; fans in % of fanMaxRpm. Every other gauge uses warnLevel / alertLevel.
+chipTempWarn=75
+chipTempAlert=90
+ramTempWarn=55
+ramTempAlert=65
+driveTempWarn=50
+driveTempAlert=55
+coolantTempWarn=40
+coolantTempAlert=45
+fanWarn=90
+fanAlert=100
+; Ring wiring (ringTemplate.inc), not a setting: the temp and fan templates
+; replace these with the levels above
+fxWarn=#warnLevel#
+fxAlert=#alertLevel#
+; Gauge radius in pixels, from the appearance file's size. Kept out of the
+; appearance files so an update from 1.0 (which stored a fixed radius there)
+; can't bring back an unscaled value
+radius=(#size#*#scale#)
 
 ; ============================================================
 ; Fonts
