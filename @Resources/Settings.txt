@@ -120,7 +120,7 @@ fxSmooth=1
 fxEaseMs=280
 ; Glow around the arc: 0 = off, 1 = always, 2 = grows with load (55-90 %)
 fxGlow=2
-fxGlowStrength=0.9
+fxGlowStrength=0.6
 ; Peak tick that holds the recent high, then slides back: 0/1
 fxPeak=0
 ; Arc brightens toward its tip, with a bright head: 0/1
